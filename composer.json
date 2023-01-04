@@ -1,9 +1,9 @@
 {
-    "name": "laravel/laravel",
+    "name": "vermaysha/isp-admin",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
-    "license": "MIT",
+    "description": "ISP Admin",
+    "keywords": [],
+    "license": "LGPL-3.0",
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",

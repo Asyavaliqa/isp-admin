@@ -37,5 +37,5 @@ Start the server
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[LGPL-3.0](https://choosealicense.com/licenses/lgpl-3.0/)
 
