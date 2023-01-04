@@ -20,7 +20,7 @@ updates:
     schedule:
       interval: "weekly"
     labels:
-      - "npm
+      - "npm"
 
   # Maintain dependencies for Composer
   - package-ecosystem: "composer"
@@ -28,4 +28,4 @@ updates:
     schedule:
       interval: "weekly"
     labels:
-      - "php
+      - "php"
