@@ -1,9 +1,9 @@
 # GitHub Action for Laravel with MySQL and Redis
-name: Testing Laravel with MySQL
+name: Test
 on: [push, pull_request]
 jobs:
-  laravel:
-    name: Laravel (PHP ${{ matrix.php-versions }})
+  tests:
+    name: Laravel Testing with MySQL & Redis
     runs-on: ubuntu-latest
     env:
       DB_DATABASE: laravel
@@ -31,10 +31,7 @@ jobs:
         ports:
           - 6379/tcp
         options: --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=3
-    strategy:
-      fail-fast: false
-      matrix:
-        php-versions: ['8.1']
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -43,8 +40,8 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
-          extensions: mbstring, dom, fileinfo, mysql
+          php-version: 8.1
+          extensions: mbstring, dom, fileinfo, mysql, curl, libxml, zip, pcntl, pdo, sqlite, pdo_sqlite, pdo_mysql
           coverage: xdebug
 
       # Local MySQL service in GitHub hosted environments is disabled by default.
