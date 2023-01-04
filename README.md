@@ -26,7 +26,7 @@ Go to the project directory
   cd isp-admin
 ```
 
-Install dependencies
+Install php dependencies
 
 ```bash
   composer install
@@ -36,6 +36,11 @@ Start the server
 
 ```bash
   ./vendor/sail up
+```
+
+Open new terminal & Install npm dependencies
+```bash
+  ./vendor/sail npm install
 ```
 
 
