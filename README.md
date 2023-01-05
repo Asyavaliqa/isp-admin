@@ -4,6 +4,7 @@
 
 <p align="center">
     <a href="https://github.com/vermaysha/isp-admin/actions"><img src="https://github.com/vermaysha/isp-admin/actions/workflows/tests.yml/badge.svg" alt="Build Status"></a>
+    <a href="https://github.com/vermaysha/isp-admin/actions"><img src="https://github.com/vermaysha/isp-admin/actions/workflows/lint.yml/badge.svg" alt="Lint Status"></a>
     <a href="https://choosealicense.com/licenses/lgpl-3.0/"><img src="https://img.shields.io/github/license/vermaysha/isp-admin" alt="License"></a>
     <a href=""><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/vermaysha/isp-admin"></a>
 </p>
