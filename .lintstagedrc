@@ -1,5 +1,7 @@
 {
   "*.php": [
-    "composer run format"
+    "./vendor/bin/pint",
+    "./vendor/bin/php-cs-fixer",
+    "./vendor/bin/phpcbf"
   ]
 }
