@@ -1,7 +1,7 @@
 {
   "*.php": [
-    "./vendor/bin/pint",
-    "./vendor/bin/php-cs-fixer fix --allow-risky=yes --config=.php-cs-fixer.dist.php ",
-    "./vendor/bin/phpcbf"
+      "./vendor/bin/php-cs-fixer fix --allow-risky=yes --config=.php-cs-fixer.dist.php ",
+      "./vendor/bin/phpcbf",
+      "./vendor/bin/pint"
   ]
 }
