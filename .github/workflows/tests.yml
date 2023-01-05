@@ -1,6 +1,10 @@
 # GitHub Action for Laravel with MySQL and Redis
 name: Test
-on: [push, pull_request]
+on:
+  push:
+      branches: [ master ]
+  pull_request:
+
 jobs:
   tests:
     name: Laravel Testing with MySQL & Redis
