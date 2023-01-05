@@ -1,3 +1,10 @@
 {
-    "excluded": [".history/", "_ide_helper_models.php", "_ide_helper.php"]
+    "preset": "tighten",
+    "excluded": [
+        "src/Illuminate/",
+        "tests/fixtures/",
+        ".history/",
+        "_ide_helper_models.php",
+        "_ide_helper.php"
+    ]
 }
