@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Reseller extends Model
 {
     use HasFactory;
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'reseller_employee')->withTimestamps();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

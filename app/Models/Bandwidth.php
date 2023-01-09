@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Bandwidth extends Model
 {
     use HasFactory;
+
+    public function reseller()
+    {
+        return $this->belongsTo(Reseller::class);
+    }
 }

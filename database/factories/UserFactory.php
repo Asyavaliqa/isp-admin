@@ -18,10 +18,19 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $faker = fake('id_ID');
+        $gender = $faker->randomElement(['male', 'female']);
+
         return [
-            'username' => fake('id_ID')->unique()->userName(),
-            'email' => fake('id_ID')->unique()->safeEmail(),
+            'username' => $faker->unique()->userName(),
+            'email' => $faker->unique()->safeEmail(),
             'password' => Hash::make(('password')),
+            'fullname' => $faker->name($gender),
+            'address' => $faker->address(),
+            'nik' => $faker->nik(),
+            'phone_number' => $faker->e164PhoneNumber(),
+            'birthday' => $faker->dateTimeBetween(),
+            'gender' => $gender,
             'remember_token' => Str::random(10),
         ];
     }

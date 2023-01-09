@@ -13,7 +13,14 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('fullname')->nullable();
+            $table->string('photo')->nullable();
+            $table->text('address')->nullable();
+            $table->string('nik')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->date('birthday')->nullable();
+            $table->set('gender', ['male', 'female', 'other'])->nullable();
+            $table->rememberToken()->nullable();
             $table->timestamps();
         });
     }
