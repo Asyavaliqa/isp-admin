@@ -48,6 +48,7 @@ Open new terminal & Install npm dependencies
 ## Authors
 
 - [@vermaysha](https://www.github.com/vermaysha)
+- [@RenoXF](https://github.com/RenoXF)
 
 
 ## License
