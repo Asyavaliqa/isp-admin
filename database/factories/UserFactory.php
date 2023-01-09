@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'fullname' => $faker->name($gender),
             'address' => $faker->address(),
             'nik' => $faker->nik(),
-            'phoneNumber' => $faker->e164PhoneNumber(),
+            'phone_number' => $faker->e164PhoneNumber(),
             'birthday' => $faker->dateTimeBetween(),
             'gender' => $gender,
             'remember_token' => Str::random(10),
