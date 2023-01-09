@@ -11,6 +11,9 @@ return new class extends Migration
         Schema::create('resellers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            $table->string('agency_name');
+            $table->string('settlement_date');
+            $table->boolean('is_ppn');
             $table->timestamps();
         });
     }
