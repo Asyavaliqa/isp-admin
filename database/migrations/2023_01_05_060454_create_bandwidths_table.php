@@ -10,9 +10,10 @@ return new class extends Migration
     {
         Schema::create('bandwidths', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->bigInteger('bandwidth');
             $table->decimal('price', 15, 2);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
