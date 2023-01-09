@@ -10,10 +10,12 @@ return new class extends Migration
     {
         Schema::create('resellers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('agency_name');
-            $table->string('settlement_date');
-            $table->boolean('is_ppn');
+            $table->foreignId('user_id')->comment('Owner')->constrained();
+            $table->string('name')->nullable()->comment('Company Name');
+            $table->string('email')->nullable()->comment('Company Email');
+            $table->string('phone_number')->nullable()->comment('Company Phone Number');
+            $table->string('address')->nullable()->comment('Company Address');
+            $table->boolean('is_ppn')->default(false);
             $table->timestamps();
         });
     }

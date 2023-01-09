@@ -6,20 +6,28 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('reseller_employee', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('bandwidth_id')->constrained();
             $table->foreignId('reseller_id')->constrained();
-            $table->string('payment_due_date')->nullable();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('reseller_employee');
     }
 };
