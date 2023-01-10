@@ -7,8 +7,18 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    /**
+     * Show login page
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function login(Request $request)
     {
+        if ($request->user()) {
+            return redirect()->route('home');
+        }
+
         return view('pages/login', [
             'pageTitle' => 'Login',
         ]);
@@ -51,5 +61,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+
+        return redirect()->route('home');
     }
 }
