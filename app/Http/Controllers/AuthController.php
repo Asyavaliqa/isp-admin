@@ -7,18 +7,8 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    /**
-     * View login page
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function login(Request $request)
     {
-        if ($request->user()) {
-            return redirect('/');
-        }
-
         return view('pages/login', [
             'pageTitle' => 'Login',
         ]);
@@ -46,5 +36,20 @@ class AuthController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
+    }
+
+    /**
+     * Handle logout process
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
     }
 }
