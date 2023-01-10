@@ -57,6 +57,9 @@
         "ide-helper": [
             "@php artisan ide-helper:generate -q",
             "@php artisan ide-helper:meta -q"
+        ],
+        "test": [
+            "./vendor/bin/phpunit"
         ]
     },
     "extra": {
