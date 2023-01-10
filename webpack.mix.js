@@ -14,15 +14,13 @@ const mix = require('laravel-mix');
 mix.sass('resources/scss/vendors/simplebar.scss', 'public/css');
 mix.sass('resources/scss/style.scss', 'public/css');
 
-mix.js([
-    'resources/js/charts.js',
-    'resources/js/colors.js',
-    'resources/js/main.js',
-    'resources/js/popovers.js',
-    'resources/js/toasts.js',
-    'resources/js/tooltips.js',
-    'resources/js/widgets.js'
-], 'public/js')
+mix.js('resources/js/charts.js', 'public/js');
+mix.js('resources/js/colors.js', 'public/js');
+mix.js('resources/js/main.js', 'public/js');
+mix.js('resources/js/popovers.js', 'public/js');
+mix.js('resources/js/toasts.js', 'public/js');
+mix.js('resources/js/tooltips.js', 'public/js');
+mix.js('resources/js/widgets.js', 'public/js');
 
 mix.copyDirectory('resources/assets', 'public/assets')
 
