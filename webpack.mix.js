@@ -26,6 +26,8 @@ mix.js([
 
 mix.copyDirectory('resources/assets', 'public/assets')
 
+mix.copyDirectory('resources/vendors', 'public/vendors')
+
 if (mix.inProduction()) {
     mix.minify();
     mix.sourceMaps();
