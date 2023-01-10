@@ -1,5 +1,8 @@
 const mix = require('laravel-mix');
 
+require('laravel-mix-clean');
+
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -25,6 +28,8 @@ mix.js('resources/js/widgets.js', 'public/js');
 mix.copyDirectory('resources/assets', 'public/assets')
 
 mix.copyDirectory('resources/vendors', 'public/vendors')
+
+// mix.clean()
 
 if (mix.inProduction()) {
     mix.minify();
