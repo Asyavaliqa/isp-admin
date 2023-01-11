@@ -1,7 +1,9 @@
 const mix = require('laravel-mix');
+const { resolve } = require('path')
+const { cwd, exit } = require('process')
+const { readFileSync, existsSync, read } = require('fs')
 
 require('laravel-mix-clean');
-
 
 /*
  |--------------------------------------------------------------------------
@@ -14,22 +16,44 @@ require('laravel-mix-clean');
  |
  */
 
-mix.sass('resources/scss/vendors/simplebar.scss', 'public/css');
-mix.sass('resources/scss/style.scss', 'public/css');
+const PATH = resolve(cwd(), 'public')
 
-mix.js('resources/js/charts.js', 'public/js');
-mix.js('resources/js/colors.js', 'public/js');
-mix.js('resources/js/main.js', 'public/js');
-mix.js('resources/js/popovers.js', 'public/js');
-mix.js('resources/js/toasts.js', 'public/js');
-mix.js('resources/js/tooltips.js', 'public/js');
-mix.js('resources/js/widgets.js', 'public/js');
+let ignore = []
+const gitignorePath = resolve(PATH, '.gitignore')
 
-mix.copyDirectory('resources/assets', 'public/assets')
+if (existsSync(gitignorePath)) {
+    const content = readFileSync(gitignorePath, 'utf8')
 
-mix.copyDirectory('resources/vendors', 'public/vendors')
+    ignore = content.split(/\r?\n/).filter(item => item)
+}
 
-// mix.clean()
+mix.options({
+    fileLoaderDirs: {
+        images: 'images',
+        fonts: 'fonts'
+    },
+})
+
+mix.setResourceRoot(PATH)
+
+mix.clean({
+    cleanOnceBeforeBuildPatterns: ignore
+})
+
+mix.sass('resources/scss/vendors/simplebar.scss', 'css');
+mix.sass('resources/scss/style.scss', 'css');
+
+mix.js('resources/js/charts.js', 'js');
+mix.js('resources/js/colors.js', 'js');
+mix.js('resources/js/main.js', 'js');
+mix.js('resources/js/popovers.js', 'js');
+mix.js('resources/js/toasts.js', 'js');
+mix.js('resources/js/tooltips.js', 'js');
+mix.js('resources/js/widgets.js', 'js');
+
+mix.copyDirectory('resources/assets', resolve(PATH, 'assets'))
+
+mix.copyDirectory('resources/vendors', resolve(PATH, 'vendors'))
 
 if (mix.inProduction()) {
     mix.minify();
