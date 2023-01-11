@@ -56,7 +56,8 @@
         ],
         "ide-helper": [
             "@php artisan ide-helper:generate -q",
-            "@php artisan ide-helper:meta -q"
+            "@php artisan ide-helper:meta -q",
+            "./vendor/bin/pint _ide_helper_models.php _ide_helper.php .phpstorm.meta.php"
         ],
         "test": [
             "./vendor/bin/phpunit"
