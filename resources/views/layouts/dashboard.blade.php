@@ -233,7 +233,7 @@
               <li class="breadcrumb-item">
                 <!-- if breadcrumb is single--><span>Home</span>
               </li>
-              <li class="breadcrumb-item active"><span>Dashboard</span></li>
+              <li class="breadcrumb-item active"><span>@yield('pageTitle')</span></li>
             </ol>
           </nav>
         </div>
