@@ -14,6 +14,7 @@ return new class extends Migration
             $table->foreignId('bandwidth_id')->constrained();
             $table->foreignId('reseller_id')->constrained();
             $table->string('payment_due_date')->nullable();
+            $table->boolean('is_ppn')->default(false);
             $table->timestamps();
         });
     }
