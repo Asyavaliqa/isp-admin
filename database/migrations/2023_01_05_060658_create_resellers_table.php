@@ -15,7 +15,8 @@ return new class extends Migration
             $table->string('email')->nullable()->comment('Company Email');
             $table->string('phone_number')->nullable()->comment('Company Phone Number');
             $table->string('address')->nullable()->comment('Company Address');
-            $table->boolean('is_ppn')->default(false);
+            $table->date('contract_start_at')->nullable();
+            $table->date('contract_end_at')->nullable();
             $table->timestamps();
         });
     }
