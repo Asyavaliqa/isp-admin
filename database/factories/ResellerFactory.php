@@ -18,12 +18,15 @@ class ResellerFactory extends Factory
     {
         $faker = fake('id_ID');
 
+        $contractStart = now();
+
         return [
             'name' => $faker->company(),
             'email' => $faker->companyEmail(),
             'phone_number' => $faker->e164PhoneNumber(),
             'address' => $faker->address(),
-            'is_ppn' => $faker->randomElement([true, false]),
+            'contract_start_at' => $contractStart,
+            'contract_end_at' => $faker->dateTimeBetween($contractStart, '+3 years'),
         ];
     }
 }
