@@ -16,10 +16,10 @@ require('laravel-mix-clean');
  |
  */
 
-const PATH = resolve(cwd(), 'public')
+const PATH = 'public'
 
 let ignore = []
-const gitignorePath = resolve(PATH, '.gitignore')
+const gitignorePath = resolve(cwd(), PATH, '.gitignore')
 
 if (existsSync(gitignorePath)) {
     const content = readFileSync(gitignorePath, 'utf8')
@@ -27,33 +27,24 @@ if (existsSync(gitignorePath)) {
     ignore = content.split(/\r?\n/).filter(item => item)
 }
 
-mix.options({
-    fileLoaderDirs: {
-        images: 'images',
-        fonts: 'fonts'
-    },
-})
-
-mix.setResourceRoot(PATH)
-
 mix.clean({
     cleanOnceBeforeBuildPatterns: ignore
 })
 
-mix.sass('resources/scss/vendors/simplebar.scss', 'css');
-mix.sass('resources/scss/style.scss', 'css');
+mix.sass('resources/scss/vendors/simplebar.scss', PATH + '/css');
+mix.sass('resources/scss/style.scss', PATH + '/css');
 
-mix.js('resources/js/charts.js', 'js');
-mix.js('resources/js/colors.js', 'js');
-mix.js('resources/js/main.js', 'js');
-mix.js('resources/js/popovers.js', 'js');
-mix.js('resources/js/toasts.js', 'js');
-mix.js('resources/js/tooltips.js', 'js');
-mix.js('resources/js/widgets.js', 'js');
+mix.js('resources/js/charts.js', PATH + '/js');
+mix.js('resources/js/colors.js', PATH + '/js');
+mix.js('resources/js/main.js', PATH + '/js');
+mix.js('resources/js/popovers.js', PATH + '/js');
+mix.js('resources/js/toasts.js', PATH + '/js');
+mix.js('resources/js/tooltips.js', PATH + '/js');
+mix.js('resources/js/widgets.js', PATH + '/js');
 
-mix.copyDirectory('resources/assets', resolve(PATH, 'assets'))
+mix.copyDirectory('resources/assets', PATH + '/assets')
 
-mix.copyDirectory('resources/vendors', resolve(PATH, 'vendors'))
+mix.copyDirectory('resources/vendors', PATH + '/vendors')
 
 if (mix.inProduction()) {
     mix.sourceMaps();
