@@ -112,14 +112,14 @@ class MainUserSeeder extends Seeder
                     'username' => 'client',
                 ])->create()->each(function ($user) use ($reseller, $faker) {
                     $user->assignRole('Client');
-                    $month = $faker->numberBetween(1, 12);
-                    $day = $faker->numberBetween(1, 30);
+                    $date = $faker->numberBetween(1, 30);
 
                     Client::create([
                         'user_id' => $user->id,
                         'bandwidth_id' => Bandwidth::inRandomOrder()->first()->id,
                         'reseller_id' => $reseller->id,
-                        'payment_due_date' => "{$month}-{$day}",
+                        'payment_due_date' => "{$date}",
+                        'is_ppn' => $faker->randomElement([true, false]),
                     ]);
                 });
 
