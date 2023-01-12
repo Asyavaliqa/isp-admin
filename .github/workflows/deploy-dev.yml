@@ -1,0 +1,110 @@
+name: Deploying to development server
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: 0 0 * * *  # Everyday at 12am
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current code
+        uses: actions/checkout@v3
+
+      - name: Scan changed directory
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            database:
+              - 'database/**'
+            resources:
+              - 'resources/**'
+              - 'package.json'
+              - 'package-lock.json'
+            composer:
+              - 'composer.json'
+              - 'composer.lock'
+
+      - name: Setup nodejs
+        uses: actions/setup-node@v3
+        if: steps.filter.output.resources == 'true'
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Activate maintenance mode
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /var/www
+            php artisan down
+
+      - name: Fetch latest code
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /var/www
+            git fetch origin master
+            git reset --hard FETCH_HEAD
+
+      - name: Installing composer package
+        uses: appleboy/ssh-action@v0.1.7
+        if: steps.filter.output.composer == 'true'
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /var/www
+            composer install -n
+
+      - name: Instaling && rebuild resources
+        uses: appleboy/ssh-action@v0.1.7
+        if: steps.filter.output.resources == 'true'
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /var/www
+            npm ci
+            npm run dev
+
+      - name: Running migration
+        uses: appleboy/ssh-action@v0.1.7
+        if: steps.filter.output.database == 'true'
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /var/www
+            php artisan migrate:fresh --seed --force
+
+      - name: Deactivate maintenance mode
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /var/www
+            php artisan up
