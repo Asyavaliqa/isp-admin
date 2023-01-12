@@ -20,7 +20,7 @@ class FakeUserSeeder extends Seeder
         /**
          * Add Resellers
          */
-        User::factory(mt_rand(15, 20))->create()->each(function ($resellerOwner) {
+        User::factory(mt_rand(10, 15))->create()->each(function ($resellerOwner) {
             $resellerOwner->assignRole('Reseller_Owner');
 
             Reseller::factory(1, [
