@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup nodejs
         uses: actions/setup-node@v3
-        if: steps.filter.output.resources == 'true'
+        if: steps.filter.outputs.resources == 'true'
         with:
           node-version: lts/*
           cache: npm
@@ -63,7 +63,7 @@ jobs:
 
       - name: Installing composer package
         uses: appleboy/ssh-action@v0.1.7
-        if: steps.filter.output.composer == 'true'
+        if: steps.filter.outputs.composer == 'true'
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -73,9 +73,9 @@ jobs:
             cd /var/www
             composer install -n
 
-      - name: Instaling && rebuild resources
+      - name: Installing and rebuild resources
         uses: appleboy/ssh-action@v0.1.7
-        if: steps.filter.output.resources == 'true'
+        if: steps.filter.outputs.resources == 'true'
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -88,7 +88,7 @@ jobs:
 
       - name: Running migration
         uses: appleboy/ssh-action@v0.1.7
-        if: steps.filter.output.database == 'true'
+        if: steps.filter.outputs.database == 'true'
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
