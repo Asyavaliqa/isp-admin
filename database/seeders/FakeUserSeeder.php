@@ -20,7 +20,7 @@ class FakeUserSeeder extends Seeder
         /**
          * Add Resellers
          */
-        User::factory(100)->create()->each(function ($resellerOwner) {
+        User::factory(mt_rand(10, 15))->create()->each(function ($resellerOwner) {
             $resellerOwner->assignRole('Reseller_Owner');
 
             Reseller::factory(1, [
@@ -61,7 +61,7 @@ class FakeUserSeeder extends Seeder
                 /**
                  * Add Reseller Admin
                  */
-                User::factory(3)->create()->each(function ($resellerAdmin) use ($reseller) {
+                User::factory(mt_rand(1, 5))->create()->each(function ($resellerAdmin) use ($reseller) {
                     $resellerAdmin->assignRole('Reseller_Admin');
                     $reseller->users()->attach($resellerAdmin->id);
                 });
@@ -69,7 +69,7 @@ class FakeUserSeeder extends Seeder
                 /**
                  * Add Reseller Teknisi
                  */
-                User::factory(5)->create()->each(function ($resellerTeknisi) use ($reseller) {
+                User::factory(mt_rand(1, 5))->create()->each(function ($resellerTeknisi) use ($reseller) {
                     $resellerTeknisi->assignRole('Reseller_Teknisi');
                     $reseller->users()->attach($resellerTeknisi->id);
                 });
@@ -77,18 +77,23 @@ class FakeUserSeeder extends Seeder
                 /**
                  * Add Random Client
                  */
-                User::factory(50)->create()->each(function ($user) use ($reseller, $faker) {
+                $client = [];
+                User::factory(mt_rand(15, 20))->create()->each(function ($user) use ($reseller, $faker) {
                     $user->assignRole('Client');
                     $month = $faker->numberBetween(1, 12);
                     $day = $faker->numberBetween(1, 30);
 
-                    Client::create([
+                    $client[] = [
                         'user_id' => $user->id,
                         'bandwidth_id' => Bandwidth::inRandomOrder()->first()->id,
                         'reseller_id' => $reseller->id,
                         'payment_due_date' => "{$month}-{$day}",
-                    ]);
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
                 });
+
+                Client::insert($client);
             });
         });
     }
