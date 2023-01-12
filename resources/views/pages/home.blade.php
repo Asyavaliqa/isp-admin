@@ -140,12 +140,11 @@
                                     <tr class="align-middle">
                                         <td class="text-center">
                                             <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/1.jpg" alt="user@email.com"><span
-                                                    class="avatar-status bg-success"></span></div>
+                                                    src="assets/img/avatars/1.jpg" alt="user@email.com"></div>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis"> Aktif sejak 1 Januari 2023</div>
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
                                         </td>
                                         <td>
                                             <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
@@ -158,32 +157,12 @@
                                     <tr class="align-middle">
                                         <td class="text-center">
                                             <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/2.jpg" alt="user@email.com"><span
-                                                    class="avatar-status bg-danger"></span></div>
+                                                    src="assets/img/avatars/2.jpg" alt="user@email.com"></div>
                                         </td>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis"> Aktif sejak 1 Januari 2023</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center" >10</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/3.jpg" alt="user@email.com"><span
-                                                    class="avatar-status bg-warning"></span></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis"> Aktif sejak 1 Januari 2023</div>
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
                                         </td>
                                         <td>
                                             <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
@@ -196,32 +175,12 @@
                                     <tr class="align-middle">
                                         <td class="text-center">
                                             <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/4.jpg" alt="user@email.com"><span
-                                                    class="avatar-status bg-secondary"></span></div>
+                                                    src="assets/img/avatars/3.jpg" alt="user@email.com"></div>
                                         </td>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis"> Aktif sejak 1 Januari 2023</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center" >10</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/5.jpg" alt="user@email.com"><span
-                                                    class="avatar-status bg-success"></span></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis"> Aktif sejak 1 Januari 2023</div>
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
                                         </td>
                                         <td>
                                             <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
@@ -234,13 +193,48 @@
                                     <tr class="align-middle">
                                         <td class="text-center">
                                             <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/6.jpg" alt="user@email.com"><span
-                                                    class="avatar-status bg-danger"></span></div>
+                                                    src="assets/img/avatars/4.jpg" alt="user@email.com"></div>
                                         </td>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis"> Aktif sejak 1 Januari 2023</div>
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
+                                        </td>
+                                        <td>
+                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
+                                            <div class="small text-medium-emphasis text-center"> +628999</div>
+                                        </td>
+                                        <td>
+                                            <div class="fw-bold text-center" >10</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="align-middle">
+                                        <td class="text-center">
+                                            <div class="avatar avatar-md"><img class="avatar-img"
+                                                    src="assets/img/avatars/5.jpg" alt="user@email.com"></div>
+                                        </td>
+                                        </td>
+                                        <td>
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
+                                        </td>
+                                        <td>
+                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
+                                            <div class="small text-medium-emphasis text-center"> +628999</div>
+                                        </td>
+                                        <td>
+                                            <div class="fw-bold text-center" >10</div>
+                                        </td>
+                                    </tr>
+                                    <tr class="align-middle">
+                                        <td class="text-center">
+                                            <div class="avatar avatar-md"><img class="avatar-img"
+                                                    src="assets/img/avatars/6.jpg" alt="user@email.com"></div>
+                                        </td>
+                                        </td>
+                                        <td>
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
                                         </td>
                                         <td>
                                             <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
