@@ -1,1 +1,13 @@
 // Here you can add other styles
+a {
+    color: #0081C9;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #144272;
+}
+
+table a {
+    display: block;
+}
