@@ -12,7 +12,7 @@ class Reseller extends Model
 {
     use HasFactory;
 
-    public function users()
+    public function clients()
     {
         return $this->belongsToMany(User::class, 'reseller_employee')->withTimestamps();
     }
