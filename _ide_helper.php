@@ -20470,7 +20470,6 @@ namespace Illuminate\Support\Facades {
 }
 
 namespace Illuminate\Support {
-
     class Arr
     {
     }
@@ -20485,363 +20484,362 @@ namespace Illuminate\Support {
 }
 
 namespace Spatie\LaravelIgnition\Facades {
+    /**
+     * @see \Spatie\FlareClient\Flare
+     */
+    class Flare
+    {
         /**
-         * @see \Spatie\FlareClient\Flare
+         * @static
          */
-        class Flare
+        public static function make($apiKey = null, $contextDetector = null)
         {
-            /**
-             * @static
-             */
-            public static function make($apiKey = null, $contextDetector = null)
-            {
-                return \Spatie\FlareClient\Flare::make($apiKey, $contextDetector);
-            }
+            return \Spatie\FlareClient\Flare::make($apiKey, $contextDetector);
+        }
 
-            /**
-             * @static
-             */
-            public static function setApiToken($apiToken)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->setApiToken($apiToken);
-            }
+        /**
+         * @static
+         */
+        public static function setApiToken($apiToken)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->setApiToken($apiToken);
+        }
 
-            /**
-             * @static
-             */
-            public static function apiTokenSet()
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->apiTokenSet();
-            }
+        /**
+         * @static
+         */
+        public static function apiTokenSet()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->apiTokenSet();
+        }
 
-            /**
-             * @static
-             */
-            public static function setBaseUrl($baseUrl)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->setBaseUrl($baseUrl);
-            }
+        /**
+         * @static
+         */
+        public static function setBaseUrl($baseUrl)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->setBaseUrl($baseUrl);
+        }
 
-            /**
-             * @static
-             */
-            public static function setStage($stage)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->setStage($stage);
-            }
+        /**
+         * @static
+         */
+        public static function setStage($stage)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->setStage($stage);
+        }
 
-            /**
-             * @static
-             */
-            public static function sendReportsImmediately()
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->sendReportsImmediately();
-            }
+        /**
+         * @static
+         */
+        public static function sendReportsImmediately()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->sendReportsImmediately();
+        }
 
-            /**
-             * @static
-             */
-            public static function determineVersionUsing($determineVersionCallable)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->determineVersionUsing($determineVersionCallable);
-            }
+        /**
+         * @static
+         */
+        public static function determineVersionUsing($determineVersionCallable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->determineVersionUsing($determineVersionCallable);
+        }
 
-            /**
-             * @static
-             */
-            public static function reportErrorLevels($reportErrorLevels)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->reportErrorLevels($reportErrorLevels);
-            }
+        /**
+         * @static
+         */
+        public static function reportErrorLevels($reportErrorLevels)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->reportErrorLevels($reportErrorLevels);
+        }
 
-            /**
-             * @static
-             */
-            public static function filterExceptionsUsing($filterExceptionsCallable)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->filterExceptionsUsing($filterExceptionsCallable);
-            }
+        /**
+         * @static
+         */
+        public static function filterExceptionsUsing($filterExceptionsCallable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->filterExceptionsUsing($filterExceptionsCallable);
+        }
 
-            /**
-             * @static
-             */
-            public static function filterReportsUsing($filterReportsCallable)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->filterReportsUsing($filterReportsCallable);
-            }
+        /**
+         * @static
+         */
+        public static function filterReportsUsing($filterReportsCallable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->filterReportsUsing($filterReportsCallable);
+        }
 
-            /**
-             * @static
-             */
-            public static function version()
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->version();
-            }
+        /**
+         * @static
+         */
+        public static function version()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->version();
+        }
 
-            /**
-             * @return array<int, FlareMiddleware|class-string<FlareMiddleware>>
-             *
-             * @static
-             */
-            public static function getMiddleware()
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->getMiddleware();
-            }
+        /**
+         * @return array<int, FlareMiddleware|class-string<FlareMiddleware>>
+         *
+         * @static
+         */
+        public static function getMiddleware()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->getMiddleware();
+        }
 
-            /**
-             * @static
-             */
-            public static function setContextProviderDetector($contextDetector)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->setContextProviderDetector($contextDetector);
-            }
+        /**
+         * @static
+         */
+        public static function setContextProviderDetector($contextDetector)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->setContextProviderDetector($contextDetector);
+        }
 
-            /**
-             * @static
-             */
-            public static function setContainer($container)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->setContainer($container);
-            }
+        /**
+         * @static
+         */
+        public static function setContainer($container)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->setContainer($container);
+        }
 
-            /**
-             * @static
-             */
-            public static function registerFlareHandlers()
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->registerFlareHandlers();
-            }
+        /**
+         * @static
+         */
+        public static function registerFlareHandlers()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->registerFlareHandlers();
+        }
 
-            /**
-             * @static
-             */
-            public static function registerExceptionHandler()
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->registerExceptionHandler();
-            }
+        /**
+         * @static
+         */
+        public static function registerExceptionHandler()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->registerExceptionHandler();
+        }
 
-            /**
-             * @static
-             */
-            public static function registerErrorHandler()
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->registerErrorHandler();
-            }
+        /**
+         * @static
+         */
+        public static function registerErrorHandler()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->registerErrorHandler();
+        }
 
-            /**
-             * @param  \Spatie\FlareClient\FlareMiddleware\FlareMiddleware|array<FlareMiddleware>|\Spatie\FlareClient\class-string<FlareMiddleware>  $middleware
-             * @return \Spatie\FlareClient\Flare
-             *
-             * @static
-             */
-            public static function registerMiddleware($middleware)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->registerMiddleware($middleware);
-            }
+        /**
+         * @param  \Spatie\FlareClient\FlareMiddleware\FlareMiddleware|array<FlareMiddleware>|\Spatie\FlareClient\class-string<FlareMiddleware>  $middleware
+         * @return \Spatie\FlareClient\Flare
+         *
+         * @static
+         */
+        public static function registerMiddleware($middleware)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->registerMiddleware($middleware);
+        }
 
-            /**
-             * @return array<int,FlareMiddleware|class-string<FlareMiddleware>>
-             *
-             * @static
-             */
-            public static function getMiddlewares()
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->getMiddlewares();
-            }
+        /**
+         * @return array<int,FlareMiddleware|class-string<FlareMiddleware>>
+         *
+         * @static
+         */
+        public static function getMiddlewares()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->getMiddlewares();
+        }
 
-            /**
-             * @param  string  $name
-             * @param  string  $messageLevel
-             * @param  \Spatie\FlareClient\array<int,  mixed>  $metaData
-             * @return \Spatie\FlareClient\Flare
-             *
-             * @static
-             */
-            public static function glow($name, $messageLevel = 'info', $metaData = [])
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->glow($name, $messageLevel, $metaData);
-            }
+        /**
+         * @param  string  $name
+         * @param  string  $messageLevel
+         * @param  \Spatie\FlareClient\array<int,  mixed>  $metaData
+         * @return \Spatie\FlareClient\Flare
+         *
+         * @static
+         */
+        public static function glow($name, $messageLevel = 'info', $metaData = [])
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->glow($name, $messageLevel, $metaData);
+        }
 
-            /**
-             * @static
-             */
-            public static function handleException($throwable)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->handleException($throwable);
-            }
+        /**
+         * @static
+         */
+        public static function handleException($throwable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->handleException($throwable);
+        }
 
-            /**
-             * @return mixed
-             *
-             * @static
-             */
-            public static function handleError($code, $message, $file = '', $line = 0)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->handleError($code, $message, $file, $line);
-            }
+        /**
+         * @return mixed
+         *
+         * @static
+         */
+        public static function handleError($code, $message, $file = '', $line = 0)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->handleError($code, $message, $file, $line);
+        }
 
-            /**
-             * @static
-             */
-            public static function applicationPath($applicationPath)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->applicationPath($applicationPath);
-            }
+        /**
+         * @static
+         */
+        public static function applicationPath($applicationPath)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->applicationPath($applicationPath);
+        }
 
-            /**
-             * @static
-             */
-            public static function report($throwable, $callback = null, $report = null)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->report($throwable, $callback, $report);
-            }
+        /**
+         * @static
+         */
+        public static function report($throwable, $callback = null, $report = null)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->report($throwable, $callback, $report);
+        }
 
-            /**
-             * @static
-             */
-            public static function reportMessage($message, $logLevel, $callback = null)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->reportMessage($message, $logLevel, $callback);
-            }
+        /**
+         * @static
+         */
+        public static function reportMessage($message, $logLevel, $callback = null)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->reportMessage($message, $logLevel, $callback);
+        }
 
-            /**
-             * @static
-             */
-            public static function sendTestReport($throwable)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->sendTestReport($throwable);
-            }
+        /**
+         * @static
+         */
+        public static function sendTestReport($throwable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->sendTestReport($throwable);
+        }
 
-            /**
-             * @static
-             */
-            public static function reset()
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->reset();
-            }
+        /**
+         * @static
+         */
+        public static function reset()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->reset();
+        }
 
-            /**
-             * @static
-             */
-            public static function anonymizeIp()
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->anonymizeIp();
-            }
+        /**
+         * @static
+         */
+        public static function anonymizeIp()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->anonymizeIp();
+        }
 
-            /**
-             * @param  \Spatie\FlareClient\array<int,  string>  $fieldNames
-             * @return \Spatie\FlareClient\Flare
-             *
-             * @static
-             */
-            public static function censorRequestBodyFields($fieldNames)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->censorRequestBodyFields($fieldNames);
-            }
+        /**
+         * @param  \Spatie\FlareClient\array<int,  string>  $fieldNames
+         * @return \Spatie\FlareClient\Flare
+         *
+         * @static
+         */
+        public static function censorRequestBodyFields($fieldNames)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->censorRequestBodyFields($fieldNames);
+        }
 
-            /**
-             * @static
-             */
-            public static function createReport($throwable)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->createReport($throwable);
-            }
+        /**
+         * @static
+         */
+        public static function createReport($throwable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->createReport($throwable);
+        }
 
-            /**
-             * @static
-             */
-            public static function createReportFromMessage($message, $logLevel)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->createReportFromMessage($message, $logLevel);
-            }
+        /**
+         * @static
+         */
+        public static function createReportFromMessage($message, $logLevel)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->createReportFromMessage($message, $logLevel);
+        }
 
-            /**
-             * @static
-             */
-            public static function stage($stage)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->stage($stage);
-            }
+        /**
+         * @static
+         */
+        public static function stage($stage)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->stage($stage);
+        }
 
-            /**
-             * @static
-             */
-            public static function messageLevel($messageLevel)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->messageLevel($messageLevel);
-            }
+        /**
+         * @static
+         */
+        public static function messageLevel($messageLevel)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->messageLevel($messageLevel);
+        }
 
-            /**
-             * @param  string  $groupName
-             * @param  mixed  $default
-             * @return array<int, mixed>
-             *
-             * @static
-             */
-            public static function getGroup($groupName = 'context', $default = [])
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->getGroup($groupName, $default);
-            }
+        /**
+         * @param  string  $groupName
+         * @param  mixed  $default
+         * @return array<int, mixed>
+         *
+         * @static
+         */
+        public static function getGroup($groupName = 'context', $default = [])
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->getGroup($groupName, $default);
+        }
 
-            /**
-             * @static
-             */
-            public static function context($key, $value)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->context($key, $value);
-            }
+        /**
+         * @static
+         */
+        public static function context($key, $value)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->context($key, $value);
+        }
 
-            /**
-             * @param  string  $groupName
-             * @param  \Spatie\FlareClient\array<string,  mixed>  $properties
-             * @return \Spatie\FlareClient\Flare
-             *
-             * @static
-             */
-            public static function group($groupName, $properties)
-            {
-                /** @var \Spatie\FlareClient\Flare $instance */
-                return $instance->group($groupName, $properties);
-            }
+        /**
+         * @param  string  $groupName
+         * @param  \Spatie\FlareClient\array<string,  mixed>  $properties
+         * @return \Spatie\FlareClient\Flare
+         *
+         * @static
+         */
+        public static function group($groupName, $properties)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->group($groupName, $properties);
         }
     }
+}
 
 namespace Illuminate\Http {
-
     class Request
     {
         /**
@@ -20909,7 +20907,6 @@ namespace Illuminate\Http {
 }
 
 namespace Illuminate\Routing {
-
     class Route
     {
         /**
@@ -25070,6 +25067,459 @@ namespace  {
     {
     }
     class Flare extends \Spatie\LaravelIgnition\Facades\Flare
+    {
+    }
+}
+
+namespace {
+    use Illuminate\Contracts\Support\DeferringDisplayableValue;
+    use Illuminate\Contracts\Support\Htmlable;
+    use Illuminate\Support\Arr;
+    use Illuminate\Support\Env;
+    use Illuminate\Support\HigherOrderTapProxy;
+    use Illuminate\Support\Optional;
+    use Illuminate\Support\Str;
+
+    if (! function_exists('append_config')) {
+        /**
+         * Assign high numeric IDs to a config item to force appending.
+         *
+         * @param  array  $array
+         * @return array
+         */
+        function append_config(array $array)
+        {
+            $start = 9999;
+
+            foreach ($array as $key => $value) {
+                if (is_numeric($key)) {
+                    $start++;
+
+                    $array[$start] = Arr::pull($array, $key);
+                }
+            }
+
+            return $array;
+        }
+    }
+
+    if (! function_exists('blank')) {
+        /**
+         * Determine if the given value is "blank".
+         *
+         * @param  mixed  $value
+         * @return bool
+         */
+        function blank($value)
+        {
+            if (is_null($value)) {
+                return true;
+            }
+
+            if (is_string($value)) {
+                return trim($value) === '';
+            }
+
+            if (is_numeric($value) || is_bool($value)) {
+                return false;
+            }
+
+            if ($value instanceof Countable) {
+                return count($value) === 0;
+            }
+
+            return empty($value);
+        }
+    }
+
+    if (! function_exists('class_basename')) {
+        /**
+         * Get the class "basename" of the given object / class.
+         *
+         * @param  string|object  $class
+         * @return string
+         */
+        function class_basename($class)
+        {
+            $class = is_object($class) ? get_class($class) : $class;
+
+            return basename(str_replace('\\', '/', $class));
+        }
+    }
+
+    if (! function_exists('class_uses_recursive')) {
+        /**
+         * Returns all traits used by a class, its parent classes and trait of their traits.
+         *
+         * @param  object|string  $class
+         * @return array
+         */
+        function class_uses_recursive($class)
+        {
+            if (is_object($class)) {
+                $class = get_class($class);
+            }
+
+            $results = [];
+
+            foreach (array_reverse(class_parents($class)) + [$class => $class] as $class) {
+                $results += trait_uses_recursive($class);
+            }
+
+            return array_unique($results);
+        }
+    }
+
+    if (! function_exists('e')) {
+        /**
+         * Encode HTML special characters in a string.
+         *
+         * @param  \Illuminate\Contracts\Support\DeferringDisplayableValue|\Illuminate\Contracts\Support\Htmlable|\BackedEnum|string|null  $value
+         * @param  bool  $doubleEncode
+         * @return string
+         */
+        function e($value, $doubleEncode = true)
+        {
+            if ($value instanceof DeferringDisplayableValue) {
+                $value = $value->resolveDisplayableValue();
+            }
+
+            if ($value instanceof Htmlable) {
+                return $value->toHtml();
+            }
+
+            if ($value instanceof BackedEnum) {
+                $value = $value->value;
+            }
+
+            return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8', $doubleEncode);
+        }
+    }
+
+    if (! function_exists('env')) {
+        /**
+         * Gets the value of an environment variable.
+         *
+         * @param  string  $key
+         * @param  mixed  $default
+         * @return mixed
+         */
+        function env($key, $default = null)
+        {
+            return Env::get($key, $default);
+        }
+    }
+
+    if (! function_exists('filled')) {
+        /**
+         * Determine if a value is "filled".
+         *
+         * @param  mixed  $value
+         * @return bool
+         */
+        function filled($value)
+        {
+            return ! blank($value);
+        }
+    }
+
+    if (! function_exists('object_get')) {
+        /**
+         * Get an item from an object using "dot" notation.
+         *
+         * @param  object  $object
+         * @param  string|null  $key
+         * @param  mixed  $default
+         * @return mixed
+         */
+        function object_get($object, $key, $default = null)
+        {
+            if (is_null($key) || trim($key) === '') {
+                return $object;
+            }
+
+            foreach (explode('.', $key) as $segment) {
+                if (! is_object($object) || ! isset($object->{$segment})) {
+                    return value($default);
+                }
+
+                $object = $object->{$segment};
+            }
+
+            return $object;
+        }
+    }
+
+    if (! function_exists('optional')) {
+        /**
+         * Provide access to optional objects.
+         *
+         * @param  mixed  $value
+         * @param  callable|null  $callback
+         * @return mixed
+         */
+        function optional($value = null, callable $callback = null)
+        {
+            if (is_null($callback)) {
+                return new Optional($value);
+            } elseif (! is_null($value)) {
+                return $callback($value);
+            }
+        }
+    }
+
+    if (! function_exists('preg_replace_array')) {
+        /**
+         * Replace a given pattern with each value in the array in sequentially.
+         *
+         * @param  string  $pattern
+         * @param  array  $replacements
+         * @param  string  $subject
+         * @return string
+         */
+        function preg_replace_array($pattern, array $replacements, $subject)
+        {
+            return preg_replace_callback($pattern, function () use (&$replacements) {
+                foreach ($replacements as $value) {
+                    return array_shift($replacements);
+                }
+            }, $subject);
+        }
+    }
+
+    if (! function_exists('retry')) {
+        /**
+         * Retry an operation a given number of times.
+         *
+         * @param  int|array  $times
+         * @param  callable  $callback
+         * @param  int|\Closure  $sleepMilliseconds
+         * @param  callable|null  $when
+         * @return mixed
+         *
+         * @throws \Exception
+         */
+        function retry($times, callable $callback, $sleepMilliseconds = 0, $when = null)
+        {
+            $attempts = 0;
+
+            $backoff = [];
+
+            if (is_array($times)) {
+                $backoff = $times;
+
+                $times = count($times) + 1;
+            }
+
+            beginning:
+            $attempts++;
+            $times--;
+
+            try {
+                return $callback($attempts);
+            } catch (Exception $e) {
+                if ($times < 1 || ($when && ! $when($e))) {
+                    throw $e;
+                }
+
+                $sleepMilliseconds = $backoff[$attempts - 1] ?? $sleepMilliseconds;
+
+                if ($sleepMilliseconds) {
+                    usleep(value($sleepMilliseconds, $attempts, $e) * 1000);
+                }
+
+                goto beginning;
+            }
+        }
+    }
+
+    if (! function_exists('str')) {
+        /**
+         * Get a new stringable object from the given string.
+         *
+         * @param  string|null  $string
+         * @return \Illuminate\Support\Stringable|mixed
+         */
+        function str($string = null)
+        {
+            if (func_num_args() === 0) {
+                return new class
+                {
+                    public function __call($method, $parameters)
+                    {
+                        return Str::$method(...$parameters);
+                    }
+
+                    public function __toString()
+                    {
+                        return '';
+                    }
+                };
+            }
+
+            return Str::of($string);
+        }
+    }
+
+    if (! function_exists('tap')) {
+        /**
+         * Call the given Closure with the given value then return the value.
+         *
+         * @param  mixed  $value
+         * @param  callable|null  $callback
+         * @return mixed
+         */
+        function tap($value, $callback = null)
+        {
+            if (is_null($callback)) {
+                return new HigherOrderTapProxy($value);
+            }
+
+            $callback($value);
+
+            return $value;
+        }
+    }
+
+    if (! function_exists('throw_if')) {
+        /**
+         * Throw the given exception if the given condition is true.
+         *
+         * @param  mixed  $condition
+         * @param  \Throwable|string  $exception
+         * @param  mixed  ...$parameters
+         * @return mixed
+         *
+         * @throws \Throwable
+         */
+        function throw_if($condition, $exception = 'RuntimeException', ...$parameters)
+        {
+            if ($condition) {
+                if (is_string($exception) && class_exists($exception)) {
+                    $exception = new $exception(...$parameters);
+                }
+
+                throw is_string($exception) ? new RuntimeException($exception) : $exception;
+            }
+
+            return $condition;
+        }
+    }
+
+    if (! function_exists('throw_unless')) {
+        /**
+         * Throw the given exception unless the given condition is true.
+         *
+         * @param  mixed  $condition
+         * @param  \Throwable|string  $exception
+         * @param  mixed  ...$parameters
+         * @return mixed
+         *
+         * @throws \Throwable
+         */
+        function throw_unless($condition, $exception = 'RuntimeException', ...$parameters)
+        {
+            throw_if(! $condition, $exception, ...$parameters);
+
+            return $condition;
+        }
+    }
+
+    if (! function_exists('trait_uses_recursive')) {
+        /**
+         * Returns all traits used by a trait and its traits.
+         *
+         * @param  string  $trait
+         * @return array
+         */
+        function trait_uses_recursive($trait)
+        {
+            $traits = class_uses($trait) ?: [];
+
+            foreach ($traits as $trait) {
+                $traits += trait_uses_recursive($trait);
+            }
+
+            return $traits;
+        }
+    }
+
+    if (! function_exists('transform')) {
+        /**
+         * Transform the given value if it is present.
+         *
+         * @param  mixed  $value
+         * @param  callable  $callback
+         * @param  mixed  $default
+         * @return mixed|null
+         */
+        function transform($value, callable $callback, $default = null)
+        {
+            if (filled($value)) {
+                return $callback($value);
+            }
+
+            if (is_callable($default)) {
+                return $default($value);
+            }
+
+            return $default;
+        }
+    }
+
+    if (! function_exists('windows_os')) {
+        /**
+         * Determine whether the current environment is Windows based.
+         *
+         * @return bool
+         */
+        function windows_os()
+        {
+            return PHP_OS_FAMILY === 'Windows';
+        }
+    }
+
+    if (! function_exists('with')) {
+        /**
+         * Return the given value, optionally passed through the given callback.
+         *
+         * @template TValue
+         * @template TReturn
+         *
+         * @param  TValue  $value
+         * @param  (callable(TValue): (TReturn))|null  $callback
+         * @return ($callback is null ? TValue : TReturn)
+         */
+        function with($value, callable $callback = null)
+        {
+            return is_null($callback) ? $value : $callback($value);
+        }
+    }
+}
+
+namespace Illuminate\Support {
+    /**
+     * Methods commonly used in migrations
+     *
+     * @method Fluent after(string $column) Add the after modifier
+     * @method Fluent charset(string $charset) Add the character set modifier
+     * @method Fluent collation(string $collation) Add the collation modifier
+     * @method Fluent comment(string $comment) Add comment
+     * @method Fluent default($value) Add the default modifier
+     * @method Fluent first() Select first row
+     * @method Fluent index(string $name = null) Add the in dex clause
+     * @method Fluent on(string $table) `on` of a foreign key
+     * @method Fluent onDelete(string $action) `on delete` of a foreign key
+     * @method Fluent onUpdate(string $action) `on update` of a foreign key
+     * @method Fluent primary() Add the primary key modifier
+     * @method Fluent references(string $column) `references` of a foreign key
+     * @method Fluent nullable(bool $value = true) Add the nullable modifier
+     * @method Fluent unique(string $name = null) Add unique index clause
+     * @method Fluent unsigned() Add the unsigned modifier
+     * @method Fluent useCurrent() Add the default timestamp value
+     * @method Fluent change() Add the change modifier
+     */
+    class Fluent
     {
     }
 }
