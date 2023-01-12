@@ -74,7 +74,7 @@
             <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Reseller</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Pelanggan</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+          {{--   <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>   --}}
           </ul>
           <ul class="header-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#">

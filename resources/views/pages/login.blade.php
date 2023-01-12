@@ -53,10 +53,10 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="card col-md-5 text-white bg-primary py-5">
+                        <div class="card col-md-5 text-white bg-gradient bg-dark py-5">
                             <div class="card-body text-center">
                                 <div>
-                                    <p class="fs-1 fw-bold"> LOGO </p>       {{-- edit --}}
+                                    <img src="{{ mix('assets/brand/GMDP_full.png') }}"  style="width: 150px">       {{-- edit --}}
                                     <h4>GMDP BILLING</h4>
                                     <p>Sistem Administrasi dan Pembayaran</p>
                                 </div>
