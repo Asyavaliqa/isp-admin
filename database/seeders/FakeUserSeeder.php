@@ -61,7 +61,7 @@ class FakeUserSeeder extends Seeder
                 /**
                  * Add Reseller Admin
                  */
-                User::factory(mt_rand(5))->create()->each(function ($resellerAdmin) use ($reseller) {
+                User::factory(mt_rand(1, 5))->create()->each(function ($resellerAdmin) use ($reseller) {
                     $resellerAdmin->assignRole('Reseller_Admin');
                     $reseller->users()->attach($resellerAdmin->id);
                 });
