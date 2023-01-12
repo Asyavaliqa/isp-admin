@@ -25,7 +25,7 @@
         <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">
             <i class="nav-icon cil cil-speedometer"></i> Dashboard</a></li>
         <li class="nav-title">Data Master</li>
-        <li class="nav-item"><a class="nav-link" href="colors.html">
+        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.reseller' ? 'active' : '' }}" href="{{ route('admin.reseller') }}"">
             <i class="nav-icon cil cil-user"></i> Reseller</a></li>
         <li class="nav-item"><a class="nav-link" href="#">
             <i class="nav-icon cil cil-people"></i> Pelanggan </a>
