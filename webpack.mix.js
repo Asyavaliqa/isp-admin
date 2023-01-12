@@ -46,7 +46,8 @@ mix.copyDirectory('resources/assets', PATH + '/assets')
 
 mix.copyDirectory('resources/vendors', PATH + '/vendors')
 
+mix.version();
+
 if (mix.inProduction()) {
     mix.sourceMaps();
-    mix.version();
 }
