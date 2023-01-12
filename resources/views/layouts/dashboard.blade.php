@@ -16,48 +16,24 @@
   <body>
     <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
       <div class="sidebar-brand d-none d-md-flex">
-        <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-          <use xlink:href="assets/brand/coreui.svg#full"></use>     {{-- editlagi --}}
-        </svg>
-        <div class="nav-title">GMDP BILLING</div>
+        <div class="sidebar-brand-full">
+            <img src="{{ mix('assets/brand/GMDP_35x35.png') }}"  style="width: 35px">
+        </div>
+        <div class="nav-title mx-2">GMDP BILLING</div>
       </div>
       <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
         <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">
             <i class="nav-icon cil cil-speedometer"></i> Dashboard</a></li>
-        <li class="nav-title">Reseller</li>
+        <li class="nav-title">Data Master</li>
         <li class="nav-item"><a class="nav-link" href="colors.html">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-            </svg> RESELLER </a></li>
-        <li class="nav-item"><a class="nav-link" href="typography.html">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
-            </svg> INPUT RESELLER</a></li>
-        <li class="nav-title">Pelanggan</li>
-        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-people"></use>
-            </svg> Pelanggan </a>
-          <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="base/accordion.html"><span class="nav-icon"></span> Accordion</a></li>
-            <li class="nav-item"><a class="nav-link" href="base/breadcrumb.html"><span class="nav-icon"></span> Breadcrumb</a></li>
-            <li class="nav-item"><a class="nav-link" href="base/cards.html"><span class="nav-icon"></span> Cards</a></li>
-          </ul>
+            <i class="nav-icon cil cil-user"></i> Reseller</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">
+            <i class="nav-icon cil cil-people"></i> Pelanggan </a>
         </li>
+        {{-- <li class="nav-divider"></li>
+        <li class="nav-title">Administrative Tools</li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
-            </svg> Buttons</a>
-          <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="buttons/buttons.html"><span class="nav-icon"></span> Buttons</a></li>
-            <li class="nav-item"><a class="nav-link" href="buttons/button-group.html"><span class="nav-icon"></span> Buttons Group</a></li>
-            <li class="nav-item"><a class="nav-link" href="buttons/dropdowns.html"><span class="nav-icon"></span> Dropdowns</a></li>
-          </ul>
-        </li>
-        <li class="nav-divider"></li>
-        <li class="nav-title">ADMIN</li>
-        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-            <svg class="nav-icon">                                                          {{-- edit --}}
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user-female"></use>
             </svg> ADMIN </a>
           <ul class="nav-group-items">
@@ -71,17 +47,17 @@
                 </svg> Tambah Admin</a></li>
           </ul>
         </li>
-        <li class="nav-item mt-auto"><a class="nav-link" href="https://coreui.io/docs/templates/installation/" target="_blank">
+        <li class="nav-item"><a class="nav-link" href="https://coreui.io/docs/templates/installation/" target="_blank">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
             </svg> SETTINGS </a></li>
-        <li class="nav-item"><a class="nav-link nav-link-danger" href="https://coreui.io/pro/" target="_top">
-            <svg class="nav-icon">
+        <li class="nav-item"><a class="nav-link nav-link-danger" href="https://coreui.io/pro/" target="_top"> --}}
+            {{-- <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
             </svg> LOGOUT
-          </a></li>
-      </ul>
-      <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+          </a></li> --}}
+      {{-- </ul> --}}
+      {{-- <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button> --}}
     </div>
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
       <header class="header header-sticky mb-4">
