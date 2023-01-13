@@ -9,7 +9,7 @@
     <div class="row g-0">
         <div class="card">
             <div class="card-header">
-                <strong>Informasi Pengguna</strong>
+                <strong>Informasi Reseller</strong>
             </div>
             <div class="card-body">
                 <div class="container-fluid">

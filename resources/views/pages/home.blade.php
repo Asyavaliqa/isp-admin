@@ -38,6 +38,7 @@
                 <div class="card mb-4 text-white bg-secondary">
                     <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                         <div>
+                        
                                 <div class="fs-6 fw-semibold"><i class="cil-microchip"></i>RAM 500MB</div> <!-- edit lagi -->
                         </div>
                     </div>
