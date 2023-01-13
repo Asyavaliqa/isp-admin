@@ -33,6 +33,7 @@ Route::middleware([
     'role:Admin',
 ])->name('admin.')->group(function () {
     Route::get('/reseller', [ResellerController::class, 'index'])->name('reseller');
+    Route::get('/reseller/{id}', [ResellerController::class, 'detail'])->name('reseller.detail')->whereNumber('id');
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
