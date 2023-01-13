@@ -41,7 +41,7 @@
                                         </a>
                                     </th>
                                     <td>
-                                        <a href="">
+                                        <a href="{{ route('admin.user', ['id' => $reseller->user->id]) }}">
                                             {{ $reseller->user->fullname }}
                                         </a>
                                     </td>
