@@ -12,12 +12,25 @@ class ResellerController extends Controller
     {
         $resellers = Reseller::with([
             'user:id,fullname',
-        ])->withCount('users')
+        ])->withCount('clients')
             ->paginate(10);
 
         return view('pages.admin.reseller.index', [
             'title' => 'Reseller',
             'resellers' => $resellers,
+        ]);
+    }
+
+    public function detail(Request $request, string $id)
+    {
+        $reseller = Reseller::with([
+            'user',
+            'clients',
+        ])->where('id', $id)->firstOrFail();
+
+        return view('pages.admin.reseller.detail', [
+            'title' => 'Reseller: ' . $reseller->name,
+            'reseller' => $reseller,
         ]);
     }
 }
