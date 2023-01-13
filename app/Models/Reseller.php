@@ -12,6 +12,17 @@ class Reseller extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'contract_start_at' => 'date',
+        'contract_end_at' => 'date',
+        'inactive_at' => 'date',
+    ];
+
     public function clients()
     {
         return $this->belongsToMany(User::class, 'reseller_employee')->withTimestamps();
