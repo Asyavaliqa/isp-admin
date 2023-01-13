@@ -21,15 +21,15 @@ class ResellerController extends Controller
         ]);
     }
 
-    public function detail(Request $request)
+    public function detail(Request $request, string $id)
     {
         $reseller = Reseller::with([
             'user',
             'clients',
-        ])->where('id', $request->input('id'))->first();
+        ])->where('id', $id)->firstOrFail();
 
         return view('pages.admin.reseller.detail', [
-            'title' => 'Reseller: ' . $reseller->fullname,
+            'title' => 'Reseller: ' . $reseller->name,
             'reseller' => $reseller,
         ]);
     }
