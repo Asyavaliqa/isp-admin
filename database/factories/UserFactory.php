@@ -26,6 +26,7 @@ class UserFactory extends Factory
             'email' => $faker->unique()->safeEmail(),
             'password' => Hash::make(('password')),
             'fullname' => $faker->name($gender),
+            'photo' => 'assets/img/avatars/' . $faker->numberBetween(1, 30) . '.jpg',
             'address' => $faker->address(),
             'nik' => $faker->nik(),
             'phone_number' => $faker->e164PhoneNumber(),

@@ -63,7 +63,7 @@
                                 </tr>
                                 <tr>
                                     <td>Pemilik</td>
-                                    <td><a href="">{{ $reseller->user->fullname }}</a></td>
+                                    <td><a href="{{ route('admin.user', ['id' => $reseller->user->id]) }}">{{ $reseller->user->fullname }}</a></td>
                                 </tr>
                             </table>
                         </div>

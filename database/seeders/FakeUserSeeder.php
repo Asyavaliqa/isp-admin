@@ -63,7 +63,7 @@ class FakeUserSeeder extends Seeder
                  */
                 User::factory(mt_rand(1, 5))->create()->each(function ($resellerAdmin) use ($reseller) {
                     $resellerAdmin->assignRole('Reseller_Admin');
-                    $reseller->users()->attach($resellerAdmin->id);
+                    $reseller->clients()->attach($resellerAdmin->id);
                 });
 
                 /**
@@ -71,7 +71,7 @@ class FakeUserSeeder extends Seeder
                  */
                 User::factory(mt_rand(1, 5))->create()->each(function ($resellerTeknisi) use ($reseller) {
                     $resellerTeknisi->assignRole('Reseller_Teknisi');
-                    $reseller->users()->attach($resellerTeknisi->id);
+                    $reseller->clients()->attach($resellerTeknisi->id);
                 });
 
                 /**

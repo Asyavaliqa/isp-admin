@@ -23,7 +23,7 @@ class ResellerFactory extends Factory
         return [
             'name' => $faker->company(),
             'email' => $faker->companyEmail(),
-            'photo' => 'assets/img/avatars/' . $faker->randomDigitNotZero() . '.jpg',
+            'photo' => 'assets/img/logos/' . $faker->numberBetween(1, 30) . '.jpg',
             'phone_number' => $faker->e164PhoneNumber(),
             'address' => $faker->address(),
             'contract_start_at' => $contractStart,
