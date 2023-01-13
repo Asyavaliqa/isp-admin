@@ -35,7 +35,7 @@
                             @foreach ($resellers as $reseller)
                                 <tr>
                                     <th>
-                                        <a href="">
+                                        <a href="{{ route('admin.reseller.detail', ['id' => $reseller->id]) }}">
                                             <img alt="{{ $reseller->name }}" src="{{ asset($reseller->photo ?? 'assets/brand/GMDP_100x100.png') }}" class="img-thumbnail rounded-circle" style="width: 60px">
                                             <span class="ms-2">{{ $reseller->name }}</span>
                                         </a>
