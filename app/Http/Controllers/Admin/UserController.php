@@ -11,7 +11,12 @@ class UserController extends Controller
 {
     public function detail(Request $request, int $id): View
     {
-        $owner = User::where('id', $id)->firstOrFail();
+        $owner = User::with([
+            'sessions' => function ($q) {
+                $q->orderBy('last_activity', 'desc');
+                $q->limit(1);
+            },
+        ])->where('id', $id)->firstOrFail();
 
         return view('pages.admin.user.detail', [
             'title' => 'User',
