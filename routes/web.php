@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ResellerController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -34,6 +35,8 @@ Route::middleware([
 ])->name('admin.')->group(function () {
     Route::get('/reseller', [ResellerController::class, 'index'])->name('reseller');
     Route::get('/reseller/{id}', [ResellerController::class, 'detail'])->name('reseller.detail')->whereNumber('id');
+
+    Route::get('/user/{id}', [UserController::class, 'detail'])->name('user')->whereNumber('id');
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
