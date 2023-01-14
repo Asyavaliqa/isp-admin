@@ -46,7 +46,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <span class="badge rounded-pill bg-primary">{{ $reseller->users_count }} Pelanggan</span>
+                                        <span class="badge rounded-pill bg-primary">{{ $reseller->clients_count ?? '0' }} Pelanggan</span>
                                     </td>
                                     <td>
                                         @if ($reseller->inactive_at)
