@@ -17,7 +17,7 @@
                         <input type="text" class="form-control" placeholder="Search ..">
                     </div>
                     <div class="px-3">
-                        <a href="" class="btn btn-primary btn-outline">New Reseller</a>
+                        <a href="{{ route('admin.reseller.create') }}" class="btn btn-primary btn-outline">Tambah Reseller</a>
                     </div>
                 </div>
                 <div class="table-responsive px-3">

@@ -33,4 +33,9 @@ class ResellerController extends Controller
             'reseller' => $reseller,
         ]);
     }
+
+    public function create(Request $request)
+    {
+        return view('pages.admin.reseller.create');
+    }
 }
