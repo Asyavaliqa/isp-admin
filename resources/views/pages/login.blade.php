@@ -20,15 +20,15 @@
 
                                             @foreach ($errors->all() as $error)
                                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                    <strong>Error!</strong> {{ $error }}
-                                                    <b4utton type="button" class="btn-close" data-coreui-dismiss="alert"
-                                                        aria-label="Close"></b4utton>
+                                                    <strong>{{ $error }}</strong>
+                                                    <button type="button" class="btn-close" data-coreui-dismiss="alert"
+                                                        aria-label="Close"></button>
                                                 </div>
                                             @endforeach
                                         </div>
                                     @endif
-                                    <p class="text-medium-emphasis">Sign In to your account</p>
-                                    <div class="input-group mb-3">
+                                    <p class="text-medium-emphasis mb-4">Masukkan Username dan Password</p>
+                                    <div class="input-group mb-4">
                                         <span class="input-group-text">
                                             <i class="icon cil cil-user"></i>
                                         </span>
@@ -43,23 +43,29 @@
                                             required autocomplete="current-password">
                                     </div>
                                     <div class="row">
+                                        <div class="col-12 d-grid gap-2">
+                                            <button class="btn btn-info rounded-pill px-4" type="submit">Login</button>
+                                        </div>
+                                        <div class="mb-4"> </div>
                                         <div class="col-6">
-                                            <button class="btn btn-primary px-4" type="submit">Login</button>
+                                            <button class="btn btn-link btn-sm px-0" type="button">Lupa Password?</button>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <button class="btn btn-link px-0" type="button">Forgot password?</button>
+                                            <button class="btn btn-link btn-sm px-0" type="button">Daftar Akun</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
+                            <p class="text-medium-emphasis font-monospace mb-0" style="font-size: 75%">* Pendaftaran Akun Hanya Untuk Reseller</p>
                         </div>
                         <div class="card col-md-5 text-white bg-gradient bg-dark py-5">
                             <div class="card-body text-center">
                                 <div>
                                     <img src="{{ mix('assets/brand/GMDP_full.png') }}"  style="width: 150px">       {{-- edit --}}
+                                </div>
+                                    <div class="mb-4"> </div>
                                     <h4>GMDP BILLING</h4>
                                     <p>Sistem Administrasi dan Pembayaran</p>
-                                </div>
                             </div>
                             <p class="text-center fs-5 fw-light">PT.Global Media Data Prima</p>
                         </div>

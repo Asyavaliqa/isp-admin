@@ -44,7 +44,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Tidak dapat masuk. Harap periksa informasi akun Anda.',
         ])->onlyInput('email');
     }
 
