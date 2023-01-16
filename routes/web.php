@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ResellerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
@@ -36,6 +37,8 @@ Route::middleware([
     Route::get('/reseller', [ResellerController::class, 'index'])->name('reseller');
     Route::get('/reseller/{id}', [ResellerController::class, 'detail'])->name('reseller.detail')->whereNumber('id');
     Route::get('/reseller/create', [ResellerController::class, 'create'])->name('reseller.create');
+
+    Route::get('/client', [ClientController::class, 'index'])->name('client');
 
     Route::get('/user/{id}', [UserController::class, 'detail'])->name('user')->whereNumber('id');
 });
