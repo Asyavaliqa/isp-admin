@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 d-grid gap-2">
-                                            <button class="btn btn-info rounded-pill px-4" type="submit">Login</button>
+                                            <button class="btn rounded-pill btn-outline-info px-4" type="submit">Login</button>
                                         </div>
                                         <div class="mb-4"> </div>
                                         <div class="col-6">

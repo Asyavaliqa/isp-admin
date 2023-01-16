@@ -27,7 +27,7 @@
         <li class="nav-title">Data Master</li>
         <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.reseller' ? 'active' : '' }}" href="{{ route('admin.reseller') }}"">
             <i class="nav-icon cil cil-user"></i> Reseller</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">
+        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.client' ? 'active' : '' }}" href="{{ route('admin.client') }}"">
             <i class="nav-icon cil cil-people"></i> Pelanggan </a>
         </li>
         {{-- <li class="nav-divider"></li>
@@ -69,13 +69,13 @@
           </button><a class="header-brand d-md-none">
               <img src="{{ mix('assets/brand/GMDP_name.jpg') }}"  style="width: 200px">
           <ul class="header-nav d-none d-md-flex">
-            <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Reseller</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Pelanggan</a></li>
+            <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.reseller' ? 'active' : '' }}" href="{{ route('admin.reseller') }}">Reseller</a></li>
+            <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.client' ? 'active' : '' }}" href="{{ route('admin.client') }}">Pelanggan</a></li>
           {{--   <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>   --}}
           </ul>
           <ul class="header-nav ms-auto">
-            <li class="nav-item nav-link">Username</li>
+            <li class="nav-item nav-link">{{ Auth::user()->username }}</li>
             {{--<li class="nav-item"><a class="nav-link" href="#">
                 <svg class="icon icon-lg">
                   <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg') }}#cil-list-rich"></use>
@@ -99,7 +99,7 @@
                   <svg class="icon me-2">
                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg') }}#cil-settings"></use>
                   </svg> Settings</a><a class="dropdown-item" href="#">
-                <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
+                <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ route('logout') }}">
                   <svg class="icon me-2">
                     <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg') }}#cil-account-logout"></use>
                   </svg> Logout</a>
