@@ -20,15 +20,15 @@
                             <input type="text" class="form-control" name="name" id="name" autocomplete="false" required aria-required="true" autofocus>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label" for="email">Email</label>
+                            <label class="form-label" for="email">Email Instansi</label>
                             <input type="email" name="email" id="email" class="form-control" required aria-required="true">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label" for="phoneNumber">Nomor Telepon</label>
+                            <label class="form-label" for="phoneNumber">Nomor Telepon Instansi</label>
                             <input type="text" name="phoneNumber" id="phoneNumber" class="form-control">
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="address" class="form-label">Alamat Lengkap</label>
+                            <label for="address" class="form-label">Alamat Lengkap Instansi</label>
                             <textarea name="address" id="address" class="form-control" rows="5"></textarea>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -55,18 +55,18 @@
                             <input type="text" name="owner_fullname" id="owner_fullname" class="form-control" required aria-required="true">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="owner_username" class="form-label">Nama Pengguna</label>
+                            <label for="owner_username" class="form-label">Username Sistem</label>
                             <div class="input-group">
                                 <span class="input-group-text">@</span>
                                 <input type="text" name="owner_username" id="owner_username" class="form-control" required aria-required="true">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="owner_email" class="form-label">Email</label>
+                            <label for="owner_email" class="form-label">Email Owner</label>
                             <input type="email" name="owner_email" id="owner_email" class="form-control" required aria-required="true">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="owner_password" class="form-label">Kata Sandi</label>
+                            <label for="owner_password" class="form-label">Kata Sandi Sistem</label>
                             <input type="password" name="owner_password" id="owner_email" class="form-control" required aria-required="true">
                         </div>
                         <div class="col-md-6 mb-3">
@@ -74,17 +74,17 @@
                             <input type="password" name="owner_retype_password" id="owner_retype_password" class="form-control" required aria-required="true">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="owner_birth" class="form-label">Tanggal lahir</label>
+                            <label for="owner_birth" class="form-label">Tanggal Lahir</label>
                             <input type="date" name="owner_birth" id="owner_birth" class="form-control">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="owner_gender" class="form-label">Jenis kelamin</label>
+                            <label for="owner_gender" class="form-label">Jenis Kelamin</label>
                             <select name="owner_gender" id="owner_gender" class="form-control">
-                                <option value="">--- Pilih tanggal lahir ---</option>
+                                <option value="">--- Pilih Jenis Kelamin ---</option>
                             </select>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="owner_address" class="form-label">Alamat lengkap</label>
+                            <label for="owner_address" class="form-label">Alamat Lengkap Owner</label>
                             <textarea name="owner_address" id="owner_address" class="form-control" rows="5" required aria-required="true"></textarea>
                         </div>
                         <div class="col-md-6 mb-3">
