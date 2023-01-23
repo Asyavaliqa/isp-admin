@@ -144,6 +144,8 @@ class ResellerController extends Controller
 
             $user->save();
 
+            $user->assignRole('Reseller_Owner');
+
             $reseller = new Reseller([
                 'name' => $request->input('name'),
                 'photo' => $logoPath ? 'storage/' . $logoPath : null,
