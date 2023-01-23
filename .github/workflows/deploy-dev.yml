@@ -85,6 +85,7 @@ jobs:
             cd /var/www
             npm ci
             npm run dev
+            php artisan storage:link
 
       - name: Running migration
         uses: appleboy/ssh-action@v0.1.7
