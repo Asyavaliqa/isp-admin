@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Log;
 
@@ -87,7 +88,13 @@ class ResellerController extends Controller
             'owner_email' => 'nullable|email:rfc,dns',
             'owner_password' => 'required|confirmed',
             'owner_birth' => 'nullable|date',
-            'owner_gender' => 'nullable|in:female,male',
+            'owner_gender' => [
+                'nullable',
+                Rule::in([
+                    'female',
+                    'male',
+                ]),
+            ],
             'owner_address' => 'nullable',
             'owner_photo' => 'nullable|image|max:1024',
         ]);
