@@ -26,7 +26,7 @@ class ResellerController extends Controller
     {
         $resellers = Reseller::with([
             'user:id,fullname',
-        ])->withCount('clients')
+        ])->withCount('clients')->latest()
             ->paginate(10);
 
         return view('pages.admin.reseller.index', [
