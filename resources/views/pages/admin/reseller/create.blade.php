@@ -139,4 +139,4 @@
             }
         }
     </script>
-    @endsectiont
+@endsection
