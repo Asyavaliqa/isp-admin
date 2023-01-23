@@ -22,9 +22,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'fullname',
+        'username',
         'email',
         'password',
+        'birthday',
+        'gender',
+        'address',
+        'photo',
     ];
 
     /**
@@ -54,5 +59,10 @@ class User extends Authenticatable
     public function client()
     {
         return $this->hasOne(Client::class);
+    }
+
+    public function reseller()
+    {
+        return $this->hasOne(Reseller::class);
     }
 }

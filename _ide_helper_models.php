@@ -84,14 +84,14 @@ namespace App\Models{
      * @property string|null $email Company Email
      * @property string|null $phone_number Company Phone Number
      * @property string|null $address Company Address
-     * @property string|null $contract_start_at
-     * @property string|null $contract_end_at
-     * @property string|null $inactive_at
+     * @property \Illuminate\Support\Carbon|null $contract_start_at
+     * @property \Illuminate\Support\Carbon|null $contract_end_at
+     * @property \Illuminate\Support\Carbon|null $inactive_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $clients
+     * @property-read int|null $clients_count
      * @property-read \App\Models\User $user
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
-     * @property-read int|null $users_count
      *
      * @method static \Database\Factories\ResellerFactory factory(...$parameters)
      * @method static \Illuminate\Database\Eloquent\Builder|Reseller newModelQuery()
@@ -117,6 +117,32 @@ namespace App\Models{
 
 namespace App\Models{
     /**
+     * App\Models\Session
+     *
+     * @property int $id
+     * @property int|null $user_id
+     * @property string|null $ip_address
+     * @property string|null $user_agent
+     * @property string $payload
+     * @property \Illuminate\Support\Carbon $last_activity
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|Session newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Session newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Session query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Session whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Session whereIpAddress($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Session whereLastActivity($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Session wherePayload($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Session whereUserAgent($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Session whereUserId($value)
+     */
+    class IdeHelperSession
+    {
+    }
+}
+
+namespace App\Models{
+    /**
      * App\Models\User
      *
      * @property int $id
@@ -133,12 +159,16 @@ namespace App\Models{
      * @property string|null $remember_token
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Models\Client|null $client
      * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
      * @property-read int|null $notifications_count
      * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
      * @property-read int|null $permissions_count
+     * @property-read \App\Models\Reseller|null $reseller
      * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
      * @property-read int|null $roles_count
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Session[] $sessions
+     * @property-read int|null $sessions_count
      * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
      * @property-read int|null $tokens_count
      *

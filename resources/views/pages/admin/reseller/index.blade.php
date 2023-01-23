@@ -20,6 +20,12 @@
                         <a href="{{ route('admin.reseller.create') }}" class="btn btn-primary btn-outline">Tambah Reseller</a>
                     </div>
                 </div>
+                @if (session('status'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Berhasil!</strong> {{ session('status') }}
+                    <button type="button" class="btn-close" data-coreui-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 <div class="table-responsive px-3">
                     <table class="table table-hover align-middle custom-table">
                         <thead>
