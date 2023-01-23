@@ -16,6 +16,12 @@ use Log;
 
 class ResellerController extends Controller
 {
+    /**
+     * Show all data of reseller
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $resellers = Reseller::with([
@@ -29,6 +35,12 @@ class ResellerController extends Controller
         ]);
     }
 
+    /**
+     * Show detail data of reseller
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function detail(Request $request, string $id)
     {
         $reseller = Reseller::with([
