@@ -37,6 +37,7 @@ Route::middleware([
     Route::get('/reseller', [ResellerController::class, 'index'])->name('reseller');
     Route::get('/reseller/{id}', [ResellerController::class, 'detail'])->name('reseller.detail')->whereNumber('id');
     Route::get('/reseller/create', [ResellerController::class, 'create'])->name('reseller.create');
+    Route::post('/reseller/create', [ResellerController::class, 'store']);
 
     Route::get('/client', [ClientController::class, 'index'])->name('client');
 
