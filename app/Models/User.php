@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Client::class);
     }
+
+    public function reseller()
+    {
+        return $this->hasOne(Reseller::class);
+    }
 }
