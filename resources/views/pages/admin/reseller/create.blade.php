@@ -94,8 +94,8 @@
                                 <label for="owner_gender" class="form-label">Jenis Kelamin</label>
                                 <select name="owner_gender" id="owner_gender" class="form-control">
                                     <option value="">--- Pilih Jenis Kelamin ---</option>
-                                    <option value="male" @selected(old('owner_gender') == 'male')>Lelaki</option>
-                                    <option value="female @selected(old('owner_gender') == 'female')">Wanita</option>
+                                    <option value="male" @selected(old('owner_gender') === 'male')>Lelaki</option>
+                                    <option value="female @selected(old('owner_gender') === 'female')">Wanita</option>
                                 </select>
                             </div>
                             <div class="col-md-12 mb-3">

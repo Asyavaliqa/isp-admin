@@ -120,7 +120,7 @@ class ResellerController extends Controller
                 );
             }
         } catch (Exception $ex) {
-            Log::error($ex->getMessage(), $ex);
+            Log::error($ex->getMessage());
         }
 
         DB::transaction(function () use ($request, $photoPath, $logoPath) {
