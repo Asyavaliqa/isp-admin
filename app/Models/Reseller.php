@@ -13,6 +13,21 @@ class Reseller extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'photo',
+        'email',
+        'phone_number',
+        'address',
+        'contract_start_at',
+        'contract_end_at',
+    ];
+
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
