@@ -34,7 +34,6 @@
                               <th scope="col">Pemilik</th>
                               <th scope="col">Jumlah Pelanggan</th>
                               <th scope="col">Status</th>
-                              <th scope="col"></th>
                             </tr>
                           </thead>
                           <tbody class="table-group-divider">
@@ -60,11 +59,6 @@
                                         @else
                                             <span class="badge rounded-pill bg-success">Aktif</span>
                                         @endif
-                                    </td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" @checked(!$reseller->inactive_at)>
-                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

@@ -64,7 +64,7 @@
                                     <img src="{{ mix('assets/brand/GMDP_full.png') }}"  style="width: 150px">       {{-- edit --}}
                                 </div>
                                     <div class="mb-4"> </div>
-                                    <h4>GMDP BILLING</h4>
+                                    <h4 class="fs-2">GMDP eBILLING</h4>
                                     <p>Sistem Administrasi dan Pembayaran</p>
                             </div>
                             <p class="text-center fs-5 fw-light">PT.Global Media Data Prima</p>

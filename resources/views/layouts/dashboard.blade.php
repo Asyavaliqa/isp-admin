@@ -19,7 +19,7 @@
         <div class="sidebar-brand-full">
             <img src="{{ mix('assets/brand/GMDP_35x35.png') }}"  style="width: 35px">
         </div>
-        <div class="nav-title mx-2">GMDP BILLING</div>
+        <div class="nav-title mx-2">GMDP eBILLING</div>
       </div>
       <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
         <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">
@@ -123,7 +123,7 @@
         @yield('content')
       </div>
       <footer class="footer">
-        <div><a href="https://gmdp.net.id/">Billing</a> © 2023 Global Media Data Prima.</div>
+        <div><a href="https://gmdp.net.id/">eBilling</a> © 2023 Global Media Data Prima.</div>
       </footer>
     </div>
     <!-- CoreUI and necessary plugins-->
