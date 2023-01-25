@@ -22,7 +22,7 @@
                         <thead>
                             <tr>
                               <th scope="col">Nama Paket</th>
-                              <th scope="col">bandwidth</th>
+                              <th scope="col">Bandwidth</th>
                               <th scope="col">Harga</th>
                             </tr>
                           </thead>
