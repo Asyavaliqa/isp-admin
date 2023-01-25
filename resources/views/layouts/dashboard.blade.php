@@ -25,11 +25,17 @@
         <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">
             <i class="nav-icon cil cil-speedometer"></i> Dashboard</a></li>
         <li class="nav-title">Data Master</li>
+
+        {{-- Admin --}}
+        {{-- reference: https://spatie.be/docs/laravel-permission/v5/basic-usage/blade-directives --}}
+        @hasanyrole('Admin')
         <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.reseller' ? 'active' : '' }}" href="{{ route('admin.reseller') }}"">
             <i class="nav-icon cil cil-user"></i> Reseller</a></li>
         <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.client' ? 'active' : '' }}" href="{{ route('admin.client') }}"">
             <i class="nav-icon cil cil-people"></i> Pelanggan </a>
         </li>
+        @endhasanyrole
+        {{-- /Admin --}}
         {{-- <li class="nav-divider"></li>
         <li class="nav-title">Administrative Tools</li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
@@ -84,7 +90,7 @@
                 <svg class="icon icon-lg">
                   <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg') }}#cil-envelope-open"></use>
                 </svg></a></li>--}}
-          </ul> 
+          </ul>
           <ul class="header-nav ms-3">
             <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-md"><img class="avatar-img" src="{{ asset('assets/img/avatars/8.jpg') }}" alt="user@email.com"></div>
