@@ -102,14 +102,29 @@
                                 <label for="owner_address" class="form-label">Alamat Lengkap Owner</label>
                                 <textarea name="owner_address" id="owner_address" class="form-control" rows="5">{{ old('owner_address') }}</textarea>
                             </div>
+                            <div class="col-md-12 mb-3">        {{-- edit lagi --}}
+                                <label for="owner_photo" class="form-label">Dokumen Registrasi</label>
+                                <input type="file" accept="all/*" name="owner_photo" id="owner_photo"
+                                    class="form-control" onchange="preview(event, 'imgOwner')">
+                            </div>
                             <div class="col-md-6 mb-3">
-                                <label for="owner_photo" class="form-label">Foto</label>
+                                <label for="owner_photo" class="form-label">Foto Reseller</label>
                                 <input type="file" accept="image/*" name="owner_photo" id="owner_photo"
                                     class="form-control" onchange="preview(event, 'imgOwner')">
                             </div>
                             <div class="col-md-6 mb-3">
+                                <label for="owner_photo_ktp" class="form-label">Foto KTP</label>
+                                <input type="file" accept="image/*" name="owner_photo_ktp" id="owner_photo_ktp"
+                                    class="form-control" onchange="preview(event, 'imgOwnerKTP')">
+                            </div>
+                            <div class="col-md-6 mb-3">
                                 <span class="mb-2 d-block">Pratinjau Gambar</span>
                                 <img id="imgOwner" src="https://via.placeholder.com/200?text=Pratinjau Gambar"
+                                    class="img-fluid img-thumbnail" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <span class="mb-2 d-block">Pratinjau Gambar</span>
+                                <img id="imgOwnerKTP" src="https://via.placeholder.com/200?text=Pratinjau Gambar"
                                     class="img-fluid img-thumbnail" />
                             </div>
                         </fieldset>
