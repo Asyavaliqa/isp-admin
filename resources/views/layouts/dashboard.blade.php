@@ -35,6 +35,24 @@
             <i class="nav-icon cil cil-people"></i> Pelanggan </a>
         </li>
         @endhasanyrole
+
+        {{-- Reseller_Owner --}}
+        {{-- reference: https://spatie.be/docs/laravel-permission/v5/basic-usage/blade-directives --}}
+        @hasanyrole('Reseller_Owner')
+        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.client' ? 'active' : '' }}" href="{{ route('admin.reseller') }}"">
+            <i class="nav-icon cil cil-user"></i> Pelanggan </a></li>
+        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.paket' ? 'active' : '' }}" href="{{ route('admin.client') }}"">
+            <i class="nav-icon cil cil-people"></i> Paket </a></li>
+        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.tagihan' ? 'active' : '' }}" href="{{ route('admin.client') }}"">
+            <i class="nav-icon cil cil-people"></i> Tagihan </a></li>
+        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.paket' ? 'active' : '' }}" href="{{ route('admin.client') }}"">
+            <i class="nav-icon cil cil-people"></i> Riwayat </a></li>
+        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.paket' ? 'active' : '' }}" href="{{ route('admin.client') }}"">
+            <i class="nav-icon cil cil-people"></i> Pegawai </a></li>
+        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.paket' ? 'active' : '' }}" href="{{ route('admin.client') }}"">
+            <i class="nav-icon cil cil-people"></i> Profile </a></li>
+        @endhasanyrole
+
         {{-- /Admin --}}
         {{-- <li class="nav-divider"></li>
         <li class="nav-title">Administrative Tools</li>
