@@ -6,6 +6,12 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Reseller\BandwidthController;
+use App\Http\Controllers\Reseller\BillController;
+use App\Http\Controllers\Reseller\ClientController as ResellerClientController;
+use App\Http\Controllers\Reseller\EmployeeController;
+use App\Http\Controllers\Reseller\HistoryController;
+use App\Http\Controllers\Reseller\ProfileController as ResellerProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +48,18 @@ Route::middleware([
     Route::get('/client', [ClientController::class, 'index'])->name('client');
 
     Route::get('/user/{id}', [UserController::class, 'detail'])->name('user')->whereNumber('id');
+});
+
+Route::middleware([
+    'auth',
+    'role:Reseller_Owner',
+])->name('reseller_owner.')->group(function () {
+    Route::get('/clients', [ResellerClientController::class, 'index'])->name('client');
+    Route::get('/bandwidth', [BandwidthController::class, 'index'])->name('bandwidth');
+    Route::get('/bill', [BillController::class, 'index'])->name('bill');
+    Route::get('/history', [HistoryController::class, 'index'])->name('history');
+    Route::get('/employee', [EmployeeController::class, 'index'])->name('employee');
+    Route::get('/profile', [ResellerProfileController::class, 'index'])->name('profile');
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
