@@ -49,6 +49,16 @@ class Reseller extends Model
     }
 
     /**
+     * Relation to clients
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
+
+    /**
      * Relation to reseller owner
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
