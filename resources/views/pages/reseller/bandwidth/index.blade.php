@@ -21,14 +21,25 @@
                     <table class="table table-hover align-middle custom-table">
                         <thead>
                             <tr>
+                                <th>#</th>
                               <th scope="col">Nama Paket</th>
                               <th scope="col">Bandwidth</th>
                               <th scope="col">Harga</th>
                             </tr>
                           </thead>
                           <tbody class="table-group-divider">
+                            @foreach ($bandwidths as $bandwidth)
+                                <tr>
+                                    <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $bandwidth->name }}</td>
+                                    <td>{{ $bandwidth->bandwidth }} Mbps</td>
+                                    <td>Rp{{ number_format($bandwidth->price, 2, ',', '.') }}</td>
+                                </tr>
+                            @endforeach
                           </tbody>
                     </table>
+
+                    {{ $bandwidths->links('components.pagination') }}
                 </div>
             </div>
         </div>
