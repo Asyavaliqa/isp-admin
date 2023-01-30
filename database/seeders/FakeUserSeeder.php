@@ -78,19 +78,19 @@ class FakeUserSeeder extends Seeder
                  * Add Random Client
                  */
                 $client = [];
-                User::factory(mt_rand(15, 20))->create()->each(function ($user) use ($reseller, $faker) {
+                User::factory(mt_rand(15, 20))->create()->each(function ($user) use ($reseller, $faker, &$client) {
                     $user->assignRole('Client');
                     $month = $faker->numberBetween(1, 12);
                     $day = $faker->numberBetween(1, 30);
 
-                    $client[] = [
+                    array_push($client, [
                         'user_id' => $user->id,
                         'bandwidth_id' => Bandwidth::inRandomOrder()->first()->id,
                         'reseller_id' => $reseller->id,
                         'payment_due_date' => "{$month}-{$day}",
                         'created_at' => now(),
                         'updated_at' => now(),
-                    ];
+                    ]);
                 });
 
                 Client::insert($client);

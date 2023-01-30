@@ -51,16 +51,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Relation to all user sessions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function sessions()
     {
         return $this->hasMany(Session::class, 'user_id', 'id');
     }
 
+    /**
+     * Relation to client data (if exists)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function client()
     {
         return $this->hasOne(Client::class);
     }
 
+    /**
+     * Relation to reseller data (if exitst)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function reseller()
     {
         return $this->hasOne(Reseller::class);

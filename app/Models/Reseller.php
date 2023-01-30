@@ -38,11 +38,21 @@ class Reseller extends Model
         'inactive_at' => 'date',
     ];
 
-    public function clients()
+    /**
+     * Relation to reseller employees
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function employees()
     {
         return $this->belongsToMany(User::class, 'reseller_employee')->withTimestamps();
     }
 
+    /**
+     * Relation to reseller owner
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
