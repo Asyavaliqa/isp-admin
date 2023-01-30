@@ -106,7 +106,6 @@
                           </thead>
                           <tbody class="table-group-divider">
                                <tr>
-                                    <th>
                                     <td>
                                     </td>
                                     <td>

@@ -41,6 +41,11 @@ class HomeController extends Controller
      */
     public function adminPages(Request $request)
     {
+        $data = shell_exec('uptime');
+        $uptime = explode(' up ', $data);
+        $uptime = explode(',', $uptime[1]);
+        $uptime = $uptime[0] . '';
+
         $cpu = shell_exec('nproc') ?? 1;
         $cpuLoad = sys_getloadavg()[0] / $cpu ?? 0;
 
@@ -49,7 +54,7 @@ class HomeController extends Controller
         $free_arr = explode("\n", $free);
         $mem = explode(' ', $free_arr[1]);
         $mem = array_filter($mem, function ($value) {
-        return $value !== null && $value !== false && $value !== '';
+            return $value !== null && $value !== false && $value !== '';
         }); // removes nulls from array
         $mem = array_merge($mem); // puts arrays back to [0],[1],[2] after
         $memtotal = round($mem[1] / 1000000, 2);
@@ -62,6 +67,7 @@ class HomeController extends Controller
         $userTotal = User::select('id')->count();
         $mitraTotal = Reseller::select('id')->count();
         $clientTotal = Client::select('id')->count();
+        $mitraNonaktif = Reseller::select('inactive_at')->count();
 
         $mitras = Reseller::with([
             'user',
@@ -69,6 +75,7 @@ class HomeController extends Controller
 
         return view('pages.admin.home', [
             'title' => 'Admin Dashboard',
+            'upTime' => $uptime,
             'cpuLoad' => $cpuLoad,
             'memTotal' => $memtotal,
             'memUsed' => $memused,
@@ -77,6 +84,7 @@ class HomeController extends Controller
             'diskUsed' => $diskused,
             'userTotal' => $userTotal,
             'mitraTotal' => $mitraTotal,
+            'mitraNonaktif' => $mitraNonaktif,
             'clientTotal' => $clientTotal,
             'mitras' => $mitras,
         ]);
