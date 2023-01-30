@@ -22,97 +22,132 @@
 @section('content')
     <div class="container-lg">
         <div class="row">
-        <!-- /.col-->
+            {{-- col --}}
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-secondary">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                        <div>
-                                <div class="fs-6 fw-semibold"><i class="cil-microchip"></i>CPU 10%</div> <!-- edit lagi -->
+                <div class="card mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="fs-4 fw-semibold">{{ number_format($cpuLoad, 2) }}%</div>
+                            <div>CPU Load</div>
+                            <div class="progress progress-thin my-2">
+                                <div class="progress-bar bg-success" role="progressbar"
+                                    style="width: {{ number_format($cpuLoad, 2) }}%"
+                                    aria-valuenow="{{ number_format($cpuLoad, 2) }}" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                            {{-- <small class="text-medium-emphasis-inverse">Widget helper text</small> --}}
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:0px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
+            {{-- /col --}}
+            {{-- col --}}
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-secondary">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                        <div>
-                        
-                                <div class="fs-6 fw-semibold"><i class="cil-microchip"></i>RAM 500MB</div> <!-- edit lagi -->
+                <div class="card mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="fs-4 fw-semibold">{{ number_format($memUsed / $memTotal, 2) }}%</div>
+                            <div>Memory Usage</div>
+                            <div class="progress progress-thin my-2">
+                                <div class="progress-bar bg-success" role="progressbar"
+                                    style="width: {{ number_format($memUsed / $memTotal, 2) }}%"
+                                    aria-valuenow="{{ number_format($memUsed / $memTotal, 2) }}" aria-valuemin="0"
+                                    aria-valuemax="100"></div>
+                            </div>
+                            {{-- <small class="text-medium-emphasis-inverse">Widget helper text</small> --}}
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:0px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
+            {{-- /col --}}
+            {{-- col --}}
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-secondary">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                        <div>
-                                <div class="fs-6 fw-semibold"><i class="cil-microchip"></i>Disk 10%</div> <!-- edit lagi -->
+                <div class="card mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="fs-4 fw-semibold">{{ number_format($diskUsed / $diskTotal, 2) }}%</div>
+                            <div>Disk Usage</div>
+                            <div class="progress progress-thin my-2">
+                                <div class="progress-bar bg-success" role="progressbar"
+                                    style="width: {{ number_format($diskUsed / $diskTotal, 2) }}%"
+                                    aria-valuenow="{{ number_format($diskUsed / $diskTotal, 2) }}" aria-valuemin="0"
+                                    aria-valuemax="100"></div>
+                            </div>
+                            {{-- <small class="text-medium-emphasis-inverse">Widget helper text</small> --}}
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:0px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
+            {{-- /col --}}
+            {{-- col --}}
+            {{-- <div class="col-sm-6 col-lg-3">
+                <div class="card mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="fs-4 fw-semibold">{{ number_format($diskUsed/$diskTotal, 2) }}%</div>
+                            <div>Connection</div>
+                            <div class="progress progress-thin my-2">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ number_format($diskUsed/$diskTotal, 2) }}%" aria-valuenow="{{ number_format($diskUsed/$diskTotal, 2) }}"
+                                    aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            {{-- <small class="text-medium-emphasis-inverse">Widget helper text</small> --}}
+            {{-- </div>
+                    </div>
+                </div>
+            </div> --}}
+            {{-- /col --}}
+        </div>
+        <div class="row mb-4">
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-secondary">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-5 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                                <div class="fs-6 fw-semibold"><i class="cil-microchip"></i>Uptime 3 days</div> <!-- edit lagi -->
+                            <div class="fs-6 fw-semibold text-primary">{{ $userTotal }}</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Pengguna</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:0px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-1 text-white bg-primary">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-5 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                                <div class="fs-1 fw-bold"><i class="cil-user"></i>10</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Admin</div>
+                            <div class="fs-6 fw-semibold text-primary">{{ $clientTotal }}</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Klien</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-info">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-5 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                                <div class="fs-1 fw-bold"><i class="cil-people"></i>100</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Reseller Aktif</div>
+                            <div class="fs-6 fw-semibold text-primary">{{ $mitraTotal }}</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Mitra</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-danger">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-5 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                                <div class="fs-1 fw-bold"><i class="cil-people"></i>50</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Reseller Nonaktif</div>
+                            <div class="fs-6 fw-semibold text-primary">$1.999,50</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Pendapatan</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
-                </div>
-            </div>
-            <!-- /.col-->
-            <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-warning">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                        <div>
-                                <div class="fs-1 fw-bold"><i class="cil-people"></i>500</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Pelanggan</div>
-                        </div>
-                    </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
             <!-- /.col-->
@@ -121,130 +156,41 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <div class="card-header text-center fw-semibold">Daftar Reseller Dengan Pelanggan Terbanyak</div>
+                    <div class="card-header text-center fw-semibold">Top Mitra Dengan Pelanggan Terbanyak</div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table border mb-0">
                                 <thead class="table-light fw-semibold">
                                     <tr class="align-middle">
                                         <th class="text-center">
-                                            <svg class="icon">
-                                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-people"></use>
-                                            </svg>
+                                            <i class="icon cil-people"></i>
                                         </th>
-                                        <th class="text-center">Reseller</th>
+                                        <th class="text-center">Nama Mitra</th>
                                         <th class="text-center">Alamat</th>
                                         <th class="text-center">Jumlah Pelanggan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="align-middle">
+                                    @foreach ($mitras as $mitra)
+                                    <tr>
                                         <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/1.jpg" alt="user@email.com"></div>
+                                            <div class="avatar avatar-md">
+                                                <img alt="{{ $mitra->user->fullname }}" src="{{ asset($mitra->user->photo ?? 'assets/brand/GMDP_100x100.png') }}" class="avatar-img">
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
+                                            <div class="fw-semibold text-center">{{ $mitra->user->fullname }}</div>
+                                            <div class="small text-medium-emphasis text-center">Aktif sejak {{ $mitra->created_at->isoFormat('dddd, D MMMM g') }}
+                                            </div>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center  "> +628999</div>
+                                            <div class="fw-semibold text-center">{{ $mitra->user->address }}</div>
+                                            <div class="small text-medium-emphasis text-center">{{ $mitra->user->phone_number }}</div>
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-center" >10</div>
+                                            <div class="fw-bold text-center">{{ $mitra->clients_count }}</div>
                                         </td>
                                     </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/2.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center" >10</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/3.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center" >10</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/4.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center" >10</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/5.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center" >10</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/6.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> Aktif sejak 1 Januari 2023</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center" >10</div>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
