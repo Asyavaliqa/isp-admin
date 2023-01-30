@@ -76,7 +76,7 @@ class MainUserSeeder extends Seeder
                     'username' => 'reseller_admin',
                 ])->create()->each(function ($resellerAdmin) use ($reseller) {
                     $resellerAdmin->assignRole('Reseller_Admin');
-                    $reseller->clients()->attach($resellerAdmin->id);
+                    $reseller->employees()->attach($resellerAdmin->id);
                 });
 
                 /**
@@ -84,7 +84,7 @@ class MainUserSeeder extends Seeder
                  */
                 User::factory(3)->create()->each(function ($resellerAdmin) use ($reseller) {
                     $resellerAdmin->assignRole('Reseller_Admin');
-                    $reseller->clients()->attach($resellerAdmin->id);
+                    $reseller->employees()->attach($resellerAdmin->id);
                 });
 
                 /**
@@ -94,7 +94,7 @@ class MainUserSeeder extends Seeder
                     'username' => 'reseller_teknisi',
                 ])->create()->each(function ($resellerTeknisi) use ($reseller) {
                     $resellerTeknisi->assignRole('Reseller_Teknisi');
-                    $reseller->clients()->attach($resellerTeknisi->id);
+                    $reseller->employees()->attach($resellerTeknisi->id);
                 });
 
                 /**
@@ -102,7 +102,7 @@ class MainUserSeeder extends Seeder
                  */
                 User::factory(5)->create()->each(function ($resellerTeknisi) use ($reseller) {
                     $resellerTeknisi->assignRole('Reseller_Teknisi');
-                    $reseller->clients()->attach($resellerTeknisi->id);
+                    $reseller->employees()->attach($resellerTeknisi->id);
                 });
 
                 /**
