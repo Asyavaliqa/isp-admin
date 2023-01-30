@@ -26,11 +26,11 @@
                 <div class="card mb-1 text-white bg-primary">
                     <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                         <div>
-                                <div class="fs-2 fw-bold"><i class="cil-user"></i>1000</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Pelanggan</div>
+                            <div class="fs-2 fw-bold"><i class="cil-user"></i>1000</div> <!-- edit lagi -->
+                            <div class="fs-4 fw-semibold">Pelanggan</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
+                    <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
             <!-- /.col-->
@@ -38,11 +38,11 @@
                 <div class="card mb-4 text-white bg-info">
                     <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                         <div>
-                                <div class="fs-2 fw-bold"><i class="cil-people"></i>10</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Pegawai</div>
+                            <div class="fs-2 fw-bold"><i class="cil-people"></i>10</div> <!-- edit lagi -->
+                            <div class="fs-4 fw-semibold">Pegawai</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
+                    <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
             <!-- /.col-->
@@ -50,11 +50,11 @@
                 <div class="card mb-4 text-white bg-danger">
                     <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                         <div>
-                                <div class="fs-2 fw-bold">Rp.2.000.000</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Belum Terbayar</div>
+                            <div class="fs-2 fw-bold">Rp.2.000.000</div> <!-- edit lagi -->
+                            <div class="fs-4 fw-semibold">Belum Terbayar</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
+                    <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
             <!-- /.col-->
@@ -62,11 +62,11 @@
                 <div class="card mb-4 text-white bg-warning">
                     <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                         <div>
-                                <div class="fs-2 fw-bold">Rp.5.000.000</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Penghasilan</div>
+                            <div class="fs-2 fw-bold">Rp.5.000.000</div> <!-- edit lagi -->
+                            <div class="fs-4 fw-semibold">Penghasilan</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
+                    <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
             <!-- /.col-->
@@ -98,14 +98,15 @@
                                                     src="assets/img/avatars/1.jpg" alt="user@email.com"></div>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div> {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
+                                            {{-- edit lagi --}}
                                             <div class="small text-medium-emphasis text-center  "> +628999</div>
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
+                                            <div class="fw-bold text-center">Rp.200.000</div>
                                         </td>
                                     </tr>
                                     <tr class="align-middle">
@@ -115,14 +116,15 @@
                                         </td>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div> {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
+                                            {{-- edit lagi --}}
                                             <div class="small text-medium-emphasis text-center"> +628999</div>
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
+                                            <div class="fw-bold text-center">Rp.200.000</div>
                                         </td>
                                     </tr>
                                     <tr class="align-middle">
@@ -132,14 +134,15 @@
                                         </td>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div> {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
+                                            {{-- edit lagi --}}
                                             <div class="small text-medium-emphasis text-center"> +628999</div>
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
+                                            <div class="fw-bold text-center">Rp.200.000</div>
                                         </td>
                                     </tr>
                                     <tr class="align-middle">
@@ -149,14 +152,15 @@
                                         </td>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div> {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
+                                            {{-- edit lagi --}}
                                             <div class="small text-medium-emphasis text-center"> +628999</div>
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
+                                            <div class="fw-bold text-center">Rp.200.000</div>
                                         </td>
                                     </tr>
                                     <tr class="align-middle">
@@ -166,14 +170,16 @@
                                         </td>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>
+                                            {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
+                                            {{-- edit lagi --}}
                                             <div class="small text-medium-emphasis text-center"> +628999</div>
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
+                                            <div class="fw-bold text-center">Rp.200.000</div>
                                         </td>
                                     </tr>
                                     <tr class="align-middle">
@@ -183,14 +189,16 @@
                                         </td>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>
+                                            {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
+                                            {{-- edit lagi --}}
                                             <div class="small text-medium-emphasis text-center"> +628999</div>
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
+                                            <div class="fw-bold text-center">Rp.200.000</div>
                                         </td>
                                     </tr>
                                 </tbody>
