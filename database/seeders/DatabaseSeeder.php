@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             MainUserSeeder::class,
             FakeUserSeeder::class,
+            TransactionSeeder::class,
+            WalletSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();
