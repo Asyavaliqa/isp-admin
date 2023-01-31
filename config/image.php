@@ -15,6 +15,6 @@ return [
     |
     */
 
-    'driver' => 'gd',
+    'driver' => extension_loaded('imagick') ? 'imagick' : 'gd',
 
 ];
