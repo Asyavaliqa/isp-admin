@@ -164,7 +164,7 @@ return [
      * Base model 'transaction'.
      */
     'transaction' => [
-        'table' => 'transactions',
+        'table' => 'wallet_transactions',
         'model' => Transaction::class,
     ],
 
@@ -172,7 +172,7 @@ return [
      * Base model 'transfer'.
      */
     'transfer' => [
-        'table' => 'transfers',
+        'table' => 'wallet_transfers',
         'model' => Transfer::class,
     ],
 
