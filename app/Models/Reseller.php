@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use Bavix\Wallet\Interfaces\Wallet;
+use Bavix\Wallet\Traits\HasWallet;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @mixin IdeHelperReseller
  */
-class Reseller extends Model
+class Reseller extends Model implements Wallet
 {
-    use HasFactory;
+    use HasFactory, HasWallet;
 
     /**
      * The attributes that are mass assignable.
