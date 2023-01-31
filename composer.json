@@ -6,6 +6,7 @@
     "license": "LGPL-3.0",
     "require": {
         "php": "^8.0.2",
+        "bavix/laravel-wallet": "^9.6",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "laravel/framework": "^9.19",
