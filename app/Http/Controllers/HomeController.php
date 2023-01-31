@@ -7,6 +7,7 @@ use App\Models\Reseller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
 {
@@ -18,7 +19,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $user = User::find(Auth::id());
+        $user = User::with('roles')->find(Auth::id());
 
         if ($user->hasRole('Admin')) {
             return $this->adminPages($request);
