@@ -89,9 +89,20 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $inactive_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $clients
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Client[] $clients
      * @property-read int|null $clients_count
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $employees
+     * @property-read int|null $employees_count
+     * @property-read string $balance
+     * @property-read int $balance_int
+     * @property-read \Bavix\Wallet\Models\Wallet $wallet
+     * @property-read \Illuminate\Database\Eloquent\Collection|\Bavix\Wallet\Models\Transaction[] $transactions
+     * @property-read int|null $transactions_count
+     * @property-read \Illuminate\Database\Eloquent\Collection|\Bavix\Wallet\Models\Transfer[] $transfers
+     * @property-read int|null $transfers_count
      * @property-read \App\Models\User $user
+     * @property-read \Illuminate\Database\Eloquent\Collection|\Bavix\Wallet\Models\Transaction[] $walletTransactions
+     * @property-read int|null $wallet_transactions_count
      *
      * @method static \Database\Factories\ResellerFactory factory(...$parameters)
      * @method static \Illuminate\Database\Eloquent\Builder|Reseller newModelQuery()
