@@ -23,17 +23,17 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read \App\Models\Reseller $reseller
      *
-     * @method static \Illuminate\Database\Eloquent\Builder|Bandwidth newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|Bandwidth newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|Bandwidth query()
-     * @method static \Illuminate\Database\Eloquent\Builder|Bandwidth whereBandwidth($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Bandwidth whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Bandwidth whereDescription($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Bandwidth whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Bandwidth whereName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Bandwidth wherePrice($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Bandwidth whereResellerId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Bandwidth whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth query()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereBandwidth($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereDescription($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth wherePrice($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereResellerId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereUpdatedAt($value)
      */
     class IdeHelperBandwidth
     {
@@ -56,17 +56,17 @@ namespace App\Models{
      * @property-read \App\Models\Reseller $reseller
      * @property-read \App\Models\User $user
      *
-     * @method static \Illuminate\Database\Eloquent\Builder|Client newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|Client newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|Client query()
-     * @method static \Illuminate\Database\Eloquent\Builder|Client whereBandwidthId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Client whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Client whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Client whereIsPpn($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Client wherePaymentDueDate($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Client whereResellerId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Client whereUpdatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Client whereUserId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client query()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereBandwidthId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereIsPpn($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client wherePaymentDueDate($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereResellerId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereUserId($value)
      */
     class IdeHelperClient
     {
@@ -105,21 +105,21 @@ namespace App\Models{
      * @property-read int|null $wallet_transactions_count
      *
      * @method static \Database\Factories\ResellerFactory factory(...$parameters)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller query()
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereAddress($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereContractEndAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereContractStartAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereEmail($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereInactiveAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller wherePhoneNumber($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller wherePhoto($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereUpdatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Reseller whereUserId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller query()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereAddress($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereContractEndAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereContractStartAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereEmail($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereInactiveAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller wherePhoneNumber($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller wherePhoto($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereUserId($value)
      */
     class IdeHelperReseller
     {
@@ -137,17 +137,64 @@ namespace App\Models{
      * @property string $payload
      * @property \Illuminate\Support\Carbon $last_activity
      *
-     * @method static \Illuminate\Database\Eloquent\Builder|Session newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|Session newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|Session query()
-     * @method static \Illuminate\Database\Eloquent\Builder|Session whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Session whereIpAddress($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Session whereLastActivity($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Session wherePayload($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Session whereUserAgent($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Session whereUserId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session query()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session whereIpAddress($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session whereLastActivity($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session wherePayload($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session whereUserAgent($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session whereUserId($value)
      */
     class IdeHelperSession
+    {
+    }
+}
+
+namespace App\Models{
+    /**
+     * App\Models\Transaction
+     *
+     * @property int $id
+     * @property string $invoice_id
+     * @property int $type
+     * @property string $balance
+     * @property string|null $bill_photo
+     * @property int|null $reseller_id
+     * @property string $reseller_name
+     * @property int|null $client_id
+     * @property string $client_name
+     * @property int|null $bandwidth_id
+     * @property string $bandwidth_name
+     * @property string|null $accepted_at
+     * @property string|null $deleted_at
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Models\Reseller|null $reseller
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction query()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereAcceptedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereBalance($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereBandwidthId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereBandwidthName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereBillPhoto($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereClientId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereClientName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereDeletedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereInvoiceId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereResellerId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereResellerName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereUpdatedAt($value)
+     *
+     * @mixin \Eloquent
+     */
+    class IdeHelperTransaction
     {
     }
 }
@@ -184,25 +231,25 @@ namespace App\Models{
      * @property-read int|null $tokens_count
      *
      * @method static \Database\Factories\UserFactory factory(...$parameters)
-     * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
-     * @method static \Illuminate\Database\Eloquent\Builder|User query()
-     * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereAddress($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereBirthday($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereFullname($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereGender($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereNik($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User wherePhoneNumber($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User wherePhoto($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User permission($permissions)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User role($roles, $guard = null)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereAddress($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereBirthday($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFullname($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereGender($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereNik($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoneNumber($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePhoto($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUsername($value)
      */
     class IdeHelperUser
     {
