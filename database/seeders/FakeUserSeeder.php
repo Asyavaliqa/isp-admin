@@ -88,6 +88,7 @@ class FakeUserSeeder extends Seeder
                         'bandwidth_id' => Bandwidth::inRandomOrder()->first()->id,
                         'reseller_id' => $reseller->id,
                         'payment_due_date' => "{$month}-{$day}",
+                        'is_ppn' => $faker->randomElement([1, 0]),
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);

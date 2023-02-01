@@ -119,7 +119,7 @@ class MainUserSeeder extends Seeder
                         'bandwidth_id' => Bandwidth::inRandomOrder()->first()->id,
                         'reseller_id' => $reseller->id,
                         'payment_due_date' => "{$date}",
-                        'is_ppn' => $faker->randomElement([true, false]),
+                        'is_ppn' => $faker->randomElement([1, 0]),
                     ]);
                 });
 
