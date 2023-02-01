@@ -7,7 +7,7 @@
 @section('content')
 <div class="container-lg">
     <div class="row g-0">
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-header">
                 <strong>Reseller</strong>
             </div>
@@ -30,10 +30,11 @@
                     <table class="table table-hover align-middle custom-table">
                         <thead>
                             <tr>
-                              <th scope="col">Instansi</th>
-                              <th scope="col">Pemilik</th>
+                              <th scope="col">Nama Reseller</th>
+                              <th scope="col">Nama Pemilik</th>
                               <th scope="col">Jumlah Pelanggan</th>
                               <th scope="col">Status</th>
+                              <th scope="col">Terdaftar Sejak</th>
                             </tr>
                           </thead>
                           <tbody class="table-group-divider">
@@ -60,13 +61,15 @@
                                             <span class="badge rounded-pill bg-success">Aktif</span>
                                         @endif
                                     </td>
+                                    <td>
+                                        {{ $reseller->created_at->isoFormat('dddd, D MMMM g') }}
+                                    </td>
                                 </tr>
                             @endforeach
                           </tbody>
                     </table>
-
-                    {{ $resellers->links('components.pagination') }}
                 </div>
+                {{ $resellers->links('components.pagination') }}
             </div>
         </div>
     </div>
