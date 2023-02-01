@@ -61,6 +61,16 @@ class Reseller extends Model implements Wallet
     }
 
     /**
+     * Show only PPN Clients with eager loading
+     *
+     * @return void
+     */
+    public function clientPpns()
+    {
+        return $this->clients()->ppn();
+    }
+
+    /**
      * Relation to reseller owner
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

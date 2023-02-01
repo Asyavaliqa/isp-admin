@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Models\Reseller;
 use App\Models\User;
 use Exception;
@@ -27,12 +28,11 @@ class ResellerController extends Controller
     {
         $resellers = Reseller::with([
             'user:id,fullname',
-        ])->withCount('clients')->latest()
-            ->paginate(10);
+        ])->withCount('clients')->latest();
 
         return view('pages.admin.reseller.index', [
             'title' => 'Reseller',
-            'resellers' => $resellers,
+            'resellers' => $resellers->paginate(20)->appends($request->all()),
         ]);
     }
 
@@ -47,11 +47,22 @@ class ResellerController extends Controller
         $reseller = Reseller::with([
             'user',
             'clients',
+        ])->withCount([
+            'clients',
+            'clientPpns',
         ])->where('id', $id)->firstOrFail();
+
+        $clients = Client::with([
+            'user',
+            'reseller',
+            'bandwidth',
+        ])->where('reseller_id', $reseller->id)
+            ->latest()->limit(10)->get();
 
         return view('pages.admin.reseller.detail', [
             'title' => 'Reseller: ' . $reseller->name,
             'reseller' => $reseller,
+            'clients' => $clients,
         ]);
     }
 
