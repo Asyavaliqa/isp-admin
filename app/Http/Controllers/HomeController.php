@@ -130,5 +130,6 @@ class HomeController extends Controller
      */
     public function clientPages(Request $request)
     {
+        return view('pages.client.home');
     }
 }

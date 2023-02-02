@@ -21,52 +21,57 @@
 
 @section('content')
     <div class="container-lg">
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-1 text-white bg-primary">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-4 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                            <div class="fs-2 fw-bold"><i class="cil-user"></i>1000</div> <!-- edit lagi -->
-                            <div class="fs-4 fw-semibold">Pelanggan</div>
+                            <div class="fs-6 fw-semibold text-primary">100</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Pelanggan</div>
                         </div>
                     </div>
-                    <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-info">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-4 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                            <div class="fs-2 fw-bold"><i class="cil-people"></i>10</div> <!-- edit lagi -->
-                            <div class="fs-4 fw-semibold">Pegawai</div>
+                            <div class="fs-6 fw-semibold text-primary">5</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Pegawai</div>
                         </div>
                     </div>
-                    <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-danger">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-4 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                            <div class="fs-2 fw-bold">Rp.2.000.000</div> <!-- edit lagi -->
-                            <div class="fs-4 fw-semibold">Belum Terbayar</div>
+                            <div class="fs-6 fw-semibold text-primary">30</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">pelanggan belum bayar</div>
                         </div>
                     </div>
-                    <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-warning">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-4 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                            <div class="fs-2 fw-bold">Rp.5.000.000</div> <!-- edit lagi -->
-                            <div class="fs-4 fw-semibold">Penghasilan</div>
+                            <div class="fs-6 fw-semibold text-primary">Rp 5.000.000</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Penghasilan</div>
                         </div>
                     </div>
-                    <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
             <!-- /.col-->

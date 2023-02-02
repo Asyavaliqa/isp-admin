@@ -21,52 +21,57 @@
 
 @section('content')
     <div class="container-lg">
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-1 text-white bg-primary">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-4 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                                <div class="fs-2 fw-bold"><i class="cil-user"></i>1000</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Pelanggan</div>
+                            <div class="fs-6 fw-semibold text-primary">Paket Small (10Mb)</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Paket</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-info">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-4 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                                <div class="fs-2 fw-bold"><i class="cil-people"></i>10</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Pegawai</div>
+                            <div class="fs-6 fw-semibold text-primary">Rp 200.000</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Tagihan</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-danger">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-4 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                                <div class="fs-2 fw-bold">Rp.2.000.000</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Belum Terbayar</div>
+                            <div class="fs-6 fw-semibold text-primary">Lunas</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Pembayaran Bulan Ini</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
-            <!-- /.col-->
             <div class="col-sm-6 col-lg-3">
-                <div class="card mb-4 text-white bg-warning">
-                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-4 me-3">
+                            <i class="icon icon-xl cil-people"></i>
+                        </div>
                         <div>
-                                <div class="fs-2 fw-bold">Rp.5.000.000</div> <!-- edit lagi -->
-                                <div class="fs-4 fw-semibold">Penghasilan</div>
+                            <div class="fs-6 fw-semibold text-primary">Buana Data Media</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">RESELLER</div>
                         </div>
                     </div>
-                        <div class="c-chart-wrapper mt-3 mx-3" style="height:10px;"></div>
                 </div>
             </div>
             <!-- /.col-->
@@ -75,122 +80,59 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
-                    <div class="card-header text-center fw-semibold">Daftar Pelanggan Belum Bayar</div>
+                    <div class="card-header text-center fw-semibold">Daftar Transaksi</div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table border mb-0">
                                 <thead class="table-light fw-semibold">
                                     <tr class="align-middle">
-                                        <th class="text-center">
-                                            <svg class="icon">
-                                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                                            </svg>
-                                        </th>
-                                        <th class="text-center">Pelanggan</th>
-                                        <th class="text-center">Alamat</th>
+                                        <th class="text-center">No.</th>
+                                        <th class="text-center">Nomor invoice</th>
+                                        <th class="text-center">Paket</th>
                                         <th class="text-center">Tagihan</th>
+                                        <th class="text-center">Tanggal</th>
+                                        <th class="text-center">Status Konfirmasi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/1.jpg" alt="user@email.com"></div>
+                                        <td>
+                                            <div class="fw-semibold text-center">1</div>      {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="fw-bold text-center">INV/000</div>      {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center  "> +628999</div>
+                                            <div class="fw-semibold text-center">Paket Small (10Mb)</div>      {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
+                                            <div class="fw-bold text-center" >Rp 200.000</div>
+                                        </td>
+                                        <td>
+                                            <div class="fw-semibold text-center" >Senin, 02 januari 2023</div>
+                                        </td>
+                                        <td>
+                                            <div class="fw-bold text-center" >Dikonfirmasi</div>
                                         </td>
                                     </tr>
                                     <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/2.jpg" alt="user@email.com"></div>
-                                        </td>
+                                        <td>
+                                            <div class="fw-semibold text-center">2</div>      {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="fw-bold text-center">INV/001</div>      {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
+                                            <div class="fw-semibold text-center">Paket Small (10Mb)</div>      {{-- edit lagi --}}
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/3.jpg" alt="user@email.com"></div>
-                                        </td>
+                                            <div class="fw-bold text-center" >Rp 200.000</div>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center" >Rabu, 02 Februari 2023</div>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/4.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/5.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/6.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>      {{-- edit lagi --}}
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center" >Rp.200.000</div>
+                                            <div class="fw-bold text-center" >Dikonfirmasi</div>
                                         </td>
                                     </tr>
                                 </tbody>
