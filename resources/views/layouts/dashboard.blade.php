@@ -53,6 +53,9 @@
             <i class="nav-icon cil cil-people"></i> Profile </a></li>
         @endhasanyrole
 
+        @hasanyrole('Client')
+        @endhasanyrole
+
         {{-- /Admin --}}
         {{-- <li class="nav-divider"></li>
         <li class="nav-title">Administrative Tools</li>
@@ -93,9 +96,16 @@
           </button><a class="header-brand d-md-none">
               <img src="{{ mix('assets/brand/GMDP_name.jpg') }}"  style="width: 200px">
           <ul class="header-nav d-none d-md-flex">
+            @hasanyrole('Admin')
             <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.reseller' ? 'active' : '' }}" href="{{ route('admin.reseller') }}">Reseller</a></li>
             <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.client' ? 'active' : '' }}" href="{{ route('admin.client') }}">Pelanggan</a></li>
+            @endhasanyrole
+            @hasanyrole('Client')
+            <li class="nav-item"><a class="" href="">Dashboard</a></li>
+            <li class="nav-item"><a class="" href="">Tagihan</a></li>
+            <li class="nav-item"><a class="" href="">Profile</a></li>
+            @endhasanyrole
           {{--   <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>   --}}
           </ul>
           <ul class="header-nav ms-auto">

@@ -25,7 +25,7 @@
                                     <th scope="col">Paket</th>
                                     <th scope="col">No.Telp</th>
                                     <th scope="col">Alamat</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">PPN</th>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
