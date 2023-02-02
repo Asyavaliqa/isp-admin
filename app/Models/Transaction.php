@@ -33,8 +33,33 @@ class Transaction extends Model
      */
     const TYPE_UPGRADE = 3;
 
+    /**
+     * Relation to reseller
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function reseller()
     {
         return $this->belongsTo(Reseller::class);
+    }
+
+    /**
+     * Relation to client
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    /**
+     * Relation to bandwidth
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function bandwidth()
+    {
+        return $this->belongsTo(Bandwidth::class);
     }
 }

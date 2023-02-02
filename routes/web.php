@@ -12,6 +12,7 @@ use App\Http\Controllers\Reseller\ClientController as ResellerClientController;
 use App\Http\Controllers\Reseller\EmployeeController;
 use App\Http\Controllers\Reseller\HistoryController;
 use App\Http\Controllers\Reseller\ProfileController as ResellerProfileController;
+use App\Http\Controllers\Reseller\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,6 +61,8 @@ Route::middleware([
     Route::get('/history', [HistoryController::class, 'index'])->name('history');
     Route::get('/employee', [EmployeeController::class, 'index'])->name('employee');
     Route::get('/profile', [ResellerProfileController::class, 'index'])->name('profile');
+    Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction');
+    Route::get('/transaction/{id}', [TransactionController::class, 'show'])->name('transaction.detail')->whereNumber('id');
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
