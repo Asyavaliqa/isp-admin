@@ -29,9 +29,12 @@
         {{-- Admin --}}
         {{-- reference: https://spatie.be/docs/laravel-permission/v5/basic-usage/blade-directives --}}
         @hasanyrole('Admin')
-        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.reseller' ? 'active' : '' }}" href="{{ route('admin.reseller') }}"">
-            <i class="nav-icon cil cil-user"></i> Reseller</a></li>
-        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.client' ? 'active' : '' }}" href="{{ route('admin.client') }}"">
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'admin.reseller' ? 'active' : '' }}" href="{{ route('admin.reseller') }}">
+            <i class="nav-icon cil cil-user"></i> Reseller</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'admin.client' ? 'active' : '' }}" href="{{ route('admin.client') }}">
             <i class="nav-icon cil cil-people"></i> Pelanggan </a>
         </li>
         @endhasanyrole
@@ -39,18 +42,34 @@
         {{-- Reseller_Owner --}}
         {{-- reference: https://spatie.be/docs/laravel-permission/v5/basic-usage/blade-directives --}}
         @hasanyrole('Reseller_Owner')
-        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.client' ? 'active' : '' }}" href="{{ route('reseller_owner.client') }}"">
-            <i class="nav-icon cil cil-user"></i> Pelanggan </a></li>
-        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.paket' ? 'active' : '' }}" href="{{ route('reseller_owner.bandwidth') }}"">
-            <i class="nav-icon cil cil-people"></i> Paket </a></li>
-        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.bill' ? 'active' : '' }}" href="{{ route('reseller_owner.bill') }}"">
-            <i class="nav-icon cil cil-people"></i> Tagihan </a></li>
-        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.history' ? 'active' : '' }}" href="{{ route('reseller_owner.history') }}"">
-            <i class="nav-icon cil cil-people"></i> Riwayat </a></li>
-        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.employee' ? 'active' : '' }}" href="{{ route('reseller_owner.employee') }}"">
-            <i class="nav-icon cil cil-people"></i> Pegawai </a></li>
-        <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'reseller.profile' ? 'active' : '' }}" href="{{ route('reseller_owner.profile') }}"">
-            <i class="nav-icon cil cil-people"></i> Profile </a></li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.client' ? 'active' : '' }}" href="{{ route('reseller_owner.client') }}">
+            <i class="nav-icon cil cil-user"></i> Pelanggan </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.paket' ? 'active' : '' }}" href="{{ route('reseller_owner.bandwidth') }}">
+            <i class="nav-icon cil cil-people"></i> Paket </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.bill' ? 'active' : '' }}" href="{{ route('reseller_owner.bill') }}">
+            <i class="nav-icon cil cil-people"></i> Tagihan </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.history' ? 'active' : '' }}" href="{{ route('reseller_owner.history') }}">
+            <i class="nav-icon cil cil-people"></i> Riwayat </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.employee' ? 'active' : '' }}" href="{{ route('reseller_owner.employee') }}">
+            <i class="nav-icon cil cil-people"></i> Pegawai </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.profile' ? 'active' : '' }}" href="{{ route('reseller_owner.profile') }}">
+            <i class="nav-icon cil cil-people"></i> Profile </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.transaction' ? 'active' : '' }}" href="{{ route('reseller_owner.transaction') }}">
+            <i class="nav-icon cil cil-gem"></i> Transaksi</a>
+        </li>
         @endhasanyrole
 
         @hasanyrole('Client')
