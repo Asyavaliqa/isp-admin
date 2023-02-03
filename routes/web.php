@@ -4,6 +4,10 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ResellerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Client\BillController as ClientBillController;
+use App\Http\Controllers\Client\InvoiceController;
+use App\Http\Controllers\Client\PaymentController;
+use App\Http\Controllers\Client\ProfileController as ClientProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Reseller\BandwidthController;
@@ -63,6 +67,16 @@ Route::middleware([
     Route::get('/profile', [ResellerProfileController::class, 'index'])->name('profile');
     Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction');
     Route::get('/transaction/{id}', [TransactionController::class, 'show'])->name('transaction.detail')->whereNumber('id');
+});
+
+Route::middleware([
+    'auth',
+    'role:Client',
+])->name('client.')->group(function () {
+    Route::get('/bill', [ClientBillController::class, 'index'])->name('bill');
+    Route::get('/profile', [ClientProfileController::class, 'index'])->name('profile');
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+    Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice');
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
