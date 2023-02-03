@@ -73,6 +73,22 @@
         @endhasanyrole
 
         @hasanyrole('Client')
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'client.invoice' ? 'active' : '' }}" href="{{ route('client.invoice') }}">
+            <i class="nav-icon cil cil-user"></i> Tagihan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'client.bill' ? 'active' : '' }}" href="{{ route('client.bill') }}">
+            <i class="nav-icon cil cil-gem"></i> Transaksi</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'client.payment' ? 'active' : '' }}" href="{{ route('client.payment') }}">
+            <i class="nav-icon cil cil-user"></i> Pembayaran</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'client.profile' ? 'active' : '' }}" href="{{ route('client.profile') }}">
+            <i class="nav-icon cil cil-user"></i> Profile</a>
+        </li>
         @endhasanyrole
 
         {{-- /Admin --}}
@@ -121,9 +137,11 @@
             <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.client' ? 'active' : '' }}" href="{{ route('admin.client') }}">Pelanggan</a></li>
             @endhasanyrole
             @hasanyrole('Client')
-            <li class="nav-item"><a class="" href="">Dashboard</a></li>
-            <li class="nav-item"><a class="" href="">Tagihan</a></li>
-            <li class="nav-item"><a class="" href="">Profile</a></li>
+            <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'client.invoice' ? 'active' : '' }}" href="{{ route('client.invoice') }}">Tagihan</a></li>
+            <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'client.bill' ? 'active' : '' }}" href="{{ route('client.bill') }}">Transaksi</a></li>
+            <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'client.payment' ? 'active' : '' }}" href="{{ route('client.payment') }}">Pembayaran</a></li>
+            <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'client.profile' ? 'active' : '' }}" href="{{ route('client.profile') }}">Profile</a></li>
             @endhasanyrole
           {{--   <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>   --}}
           </ul>
