@@ -73,10 +73,10 @@ Route::middleware([
     'auth',
     'role:Client',
 ])->name('client.')->group(function () {
-    Route::get('/bill', [ClientBillController::class, 'index'])->name('bill');
-    Route::get('/profile', [ClientProfileController::class, 'index'])->name('profile');
-    Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
-    Route::get('/invoice', [InvoiceController::class, 'index'])->name('invoice');
+    Route::get('/client/bill', [ClientBillController::class, 'index'])->name('bill');
+    Route::get('/client/profile', [ClientProfileController::class, 'index'])->name('profile');
+    Route::get('/client/payment', [PaymentController::class, 'index'])->name('payment');
+    Route::get('/client/invoice', [InvoiceController::class, 'index'])->name('invoice');
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
