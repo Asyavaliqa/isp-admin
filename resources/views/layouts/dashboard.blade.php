@@ -72,6 +72,36 @@
         </li>
         @endhasanyrole
 
+        @hasanyrole('Reseller_Admin')
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.client' ? 'active' : '' }}" href="{{ route('reseller_owner.client') }}">
+            <i class="nav-icon cil cil-user"></i> Pelanggan </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.paket' ? 'active' : '' }}" href="{{ route('reseller_owner.bandwidth') }}">
+            <i class="nav-icon cil cil-people"></i> Paket </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.bill' ? 'active' : '' }}" href="{{ route('reseller_owner.bill') }}">
+            <i class="nav-icon cil cil-people"></i> Tagihan </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.history' ? 'active' : '' }}" href="{{ route('reseller_owner.history') }}">
+            <i class="nav-icon cil cil-people"></i> Riwayat </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.transaction' ? 'active' : '' }}" href="{{ route('reseller_owner.transaction') }}">
+            <i class="nav-icon cil cil-gem"></i> Transaksi</a>
+        </li>
+        @endhasanyrole
+
+        @hasanyrole('Reseller_Teknisi')
+        <li class="nav-item">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.client' ? 'active' : '' }}" href="{{ route('reseller_owner.client') }}">
+            <i class="nav-icon cil cil-user"></i> Pelanggan </a>
+        </li>
+        @endhasanyrole
+
         @hasanyrole('Client')
         <li class="nav-item">
             <a class="nav-link {{ Request::route()->getName() == 'client.invoice' ? 'active' : '' }}" href="{{ route('client.invoice') }}">
