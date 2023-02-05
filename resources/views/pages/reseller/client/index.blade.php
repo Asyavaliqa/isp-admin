@@ -16,6 +16,9 @@
                         <div class="px-3">
                             <input type="text" class="form-control" placeholder="Search ..">
                         </div>
+                        <div class="px-3">
+                        <a href="" class="btn btn-primary btn-outline">Tambah Pelanggan</a>
+                    </div>
                     </div>
                     <div class="table-responsive px-3">
                         <table class="table table-hover align-middle custom-table">
