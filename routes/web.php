@@ -60,11 +60,15 @@ Route::middleware([
     'role:Reseller_Owner',
 ])->name('reseller_owner.')->group(function () {
     Route::get('/reseller/client', [ResellerClientController::class, 'index'])->name('client');
+
     Route::get('/reseller/bandwidth', [BandwidthController::class, 'index'])->name('bandwidth');
+    Route::get('/bandwidth/{id}', [BandwidthController::class, 'detail'])->name('bandwidth.detail')->whereNumber('id');
+
     Route::get('/reseller/bill', [BillController::class, 'index'])->name('bill');
     Route::get('/reseller/history', [HistoryController::class, 'index'])->name('history');
     Route::get('/reseller/employee', [EmployeeController::class, 'index'])->name('employee');
     Route::get('/reseller/profile', [ResellerProfileController::class, 'index'])->name('profile');
+
     Route::get('/reseller/transactions', [TransactionController::class, 'index'])->name('transaction');
     Route::get('/reseller/transaction/{id}', [TransactionController::class, 'show'])->name('transaction.detail')->whereNumber('id');
 });
