@@ -56,7 +56,13 @@ Route::middleware([
     'role:Reseller_Owner',
 ])->name('reseller_owner.')->group(function () {
     Route::get('/clients', [ResellerClientController::class, 'index'])->name('client');
-    Route::get('/bandwidth', [BandwidthController::class, 'index'])->name('bandwidth');
+
+    /**
+     * Bandwidth Route
+     */
+    Route::get('/bandwidths', [BandwidthController::class, 'index'])->name('bandwidth');
+    Route::get('/bandwidth/{id}', [BandwidthController::class, 'detail'])->name('bandwidth.detail')->whereNumber('id');
+
     Route::get('/bill', [BillController::class, 'index'])->name('bill');
     Route::get('/history', [HistoryController::class, 'index'])->name('history');
     Route::get('/employee', [EmployeeController::class, 'index'])->name('employee');

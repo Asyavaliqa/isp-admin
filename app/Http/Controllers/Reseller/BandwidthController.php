@@ -19,11 +19,29 @@ class BandwidthController extends Controller
     {
         $bandwidths = Bandwidth::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
-        })->orderBy('id', 'desc')->paginate();
+        })->orderBy('id', 'desc');
 
         return view('pages.reseller.bandwidth.index', [
             'title' => 'Paket Internet',
-            'bandwidths' => $bandwidths,
+            'bandwidths' => $bandwidths->paginate(20)->appends($request->all()),
+        ]);
+    }
+
+    /**
+     * Show detail data of plans
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function detail(Request $request, string $id)
+    {
+        $bandwidth = Bandwidth::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->findOrFail($id);
+
+        return view('pages.reseller.bandwidth.detail', [
+            'title' => 'Bandwidth: ' . $bandwidth->name,
+            'bandwidth' => $bandwidth,
         ]);
     }
 }
