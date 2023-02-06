@@ -45,28 +45,51 @@ Route::middleware([
     'auth',
     'role:Admin',
 ])->name('admin.')->group(function () {
-    Route::get('/reseller', [ResellerController::class, 'index'])->name('reseller');
-    Route::get('/reseller/{id}', [ResellerController::class, 'detail'])->name('reseller.detail')->whereNumber('id');
-    Route::get('/reseller/create', [ResellerController::class, 'create'])->name('reseller.create');
-    Route::post('/reseller/create', [ResellerController::class, 'store']);
+    Route::get('/admin/reseller', [ResellerController::class, 'index'])->name('reseller');
+    Route::get('/admin/reseller/{id}', [ResellerController::class, 'detail'])->name('reseller.detail')->whereNumber('id');
+    Route::get('/admin/reseller/create', [ResellerController::class, 'create'])->name('reseller.create');
+    Route::post('/admin/reseller/create', [ResellerController::class, 'store']);
 
-    Route::get('/client', [ClientController::class, 'index'])->name('client');
+    Route::get('/admin/client', [ClientController::class, 'index'])->name('client');
 
-    Route::get('/user/{id}', [UserController::class, 'detail'])->name('user')->whereNumber('id');
+    Route::get('/admin/user/{id}', [UserController::class, 'detail'])->name('user')->whereNumber('id');
 });
 
 Route::middleware([
     'auth',
     'role:Reseller_Owner',
 ])->name('reseller_owner.')->group(function () {
-    Route::get('/clients', [ResellerClientController::class, 'index'])->name('client');
-    Route::get('/bandwidth', [BandwidthController::class, 'index'])->name('bandwidth');
-    Route::get('/bill', [BillController::class, 'index'])->name('bill');
-    Route::get('/history', [HistoryController::class, 'index'])->name('history');
-    Route::get('/employee', [EmployeeController::class, 'index'])->name('employee');
-    Route::get('/profile', [ResellerProfileController::class, 'index'])->name('profile');
-    Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction');
-    Route::get('/transaction/{id}', [TransactionController::class, 'show'])->name('transaction.detail')->whereNumber('id');
+    Route::get('/reseller/client', [ResellerClientController::class, 'index'])->name('client');
+
+    Route::get('/reseller/bandwidth', [BandwidthController::class, 'index'])->name('bandwidth');
+    Route::get('/bandwidth/{id}', [BandwidthController::class, 'detail'])->name('bandwidth.detail')->whereNumber('id');
+
+    Route::get('/reseller/bill', [BillController::class, 'index'])->name('bill');
+    Route::get('/reseller/history', [HistoryController::class, 'index'])->name('history');
+    Route::get('/reseller/employee', [EmployeeController::class, 'index'])->name('employee');
+    Route::get('/reseller/profile', [ResellerProfileController::class, 'index'])->name('profile');
+
+    Route::get('/reseller/transactions', [TransactionController::class, 'index'])->name('transaction');
+    Route::get('/reseller/transaction/{id}', [TransactionController::class, 'show'])->name('transaction.detail')->whereNumber('id');
+});
+
+Route::middleware([
+    'auth',
+    'role:Reseller_Admin',
+])->name('reseller_admin.')->group(function () {
+    Route::get('/adminreseller/client', [ResellerClientController::class, 'index'])->name('client');
+    Route::get('/adminreseller/bandwidth', [BandwidthController::class, 'index'])->name('bandwidth');
+    Route::get('/adminreseller/bill', [BillController::class, 'index'])->name('bill');
+    Route::get('/adminreseller/history', [HistoryController::class, 'index'])->name('history');
+    Route::get('/adminreseller/transactions', [TransactionController::class, 'index'])->name('transaction');
+    Route::get('/adminreseller/transaction/{id}', [TransactionController::class, 'show'])->name('transaction.detail')->whereNumber('id');
+});
+
+Route::middleware([
+    'auth',
+    'role:Reseller_Teknisi',
+])->name('reseller_teknisi.')->group(function () {
+    Route::get('/teknisireseller/client', [ResellerClientController::class, 'index'])->name('client');
 });
 
 Route::middleware([
