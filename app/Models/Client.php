@@ -62,4 +62,14 @@ class Client extends Model
     {
         return $query->where('is_ppn', true);
     }
+
+    /**
+     * Relation to transactions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
