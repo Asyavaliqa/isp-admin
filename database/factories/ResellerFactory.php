@@ -27,7 +27,9 @@ class ResellerFactory extends Factory
             'phone_number' => $faker->e164PhoneNumber(),
             'address' => $faker->address(),
             'contract_start_at' => $contractStart,
-            'contract_end_at' => $faker->dateTimeBetween($contractStart, '+3 years'),
+            'contract_end_at' => $faker->dateTimeBetween($contractStart, '+1 years'),
+            'created_at' => $createdAt = $faker->dateTimeBetween('-3 years', '-7 months'),
+            'updated_at' => $createdAt,
         ];
     }
 }
