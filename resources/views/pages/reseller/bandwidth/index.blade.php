@@ -5,11 +5,21 @@
 @endsection
 
 @section('content')
-    <div class="container-lg">
-        <div class="row g-0 mb-4">
-            <div class="card">
-                <div class="card-header">
-                    <strong>Paket</strong>
+
+<div class="container-lg">
+    <div class="row g-0 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <strong>Paket</strong>
+            </div>
+            <div class="card-body py-4">
+                <div class="d-flex justify-content-between mb-3">
+                    <div class="px-3">
+                        <input type="text" class="form-control" placeholder="Search ..">
+                    </div>
+                    <div class="px-3">
+                        <a href="" class="btn btn-primary btn-outline">Tambah Paket</a>
+                    </div>
                 </div>
                 <div class="card-body py-4">
                     <div class="d-flex justify-content-between mb-3">

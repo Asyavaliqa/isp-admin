@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('pageTitle')
-    {{ $title ?? 'Paket' }}
+    {{ $title ?? 'Tagihan' }}
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <div class="row g-0">
         <div class="card">
             <div class="card-header">
-                <strong>Paket</strong>
+                <strong>Tagihan</strong>
             </div>
             <div class="card-body py-4">
                 <div class="d-flex justify-content-between mb-3">
@@ -17,7 +17,7 @@
                         <input type="text" class="form-control" placeholder="Search ..">
                     </div>
                     <div class="px-3">
-                        <a href="" class="btn btn-primary btn-outline">Tambah Karyawan</a>
+                        <p class="btn btn-warning btn-outline rounded-pill"><strong>Terdapat 2 Tagihan</strong></p>
                     </div>
                 </div>
                 <div class="table-responsive px-3">
@@ -25,10 +25,10 @@
                         <thead>
                             <tr>
                               <th scope="col">No.</th>
-                              <th scope="col">Role</th>
-                              <th scope="col">Nama</th>
-                              <th scope="col">Alamat</th>
-                              <th scope="col">Divisi</th> {{-- hanya catatan, bisa di hapus jika tidak diperlukan--}}
+                              <th scope="col">Bulan</th>
+                              <th scope="col">Paket</th>
+                              <th scope="col">Tagihan</th>
+                              <th scope="col">Kirim Bukti Bayar</th>
                             </tr>
                           </thead>
                           <tbody class="table-group-divider">
@@ -36,32 +36,36 @@
                                 <div class="">1</div>      {{-- edit lagi --}}
                             </td>
                             <td>
-                                <div class="">Admin</div>      {{-- edit lagi --}}
+                                <div class="">Januari 2023</div>      {{-- edit lagi --}}
                             </td>
                             <td>
-                                <div class="">Agus Setyo</div>      {{-- edit lagi --}}
+                                <div class="">Paket Small (10Mbps)</div>      {{-- edit lagi --}}
                             </td>
                             <td>
-                                <div class="">Mojogedang, Karanganyar</div>      {{-- edit lagi --}}
+                                <div class="">Rp 200.000</div>      {{-- edit lagi --}}
                             </td>
                             <td>
-                                <div class="">Admin Keuangan</div>      {{-- edit lagi --}}
+                                <button type="button" class="btn btn-info rounded-pill">
+                                    <i class="cil-plus"></i>
+                                </button>    {{-- edit lagi --}}
                             </td>
                           <tr>
                             <td>
                                 <div class="">2</div>      {{-- edit lagi --}}
                             </td>
                             <td>
-                                <div class="">Teknisi</div>      {{-- edit lagi --}}
+                                <div class="">Februari 2023</div>      {{-- edit lagi --}}
                             </td>
                             <td>
-                                <div class="">Bambang</div>      {{-- edit lagi --}}
+                                <div class="">Paket Small (10Mbps)</div>      {{-- edit lagi --}}
                             </td>
                             <td>
-                                <div class="">Palur, Karanganyar</div>      {{-- edit lagi --}}
+                                <div class="">Rp 200.000</div>      {{-- edit lagi --}}
                             </td>
                             <td>
-                                <div class="">Teknisi Pemasangan</div>      {{-- edit lagi --}}
+                                <button type="button" class="btn btn-info rounded-pill">
+                                    <i class="cil-plus"></i>
+                                </button>     {{-- edit lagi --}}
                             </td>
                             </tr>
                           </tbody>
