@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('reseller_id')->constrained();
             $table->string('name');
             $table->bigInteger('bandwidth');
-            $table->decimal('price', 15, 2);
+            $table->decimal('price', 15, 2)->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });
