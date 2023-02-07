@@ -22,7 +22,7 @@ class BandwidthController extends Controller
     {
         $bandwidths = Bandwidth::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
-        })->orderBy('id', 'desc');
+        })->withCount('clients')->orderBy('id', 'desc');
 
         return view('pages.reseller.bandwidth.index', [
             'title' => 'Paket Internet',
@@ -41,7 +41,7 @@ class BandwidthController extends Controller
     {
         $bandwidth = Bandwidth::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
-        })->findOrFail($id);
+        })->withCount('clients')->findOrFail($id);
 
         return view('pages.reseller.bandwidth.detail', [
             'title' => 'Bandwidth: ' . $bandwidth->name,
@@ -145,6 +145,35 @@ class BandwidthController extends Controller
             abort(500, $e->getMessage());
         } finally {
             return redirect()->route('reseller_owner.bandwidth')->with('status', 'Paket "' . $request->input('name') . '" Telah Diubah');
+        }
+    }
+
+    /**
+     * Process delete data
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request, string $id)
+    {
+        $plan = Bandwidth::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->withCount('clients')->findOrFail($id);
+
+        if ($plan->clients_count > 0) {
+            return redirect()
+                ->route('reseller_owner.bandwidth.detail', ['id' => $id])
+                ->with('status', 'Paket "' . $plan->name . '" sedang digunakan oleh pelanggan lain !');
+        }
+
+        try {
+            $plan->delete();
+        } catch (Throwable $e) {
+            Log::error($e->getMessage());
+            abort(500, $e->getMessage());
+        } finally {
+            return redirect()->route('reseller_owner.bandwidth')->with('status', 'Paket "' . $plan->name . '" Telah Dihapus');
         }
     }
 }
