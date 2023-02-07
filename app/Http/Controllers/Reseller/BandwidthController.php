@@ -8,6 +8,7 @@ use App\Models\Reseller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class BandwidthController extends Controller
 {
@@ -86,6 +87,8 @@ class BandwidthController extends Controller
 
             $bandwdith->save();
         } catch (Exception $e) {
+            Log::error($e->getMessage());
+            abort(500, $e->getMessage());
         } finally {
             return redirect()->route('reseller_owner.bandwidth')->with('status', 'Paket "' . $request->input('name') . '" Telah Ditambahkan');
         }
