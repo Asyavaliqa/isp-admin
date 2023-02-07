@@ -60,6 +60,8 @@ Route::middleware([
     'role:Reseller_Owner',
 ])->name('reseller_owner.')->group(function () {
     Route::get('/reseller/client', [ResellerClientController::class, 'index'])->name('client');
+    Route::get('/reseller/client/create', [ResellerClientController::class, 'create'])->name('client.create');
+    Route::post('/reseller/client/create', [ResellerClientController::class, 'store'])->name('client.store');
 
     Route::get('/reseller/bandwidth', [BandwidthController::class, 'index'])->name('bandwidth');
     Route::get('/reseller/bandwidth/{id}', [BandwidthController::class, 'detail'])->name('bandwidth.detail')->whereNumber('id');
