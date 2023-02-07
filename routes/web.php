@@ -65,6 +65,8 @@ Route::middleware([
     Route::get('/reseller/bandwidth/{id}', [BandwidthController::class, 'detail'])->name('bandwidth.detail')->whereNumber('id');
     Route::get('/reseller/bandwidth/create', [BandwidthController::class, 'create'])->name('bandwidth.create');
     Route::post('/reseller/bandwidth/create', [BandwidthController::class, 'store'])->name('bandwidth.store');
+    Route::get('/reseller/bandwidth/edit/{id}', [BandwidthController::class, 'edit'])->name('bandwidth.edit')->whereNumber('id');
+    Route::post('/reseller/bandwidth/edit/{id}', [BandwidthController::class, 'update'])->name('bandwidth.update')->whereNumber('id');
 
     Route::get('/reseller/bill', [BillController::class, 'index'])->name('bill');
     Route::get('/reseller/history', [HistoryController::class, 'index'])->name('history');
