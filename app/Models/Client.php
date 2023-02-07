@@ -14,6 +14,19 @@ class Client extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'client_id',
+        'reseller_id',
+        'bandwidth_id',
+        'payment_due_date',
+        'is_ppn',
+    ];
+
+    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
