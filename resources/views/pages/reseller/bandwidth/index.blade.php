@@ -34,7 +34,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th scope="col">Nama Paket</th>
-                                    <th scope="col">Bandwidth</th>
+                                    <th scope="col" class="text-center">Bandwidth</th>
+                                    <th scope="col" class="text-center">Jumlah Pengguna</th>
                                     <th scope="col">Harga</th>
                                 </tr>
                             </thead>
@@ -46,7 +47,16 @@
                                             <a
                                                 href="{{ route('reseller_owner.bandwidth.detail', ['id' => $bandwidth->id]) }}">{{ $bandwidth->name }}</a>
                                         </td>
-                                        <td scope="col">{{ $bandwidth->bandwidth }} Mbps</td>
+                                        <td scope="col" class="text-center">
+                                            <span class="badge badge-pills bg-info">
+                                                {{ $bandwidth->bandwidth }} Mbps
+                                            </span>
+                                        </td>
+                                        <td scope="col" class="text-center">
+                                            <span class="badge badge-pills bg-primary">
+                                                {{ $bandwidth->clients_count }} Pengguna
+                                            </span>
+                                        </td>
                                         <td scope="col">Rp{{ number_format($bandwidth->price, 2, ',', '.') }}</td>
                                     </tr>
                                 @endforeach

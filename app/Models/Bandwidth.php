@@ -34,4 +34,14 @@ class Bandwidth extends Model
     {
         return $this->belongsTo(Reseller::class);
     }
+
+    /**
+     * Relation to clients
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
 }

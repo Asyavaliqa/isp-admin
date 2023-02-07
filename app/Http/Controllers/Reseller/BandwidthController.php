@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Reseller;
 use App\Http\Controllers\Controller;
 use App\Models\Bandwidth;
 use App\Models\Reseller;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class BandwidthController extends Controller
 {
@@ -22,7 +22,7 @@ class BandwidthController extends Controller
     {
         $bandwidths = Bandwidth::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
-        })->orderBy('id', 'desc');
+        })->withCount('clients')->orderBy('id', 'desc');
 
         return view('pages.reseller.bandwidth.index', [
             'title' => 'Paket Internet',
@@ -34,13 +34,14 @@ class BandwidthController extends Controller
      * Show detail data of plans
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
     public function detail(Request $request, string $id)
     {
         $bandwidth = Bandwidth::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
-        })->findOrFail($id);
+        })->withCount('clients')->findOrFail($id);
 
         return view('pages.reseller.bandwidth.detail', [
             'title' => 'Bandwidth: ' . $bandwidth->name,
@@ -86,11 +87,93 @@ class BandwidthController extends Controller
             ]);
 
             $bandwdith->save();
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             Log::error($e->getMessage());
             abort(500, $e->getMessage());
         } finally {
             return redirect()->route('reseller_owner.bandwidth')->with('status', 'Paket "' . $request->input('name') . '" Telah Ditambahkan');
+        }
+    }
+
+    /**
+     * Show edit form
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request, string $id)
+    {
+        $plan = Bandwidth::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->findOrFail($id);
+
+        return view('pages.reseller.bandwidth.edit', [
+            'plan' => $plan,
+        ]);
+    }
+
+    /**
+     * Process update data
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, string $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'bandwidth' => 'required|numeric',
+            'description' => 'nullable',
+        ]);
+
+        $plan = Bandwidth::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->findOrFail($id);
+
+        $plan->name = $request->input('name');
+        $plan->price = $request->input('price');
+        $plan->bandwidth = $request->input('bandwidth');
+        $plan->description = $request->input('description');
+
+        try {
+            $plan->save();
+        } catch (Throwable $e) {
+            Log::error($e->getMessage());
+            abort(500, $e->getMessage());
+        } finally {
+            return redirect()->route('reseller_owner.bandwidth')->with('status', 'Paket "' . $request->input('name') . '" Telah Diubah');
+        }
+    }
+
+    /**
+     * Process delete data
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request, string $id)
+    {
+        $plan = Bandwidth::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->withCount('clients')->findOrFail($id);
+
+        if ($plan->clients_count > 0) {
+            return redirect()
+                ->route('reseller_owner.bandwidth.detail', ['id' => $id])
+                ->with('status', 'Paket "' . $plan->name . '" sedang digunakan oleh pelanggan lain !');
+        }
+
+        try {
+            $plan->delete();
+        } catch (Throwable $e) {
+            Log::error($e->getMessage());
+            abort(500, $e->getMessage());
+        } finally {
+            return redirect()->route('reseller_owner.bandwidth')->with('status', 'Paket "' . $plan->name . '" Telah Dihapus');
         }
     }
 }

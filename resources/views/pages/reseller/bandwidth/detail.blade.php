@@ -12,6 +12,13 @@
                     <strong>Detail Paket: {{ $bandwidth->name }}</strong>
                 </div>
                 <div class="card-body py-4">
+                    @if (session('status'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Galat!</strong> {{ session('status') }}
+                            <button type="button" class="btn-close" data-coreui-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <tr>
@@ -24,6 +31,15 @@
                                 <td>:</td>
                                 <td>
                                     <span class="badge rounded-pill bg-primary">{{ $bandwidth->bandwidth }} Mbps</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Pengguna</th>
+                                <td>:</td>
+                                <td>
+                                    <span class="badge rounded-pill bg-success">
+                                        {{ $bandwidth->clients_count }} Pengguna
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
@@ -45,16 +61,34 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <div class="">
-                        <button type="button" class="align-self-center p-2">
-                            <i class="cil-contrast d-inline-block "></i>
-                            Primary
-                        </button>
+                    <a class="btn btn-info text-white"
+                        href="{{ route('reseller_owner.bandwidth.edit', ['id' => $bandwidth->id]) }}">
+                        Ubah Paket
+                    </a>
+                    <button type="button" class="btn btn-danger text-white" data-coreui-toggle="modal"
+                        data-coreui-target="#deleteModal">
+                        Hapus Paket
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    </div>
-                    <div class="">
-                        {{-- <button class="btn btn-danger text-white"><span class="cil-x btn-icon mr-3"></span> Delete</button> --}}
-                    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1"
+        aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Hapus "{{ $bandwidth->name }}" ?</h5>
+                    <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah kamu yakin untuk menghapus data "{{ $bandwidth->name }}" ?
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-success text-white" data-coreui-dismiss="modal">TIDAK</button>
+                    <a href="{{ route('reseller_owner.bandwidth.delete', ['id' => $bandwidth->id]) }}" class="btn btn-danger text-white">YA</a>
                 </div>
             </div>
         </div>
