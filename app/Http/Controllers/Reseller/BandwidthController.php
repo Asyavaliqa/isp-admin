@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Reseller;
 use App\Http\Controllers\Controller;
 use App\Models\Bandwidth;
 use App\Models\Reseller;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -88,7 +87,7 @@ class BandwidthController extends Controller
             ]);
 
             $bandwdith->save();
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             Log::error($e->getMessage());
             abort(500, $e->getMessage());
         } finally {
