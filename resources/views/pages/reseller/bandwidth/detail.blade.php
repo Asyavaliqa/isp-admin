@@ -45,16 +45,12 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <div class="">
-                        <button type="button" class="align-self-center p-2">
-                            <i class="cil-contrast d-inline-block "></i>
-                            Primary
-                        </button>
-
-                    </div>
-                    <div class="">
-                        {{-- <button class="btn btn-danger text-white"><span class="cil-x btn-icon mr-3"></span> Delete</button> --}}
-                    </div>
+                        <a class="btn btn-info text-white" href="{{ route('reseller_owner.bandwidth.edit', ['id' => $bandwidth->id]) }}">
+                            Ubah Paket
+                        </a>
+                        <a class="btn btn-danger text-white">
+                            Hapus Paket
+                        </a>
                 </div>
             </div>
         </div>
