@@ -75,7 +75,7 @@ class ClientController extends Controller
         $this->validate($request, [
             'fullname' => 'required',
             'username' => 'required|alpha_dash|regex:/^[A-Za-z0-9_]+$/|unique:users,username',
-            'email' => 'nullable|email:rfc,dns',
+            'email' => 'nullable|email:rfc,dns|unique:users,email',
             'phoneNumber' => 'nullable|numeric',
             'password' => 'required|confirmed',
             'owner_birth' => 'nullable|date',
@@ -116,6 +116,7 @@ class ClientController extends Controller
                     'password' => Hash::make($request->input('password')),
                     'birthday' => $request->input('birth'),
                     'gender' => $request->input('gender'),
+                    'phone_number' => $request->input('phoneNumber'),
                     'address' => $request->input('address'),
                     'photo' => $photoPath ? 'storage/' . $photoPath : null,
                 ]);
@@ -130,13 +131,14 @@ class ClientController extends Controller
                     'is_ppn' => $request->has('ppn'),
                 ]));
             }, 5);
-        } catch (\Throwable $e) {
-            Log::critical($e->getMessage(), $e->getTrace());
-            abort(500, $e->getMessage());
-        } finally {
+
             return redirect()
-            ->route('reseller_owner.client')
-            ->with('status', 'Pelanggan ' . $request->input('fullname') . ' Telah Ditambahkan');
+                ->route('reseller_owner.client')
+                ->with('status', 'Pelanggan ' . $request->input('fullname') . ' Telah Ditambahkan');
+        } catch (Throwable $e) {
+            Log::critical($e->getMessage(), $e->getTrace());
+
+            return abort(500, $e->getMessage());
         }
     }
 }

@@ -21,6 +21,12 @@
                     </div>
                     </div>
                     <div class="table-responsive px-3">
+                        @if (session('status'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Berhasil!</strong> {{ session('status') }}
+                            <button type="button" class="btn-close" data-coreui-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
                         <table class="table table-hover align-middle custom-table">
                             <thead>
                                 <tr>
