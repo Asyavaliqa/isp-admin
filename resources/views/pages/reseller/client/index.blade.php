@@ -42,13 +42,13 @@
 
                                 <tr>
                                     <th>
-                                        <a href="">
+                                        <a href="{{ route('reseller_owner.client.detail', ['id' => $client->id]) }}">
                                             <img alt="{{ $client->user->fullname }}" src="{{ asset($client->user->photo ?? 'assets/brand/GMDP_100x100.png') }}" class="img-thumbnail rounded-circle" style="width: 60px">
                                             <span class="ms-2">{{ $client->user->fullname }}</span>
                                         </a>
                                     </th>
                                     <td>
-                                        <a href="">
+                                        <a href="{{ route('reseller_owner.bandwidth.detail', ['id' => $client->bandwidth->id]) }}">
                                             {{ $client->bandwidth->name }}
                                         </a>
                                     </td>
