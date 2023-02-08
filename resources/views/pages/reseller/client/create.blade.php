@@ -44,9 +44,9 @@
                                     placeholder="Masukan alamat email (opsional)">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label" for="phoneNumber">Nomor Telepon</label>
-                                <input type="text" name="phoneNumber" id="phoneNumber" class="form-control"
-                                    value="{{ old('phoneNumber') }}" placeholder="Masukan nomor telepon (opsional)">
+                                <label class="form-label" for="phone_number">Nomor Telepon</label>
+                                <input type="text" name="phone_number" id="phone_number" class="form-control"
+                                    value="{{ old('phone_number') }}" placeholder="Masukan nomor telepon (opsional)">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="password" class="form-label">Kata Sandi</label>
