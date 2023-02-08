@@ -60,6 +60,7 @@ Route::middleware([
     'role:Reseller_Owner',
 ])->name('reseller_owner.')->group(function () {
     Route::get('/reseller/client', [ResellerClientController::class, 'index'])->name('client');
+    Route::get('/reseller/client/{id}', [ResellerClientController::class, 'detail'])->name('client.detail')->whereNumber('id');
     Route::get('/reseller/client/create', [ResellerClientController::class, 'create'])->name('client.create');
     Route::post('/reseller/client/create', [ResellerClientController::class, 'store'])->name('client.store');
 

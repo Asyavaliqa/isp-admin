@@ -7,6 +7,7 @@ use App\Models\Bandwidth;
 use App\Models\Client;
 use App\Models\Reseller;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,32 @@ class ClientController extends Controller
         return view('pages.reseller.client.index', [
             'title' => 'Tambah Pelanggan',
             'clients' => $clients,
+        ]);
+    }
+
+    /**
+     * Show detail data of client
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function detail(Request $request, $id)
+    {
+        $client = Client::with([
+            'user',
+            'bandwidth',
+            'transactions' => function (HasMany $q) {
+                $q->limit(5);
+                $q->orderBy('id', 'desc');
+            },
+        ])->whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->findOrFail($id);
+
+        return view('pages.reseller.client.detail', [
+            'title' => 'Tambah Pelanggan',
+            'client' => $client,
         ]);
     }
 
