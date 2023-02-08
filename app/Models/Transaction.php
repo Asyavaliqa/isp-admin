@@ -55,12 +55,12 @@ class Transaction extends Model
     }
 
     /**
-     * Relation to bandwidth
+     * Relation to plan
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function bandwidth()
+    public function plan()
     {
-        return $this->belongsTo(Bandwidth::class);
+        return $this->belongsTo(Plan::class);
     }
 }

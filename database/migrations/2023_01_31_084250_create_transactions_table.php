@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('reseller_name');
             $table->foreignId('client_id')->nullable()->constrained();
             $table->string('client_name');
-            $table->foreignId('bandwidth_id')->nullable()->constrained();
-            $table->string('bandwidth_name');
+            $table->foreignId('plan_id')->nullable()->constrained();
+            $table->string('plan_name');
             $table->timestamp('accepted_at')->nullable();
             $table->softDeletes();
             $table->timestamps();

@@ -17,7 +17,7 @@
                             <input type="text" class="form-control" placeholder="Search ..">
                         </div>
                         <div class="px-3">
-                            <a href="{{ route('reseller_owner.bandwidth.create') }}"
+                            <a href="{{ route('reseller_owner.plan.create') }}"
                                 class="btn btn-primary btn-outline">Tambah Paket</a>
                         </div>
                     </div>
@@ -40,30 +40,30 @@
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
-                                @foreach ($bandwidths as $bandwidth)
+                                @foreach ($plans as $plan)
                                     <tr>
                                         <th scope="col">{{ $loop->iteration }}</th>
                                         <td scope="col">
                                             <a
-                                                href="{{ route('reseller_owner.bandwidth.detail', ['id' => $bandwidth->id]) }}">{{ $bandwidth->name }}</a>
+                                                href="{{ route('reseller_owner.plan.detail', ['id' => $plan->id]) }}">{{ $plan->name }}</a>
                                         </td>
                                         <td scope="col" class="text-center">
                                             <span class="badge badge-pills bg-info">
-                                                {{ $bandwidth->bandwidth }} Mbps
+                                                {{ $plan->bandwidth }} Mbps
                                             </span>
                                         </td>
                                         <td scope="col" class="text-center">
                                             <span class="badge badge-pills bg-primary">
-                                                {{ $bandwidth->clients_count }} Pengguna
+                                                {{ $plan->clients_count }} Pengguna
                                             </span>
                                         </td>
-                                        <td scope="col">Rp{{ number_format($bandwidth->price, 2, ',', '.') }}</td>
+                                        <td scope="col">Rp{{ number_format($plan->price, 2, ',', '.') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
 
-                        {{ $bandwidths->links('components.pagination') }}
+                        {{ $plans->links('components.pagination') }}
                     </div>
                 </div>
             </div>

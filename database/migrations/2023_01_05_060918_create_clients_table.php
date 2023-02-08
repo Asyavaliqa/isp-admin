@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('bandwidth_id')->constrained();
+            $table->foreignId('plan_id')->constrained();
             $table->foreignId('reseller_id')->constrained();
             $table->string('payment_due_date')->nullable();
             $table->boolean('is_ppn')->default(false);

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             MainUserSeeder::class,
             ResellerSeeder::class,
-            BandwidthSeeder::class,
+            PlanSeeder::class,
             ClientSeeder::class,
             TransactionSeeder::class,
             WalletSeeder::class,

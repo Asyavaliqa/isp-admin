@@ -22,7 +22,7 @@
                     <span class="ms-2">{{ $transaction->client->user->fullname }}</span>
                 </td>
                 <td>
-                    {{ $transaction->bandwidth_name }}
+                    {{ $transaction->plan_name }}
                 </td>
                 <td>
                     Rp{{ number_format($transaction->balance, 2, ',', '.') }}

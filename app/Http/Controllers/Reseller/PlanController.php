@@ -3,30 +3,30 @@
 namespace App\Http\Controllers\Reseller;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bandwidth;
+use App\Models\Plan;
 use App\Models\Reseller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class BandwidthController extends Controller
+class PlanController extends Controller
 {
     /**
-     * Show table of available bandwidth
+     * Show table of available plan
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $bandwidths = Bandwidth::whereHas('reseller', function ($q) {
+        $plans = Plan::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })->withCount('clients')->orderBy('id', 'desc');
 
-        return view('pages.reseller.bandwidth.index', [
+        return view('pages.reseller.plan.index', [
             'title' => 'Paket Internet',
-            'bandwidths' => $bandwidths->paginate(20)->appends($request->all()),
+            'plans' => $plans->paginate(20)->appends($request->all()),
         ]);
     }
 
@@ -39,13 +39,13 @@ class BandwidthController extends Controller
      */
     public function detail(Request $request, string $id)
     {
-        $bandwidth = Bandwidth::whereHas('reseller', function ($q) {
+        $plan = Plan::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })->withCount('clients')->findOrFail($id);
 
-        return view('pages.reseller.bandwidth.detail', [
-            'title' => 'Bandwidth: ' . $bandwidth->name,
-            'bandwidth' => $bandwidth,
+        return view('pages.reseller.plan.detail', [
+            'title' => 'Paket Data: ' . $plan->name,
+            'plan' => $plan,
         ]);
     }
 
@@ -57,7 +57,7 @@ class BandwidthController extends Controller
      */
     public function create(Request $request)
     {
-        return view('pages.reseller.bandwidth.create');
+        return view('pages.reseller.plan.create');
     }
 
     /**
@@ -71,14 +71,14 @@ class BandwidthController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'price' => 'required|numeric',
-            'bandwidth' => 'required|numeric',
+            'plan' => 'required|numeric',
             'description' => 'nullable',
         ]);
 
         try {
             $reseller = Reseller::select('id')->where('user_id', Auth::id())->first();
 
-            $bandwdith = new Bandwidth([
+            $bandwdith = new Plan([
                 'name' => $request->input('name'),
                 'price' => $request->input('price'),
                 'bandwidth' => $request->input('bandwidth'),
@@ -91,7 +91,7 @@ class BandwidthController extends Controller
             Log::error($e->getMessage());
             abort(500, $e->getMessage());
         } finally {
-            return redirect()->route('reseller_owner.bandwidth')->with('status', 'Paket "' . $request->input('name') . '" Telah Ditambahkan');
+            return redirect()->route('reseller_owner.plan')->with('status', 'Paket "' . $request->input('name') . '" Telah Ditambahkan');
         }
     }
 
@@ -104,11 +104,11 @@ class BandwidthController extends Controller
      */
     public function edit(Request $request, string $id)
     {
-        $plan = Bandwidth::whereHas('reseller', function ($q) {
+        $plan = Plan::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })->findOrFail($id);
 
-        return view('pages.reseller.bandwidth.edit', [
+        return view('pages.reseller.plan.edit', [
             'plan' => $plan,
         ]);
     }
@@ -129,7 +129,7 @@ class BandwidthController extends Controller
             'description' => 'nullable',
         ]);
 
-        $plan = Bandwidth::whereHas('reseller', function ($q) {
+        $plan = Plan::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })->findOrFail($id);
 
@@ -144,7 +144,7 @@ class BandwidthController extends Controller
             Log::error($e->getMessage());
             abort(500, $e->getMessage());
         } finally {
-            return redirect()->route('reseller_owner.bandwidth')->with('status', 'Paket "' . $request->input('name') . '" Telah Diubah');
+            return redirect()->route('reseller_owner.plan')->with('status', 'Paket "' . $request->input('name') . '" Telah Diubah');
         }
     }
 
@@ -157,13 +157,13 @@ class BandwidthController extends Controller
      */
     public function delete(Request $request, string $id)
     {
-        $plan = Bandwidth::whereHas('reseller', function ($q) {
+        $plan = Plan::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })->withCount('clients')->findOrFail($id);
 
         if ($plan->clients_count > 0) {
             return redirect()
-                ->route('reseller_owner.bandwidth.detail', ['id' => $id])
+                ->route('reseller_owner.plan.detail', ['id' => $id])
                 ->with('status', 'Paket "' . $plan->name . '" sedang digunakan oleh pelanggan lain !');
         }
 
@@ -173,7 +173,7 @@ class BandwidthController extends Controller
             Log::error($e->getMessage());
             abort(500, $e->getMessage());
         } finally {
-            return redirect()->route('reseller_owner.bandwidth')->with('status', 'Paket "' . $plan->name . '" Telah Dihapus');
+            return redirect()->route('reseller_owner.plan')->with('status', 'Paket "' . $plan->name . '" Telah Dihapus');
         }
     }
 }

@@ -89,8 +89,8 @@
                             <td scope="col"><strong>Paket Internet</strong></td>
                             <td>:</td>
                             <td>
-                                <a href="{{ route('reseller_owner.bandwidth.detail', ['id' => $client->bandwidth->id]) }}">
-                                    {{ $client->bandwidth->name }}
+                                <a href="{{ route('reseller_owner.plan.detail', ['id' => $client->plan->id]) }}">
+                                    {{ $client->plan->name }}
                                 </a>
                             </td>
                         </tr>
