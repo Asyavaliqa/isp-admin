@@ -45,7 +45,7 @@
                                 </tr>
                                 <tr>
                                     <td>Tanggal Lahir</td>
-                                    <td>{{ $owner->birthday ?? '-' }}</td>
+                                    <td>{{ $owner->birth ?? '-' }}</td>
                                 </tr>
                                 <tr>
                                     <td>Jenis Kelamin</td>
