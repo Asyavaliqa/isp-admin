@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('nik')->nullable();
             $table->string('phone_number')->nullable();
-            $table->date('birthday')->nullable();
+            $table->date('birth')->nullable();
             $table->set('gender', ['male', 'female', 'other'])->nullable();
             $table->rememberToken()->nullable();
             $table->timestamps();

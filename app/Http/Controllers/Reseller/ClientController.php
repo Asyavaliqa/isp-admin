@@ -50,7 +50,7 @@ class ClientController extends Controller
      * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-    public function detail(Request $request, $id)
+    public function detail(Request $request, string $id)
     {
         $client = Client::with([
             'user',
@@ -67,6 +67,124 @@ class ClientController extends Controller
             'title' => 'Tambah Pelanggan',
             'client' => $client,
         ]);
+    }
+
+    /**
+     * Show edit form for client
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request, string $id)
+    {
+        $client = Client::with([
+            'user',
+            'bandwidth',
+            'transactions' => function (HasMany $q) {
+                $q->limit(5);
+                $q->orderBy('id', 'desc');
+            },
+        ])->whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->findOrFail($id);
+
+        $plans = Bandwidth::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->latest()->get();
+
+        return view('pages.reseller.client.edit', [
+            'title' => 'Edit Pelanggan: ' . $client->user->fullname,
+            'plans' => $plans,
+            'client' => $client,
+        ]);
+    }
+
+    /**
+     * Update process for client
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, string $id)
+    {
+        $client = Client::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->findOrFail($id);
+
+        $bandwidts = Bandwidth::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->select('id')->get();
+
+        $this->validate($request, [
+            'fullname' => 'nullable',
+            'username' => [
+                'nullable',
+                'alpha_dash',
+                'regex:/^[A-Za-z0-9_]+$/',
+                Rule::unique('users', 'username')->ignore($client->user_id),
+            ],
+            'email' => [
+                'nullable',
+                'email:rfc,dns',
+                Rule::unique('users', 'email')->ignore($client->user_id),
+            ],
+            'phone_number' => 'nullable|numeric',
+            'password' => 'nullable|confirmed',
+            'birth' => 'nullable|date',
+            'gender' => 'nullable|in:male,female',
+            'address' => 'nullable',
+            'photo' => 'nullable|image|max:1024',
+            'plan' => [
+                'nullable',
+                Rule::in(Arr::pluck($bandwidts->toArray(), 'id')),
+            ],
+            'ppn' => 'nullable',
+        ]);
+
+        $user = User::find($client->user_id);
+
+        try {
+            DB::transaction(function () use (&$request, &$client, &$user) {
+                $allowedInput = [
+                    'fullname',
+                    'username',
+                    'email',
+                    'phone_number',
+                    'password',
+                    'birth',
+                    'gender',
+                    'address',
+                ];
+
+                foreach ($allowedInput as $key) {
+                    if ($request->has($key)) {
+                        $user->{$key} = $request->input($key);
+                    }
+                }
+
+                $user->save();
+
+                if ($request->has('is_ppn')) {
+                    $client->is_ppn = $request->is_ppn;
+                }
+
+                if ($request->has('plan')) {
+                    $client->bandwidth_id = $request->plan;
+                }
+
+                $client->save();
+            }, 5);
+
+            return redirect()
+                ->route('reseller_owner.client')
+                ->with('status', 'Pelanggan "' . $user->fullname . '" Telah Diubah');
+        } catch (Throwable $e) {
+            Log::critical($e->getMessage(), $e->getTrace());
+
+            return abort(500, $e->getMessage());
+        }
     }
 
     /**
@@ -103,9 +221,9 @@ class ClientController extends Controller
             'fullname' => 'required',
             'username' => 'required|alpha_dash|regex:/^[A-Za-z0-9_]+$/|unique:users,username',
             'email' => 'nullable|email:rfc,dns|unique:users,email',
-            'phoneNumber' => 'nullable|numeric',
+            'phone_number' => 'nullable|numeric',
             'password' => 'required|confirmed',
-            'owner_birth' => 'nullable|date',
+            'birth' => 'nullable|date',
             'gender' => 'nullable|in:male,female',
             'address' => 'nullable',
             'photo' => 'nullable|image|max:1024',
@@ -141,9 +259,9 @@ class ClientController extends Controller
                     'username' => $request->input('username'),
                     'email' => $request->input('email'),
                     'password' => Hash::make($request->input('password')),
-                    'birthday' => $request->input('birth'),
+                    'birth' => $request->input('birth'),
                     'gender' => $request->input('gender'),
-                    'phone_number' => $request->input('phoneNumber'),
+                    'phone_number' => $request->input('phone_number'),
                     'address' => $request->input('address'),
                     'photo' => $photoPath ? 'storage/' . $photoPath : null,
                 ]);

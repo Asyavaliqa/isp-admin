@@ -147,7 +147,7 @@ class ResellerController extends Controller
                 'username' => $request->input('owner_username'),
                 'email' => $request->input('owner_email'),
                 'password' => Hash::make($request->input('owner_password')),
-                'birthday' => $request->input('owner_birth'),
+                'birth' => $request->input('birth'),
                 'gender' => $request->input('owner_gender'),
                 'address' => $request->input('owner_address'),
                 'photo' => $photoPath ? 'storage/' . $photoPath : null,

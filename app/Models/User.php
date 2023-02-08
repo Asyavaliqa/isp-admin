@@ -26,7 +26,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'birthday',
+        'birth',
         'gender',
         'address',
         'photo',
@@ -50,7 +50,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'birthday' => 'date',
+        'birth' => 'date',
     ];
 
     /**

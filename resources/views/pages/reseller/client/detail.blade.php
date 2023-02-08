@@ -56,7 +56,7 @@
                                     <tr>
                                         <td scope="col"><strong>Tanggal Lahir</strong></td>
                                         <td>:</td>
-                                        <td>{{ $client->user->birthday->isoFormat('dddd, D MMMM g') ?? '-' }}</td>
+                                        <td>{{ $client->user->birth->isoFormat('dddd, D MMMM g') ?? '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td scope="col"><strong>Alamat</strong></td>
@@ -73,6 +73,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+                <a href="{{ route('reseller_owner.client.edit', ['id' => $client->id]) }}" class="text-white btn btn-info">Edit</a>
             </div>
         </div>
         <div class="card mb-4">

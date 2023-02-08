@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <strong>Pelanggan</strong>
                 </div>
-                <form action="{{ route('reseller_owner.client.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('reseller_owner.client.update', ['id' => $client->id]) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body p-4">
                         @if ($errors->any())
@@ -28,55 +28,43 @@
                             <div class="col-md-6 mb-3">
                                 <label for="fullname" class="form-label">Nama Lengkap</label>
                                 <input type="text" class="form-control" name="fullname" id="fullname"
-                                    autocomplete="false" autofocus value="{{ old('fullname') }}"
+                                    autocomplete="false" autofocus value="{{ old('fullname') ?? $client->user->fullname }}"
                                     placeholder="Masukan nama lengkap (wajib)">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="username" class="form-label">Nama Pengguna</label>
                                 <input type="text" class="form-control" name="username" id="username"
-                                    autocomplete="false" autofocus value="{{ old('username') }}"
+                                    autocomplete="false" autofocus value="{{ old('username') ?? $client->user->username }}"
                                     placeholder="Masukan nama pengguna (wajib)">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" name="email" id="email"
-                                    autocomplete="false" autofocus value="{{ old('email') }}"
+                                    autocomplete="false" autofocus value="{{ old('email') ?? $client->user->email }}"
                                     placeholder="Masukan alamat email (opsional)">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label" for="phone_number">Nomor Telepon</label>
                                 <input type="text" name="phone_number" id="phone_number" class="form-control"
-                                    value="{{ old('phone_number') }}" placeholder="Masukan nomor telepon (opsional)">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="password" class="form-label">Kata Sandi</label>
-                                <input type="password" class="form-control" name="password" id="password"
-                                    autocomplete="false" autofocus value="{{ old('password') }}"
-                                    placeholder="Masukan kata sandi (wajib)">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="password_confirmation" class="form-label">Konfirmasi Kata Sandi</label>
-                                <input type="password" class="form-control" name="password_confirmation"
-                                    id="password_confirmation" autocomplete="false" autofocus
-                                    value="{{ old('password_confirmation') }}" placeholder="Konfirmasi kata sandi (wajib)">
+                                    value="{{ old('phone_number') ?? $client->user->phone_number }}" placeholder="Masukan nomor telepon (opsional)">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="birth" class="form-label">Tanggal Lahir</label>
                                 <input type="date" name="birth" id="birth" class="form-control"
-                                    value="{{ old('birth') }}">
+                                    value="{{ old('birth') ?? $client->user->birth->format('Y-m-d') }}">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="gender" class="form-label">Jenis Kelamin</label>
                                 <select name="gender" id="gender" class="form-control">
                                     <option value="">--- Pilih Jenis Kelamin (Opsional) ---</option>
-                                    <option value="male" @selected(old('gender') == 'male')>Lelaki</option>
-                                    <option value="female @selected(old('gender') == 'female')">Wanita</option>
+                                    <option value="male" @selected(old('gender') ?? $client->user->gender == 'male')>Lelaki</option>
+                                    <option value="female @selected(old('gender') ?? $client->user->gender == 'female')">Wanita</option>
                                 </select>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="address" class="form-label">Alamat Lengkap</label>
                                 <textarea name="address" id="address" class="form-control" rows="5"
-                                    placeholder="Masukan alamat pengguna (opsional)">{{ old('address') }}</textarea>
+                                    placeholder="Masukan alamat pengguna (opsional)">{{ old('address') ?? $client->user->address }}</textarea>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="photo" class="form-label">Foto</label>
@@ -85,7 +73,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <span class="mb-2 d-block">Pratinjau Gambar</span>
-                                <img id="imgOwner" src="https://via.placeholder.com/200?text=Pratinjau Gambar"
+                                <img id="imgOwner" src="{{  asset($client->user->photo) ?? 'https://via.placeholder.com/200?text=Pratinjau Gambar' }}"
                                     class="img-fluid img-thumbnail" />
                             </div>
                         </fieldset>
@@ -97,7 +85,7 @@
                                 <select name="plan" id="plan" class="form-control">
                                     <option value="">--- Pilih Paket Internet ---</option>
                                     @foreach ($plans as $plan)
-                                        <option value="{{ $plan->id }}" @selected(old('plan') == $plan->id)>
+                                        <option value="{{ $plan->id }}" @selected(old('plan') ?? $client->bandwidth->id == $plan->id)>
                                             {{ $plan->name }} - {{ $plan->bandwidth }}Mbps</option>
                                     @endforeach
                                 </select>
@@ -106,7 +94,7 @@
                                 <label class="mb-2">Apakah User PPN ?</label>
                                 <div class="form-check form-switch form-switch-lg">
                                     <input class="form-check-input" type="checkbox" name="ppn" id="ppn"
-                                        @checked(old('ppn'))>
+                                        @checked(old('ppn') ?? $client->is_ppn)>
                                     <label class="form-check-label" for="ppn">PPN</label>
                                 </div>
                             </div>
