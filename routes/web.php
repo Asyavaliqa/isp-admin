@@ -63,6 +63,8 @@ Route::middleware([
     Route::get('/reseller/client/{id}', [ResellerClientController::class, 'detail'])->name('client.detail')->whereNumber('id');
     Route::get('/reseller/client/create', [ResellerClientController::class, 'create'])->name('client.create');
     Route::post('/reseller/client/create', [ResellerClientController::class, 'store'])->name('client.store');
+    Route::get('/reseller/client/edit/{id}', [ResellerClientController::class, 'edit'])->name('client.edit')->whereNumber('id');
+    Route::post('/reseller/client/edit/{id}', [ResellerClientController::class, 'update'])->name('client.update')->whereNumber('id');
 
     Route::get('/reseller/bandwidth', [BandwidthController::class, 'index'])->name('bandwidth');
     Route::get('/reseller/bandwidth/{id}', [BandwidthController::class, 'detail'])->name('bandwidth.detail')->whereNumber('id');
