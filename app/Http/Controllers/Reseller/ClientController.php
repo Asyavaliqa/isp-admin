@@ -100,6 +100,13 @@ class ClientController extends Controller
         ]);
     }
 
+    /**
+     * Update process for client
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, string $id)
     {
         $client = Client::whereHas('reseller', function ($q) {
