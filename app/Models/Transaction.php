@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @mixin IdeHelperTransaction
  */
 class Transaction extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * Purchase of a new data package
@@ -54,12 +55,12 @@ class Transaction extends Model
     }
 
     /**
-     * Relation to bandwidth
+     * Relation to plan
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function bandwidth()
+    public function plan()
     {
-        return $this->belongsTo(Bandwidth::class);
+        return $this->belongsTo(Plan::class);
     }
 }

@@ -6,13 +6,14 @@ use Bavix\Wallet\Interfaces\Wallet;
 use Bavix\Wallet\Traits\HasWallet;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @mixin IdeHelperReseller
  */
 class Reseller extends Model implements Wallet
 {
-    use HasFactory, HasWallet;
+    use HasFactory, HasWallet, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

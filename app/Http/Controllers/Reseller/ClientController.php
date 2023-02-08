@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Reseller;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bandwidth;
 use App\Models\Client;
+use App\Models\Plan;
 use App\Models\Reseller;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -32,7 +32,7 @@ class ClientController extends Controller
     {
         $clients = Client::with([
             'user:id,fullname,username,photo,phone_number,address',
-            'bandwidth:id,name',
+            'plan:id,name',
         ])->whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })->paginate();
@@ -54,7 +54,7 @@ class ClientController extends Controller
     {
         $client = Client::with([
             'user',
-            'bandwidth',
+            'plan',
             'transactions' => function (HasMany $q) {
                 $q->limit(5);
                 $q->orderBy('id', 'desc');
@@ -80,7 +80,7 @@ class ClientController extends Controller
     {
         $client = Client::with([
             'user',
-            'bandwidth',
+            'plan',
             'transactions' => function (HasMany $q) {
                 $q->limit(5);
                 $q->orderBy('id', 'desc');
@@ -89,7 +89,7 @@ class ClientController extends Controller
             $q->where('user_id', Auth::id());
         })->findOrFail($id);
 
-        $plans = Bandwidth::whereHas('reseller', function ($q) {
+        $plans = Plan::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })->latest()->get();
 
@@ -113,7 +113,7 @@ class ClientController extends Controller
             $q->where('user_id', Auth::id());
         })->findOrFail($id);
 
-        $bandwidts = Bandwidth::whereHas('reseller', function ($q) {
+        $bandwidts = Plan::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })->select('id')->get();
 
@@ -171,7 +171,7 @@ class ClientController extends Controller
                 }
 
                 if ($request->has('plan')) {
-                    $client->bandwidth_id = $request->plan;
+                    $client->plan_id = $request->plan;
                 }
 
                 $client->save();
@@ -195,7 +195,7 @@ class ClientController extends Controller
      */
     public function create(Request $request)
     {
-        $plans = Bandwidth::whereHas('reseller', function ($q) {
+        $plans = Plan::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })->latest()->get();
 
@@ -213,7 +213,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $bandwidts = Bandwidth::whereHas('reseller', function ($q) {
+        $bandwidts = Plan::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })->select('id')->get();
 
@@ -270,7 +270,7 @@ class ClientController extends Controller
                 $user->assignRole('Client');
 
                 $user->client()->save(new Client([
-                    'bandwidth_id' => $request->input('plan'),
+                    'plan_id' => $request->input('plan'),
                     'reseller_id' => Reseller::whereHas('user', fn ($q) => $q->where('user_id', Auth::id()))->first()->id,
                     'payment_due_date' => 25,
                     'is_ppn' => $request->has('ppn'),

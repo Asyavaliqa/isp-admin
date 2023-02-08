@@ -19,7 +19,7 @@ class ClientController extends Controller
         $clients = Client::with([
             'user',
             'reseller',
-            'bandwidth',
+            'plan',
         ]);
 
         // Filter by reseller ID

@@ -47,7 +47,7 @@ class TransactionController extends Controller
                 $q->where('user_id', Auth::id());
             },
             'client',
-            'bandwidth',
+            'plan',
         ])->where('id', $id)
           ->firstOrFail();
 

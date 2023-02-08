@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @mixin IdeHelperClient
  */
 class Client extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +22,7 @@ class Client extends Model
     protected $fillable = [
         'client_id',
         'reseller_id',
-        'bandwidth_id',
+        'plan_id',
         'payment_due_date',
         'is_ppn',
     ];
@@ -46,13 +47,13 @@ class Client extends Model
     }
 
     /**
-     * Relation to bandwidth
+     * Relation to plan
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function bandwidth()
+    public function plan()
     {
-        return $this->belongsTo(Bandwidth::class);
+        return $this->belongsTo(Plan::class);
     }
 
     /**

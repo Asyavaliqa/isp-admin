@@ -9,7 +9,7 @@
         <div class="row g-0 mb-4">
             <div class="card">
                 <div class="card-header">
-                    <strong>Detail Paket: {{ $bandwidth->name }}</strong>
+                    <strong>Detail Paket: {{ $plan->name }}</strong>
                 </div>
                 <div class="card-body py-4">
                     @if (session('status'))
@@ -24,13 +24,13 @@
                             <tr>
                                 <th scope="col">Nama</th>
                                 <td scope="col">:</td>
-                                <td scope="col">{{ $bandwidth->name }}</td>
+                                <td scope="col">{{ $plan->name }}</td>
                             </tr>
                             <tr>
                                 <th scope="col">Bandwidth</th>
                                 <td>:</td>
                                 <td>
-                                    <span class="badge rounded-pill bg-primary">{{ $bandwidth->bandwidth }} Mbps</span>
+                                    <span class="badge rounded-pill bg-primary">{{ $plan->bandwidth }} Mbps</span>
                                 </td>
                             </tr>
                             <tr>
@@ -38,31 +38,31 @@
                                 <td>:</td>
                                 <td>
                                     <span class="badge rounded-pill bg-success">
-                                        {{ $bandwidth->clients_count }} Pengguna
+                                        {{ $plan->clients_count }} Pengguna
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="col">Deskripsi</th>
                                 <td>:</td>
-                                <td>{{ $bandwidth->description ?? '-' }}</td>
+                                <td>{{ $plan->description ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <th scope="col">Terakhir diubah</th>
                                 <td>:</td>
-                                <td>{{ $bandwidth->updated_at->isoFormat('dddd, D MMMM g HH:mm:ss') }}</td>
+                                <td>{{ $plan->updated_at->isoFormat('dddd, D MMMM g HH:mm:ss') }}</td>
                             </tr>
                             <tr>
                                 <th scope="col">Dibuat pada</th>
                                 <td>:</td>
-                                <td>{{ $bandwidth->updated_at->isoFormat('dddd, D MMMM g HH:mm:ss') }}</td>
+                                <td>{{ $plan->updated_at->isoFormat('dddd, D MMMM g HH:mm:ss') }}</td>
                             </tr>
                         </table>
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
                     <a class="btn btn-info text-white"
-                        href="{{ route('reseller_owner.bandwidth.edit', ['id' => $bandwidth->id]) }}">
+                        href="{{ route('reseller_owner.plan.edit', ['id' => $plan->id]) }}">
                         Ubah Paket
                     </a>
                     <button type="button" class="btn btn-danger text-white" data-coreui-toggle="modal"
@@ -80,15 +80,15 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Hapus "{{ $bandwidth->name }}" ?</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Hapus "{{ $plan->name }}" ?</h5>
                     <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Apakah kamu yakin untuk menghapus data "{{ $bandwidth->name }}" ?
+                    Apakah kamu yakin untuk menghapus data "{{ $plan->name }}" ?
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
                     <button type="button" class="btn btn-success text-white" data-coreui-dismiss="modal">TIDAK</button>
-                    <a href="{{ route('reseller_owner.bandwidth.delete', ['id' => $bandwidth->id]) }}" class="btn btn-danger text-white">YA</a>
+                    <a href="{{ route('reseller_owner.plan.delete', ['id' => $plan->id]) }}" class="btn btn-danger text-white">YA</a>
                 </div>
             </div>
         </div>

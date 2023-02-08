@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Bandwidth;
+use App\Models\Plan;
 use App\Models\Reseller;
 use Illuminate\Database\Seeder;
 
-class BandwidthSeeder extends Seeder
+class PlanSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,11 @@ class BandwidthSeeder extends Seeder
      */
     public function run()
     {
-        $bandwidths = [];
+        $plans = [];
         $faker = fake('id_ID');
         foreach (Reseller::get() as $reseller) {
             array_push(
-                $bandwidths,
+                $plans,
                 [
                     'name' => 'Paket Small (10Mbps)',
                     'bandwidth' => 10,
@@ -55,6 +55,6 @@ class BandwidthSeeder extends Seeder
             );
         }
 
-        Bandwidth::insert($bandwidths);
+        Plan::insert($plans);
     }
 }

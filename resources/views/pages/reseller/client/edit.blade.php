@@ -85,8 +85,8 @@
                                 <select name="plan" id="plan" class="form-control">
                                     <option value="">--- Pilih Paket Internet ---</option>
                                     @foreach ($plans as $plan)
-                                        <option value="{{ $plan->id }}" @selected(old('plan') ?? $client->bandwidth->id == $plan->id)>
-                                            {{ $plan->name }} - {{ $plan->bandwidth }}Mbps</option>
+                                        <option value="{{ $plan->id }}" @selected(old('plan') ?? $client->plan->id == $plan->id)>
+                                            {{ $plan->name }} - {{ $plan->plan }}Mbps</option>
                                     @endforeach
                                 </select>
                             </div>

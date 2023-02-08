@@ -55,7 +55,7 @@ class ResellerController extends Controller
         $clients = Client::with([
             'user',
             'reseller',
-            'bandwidth',
+            'plan',
         ])->where('reseller_id', $reseller->id)
             ->latest()->limit(10)->get();
 

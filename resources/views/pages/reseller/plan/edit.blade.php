@@ -11,7 +11,7 @@
             <div class="card-header">
                 <strong>Tambah Paket Internet</strong>
             </div>
-            <form action="{{ route('reseller_owner.bandwidth.update', ['id' => $plan->id]) }}" method="post">
+            <form action="{{ route('reseller_owner.plan.update', ['id' => $plan->id]) }}" method="post">
                 @csrf
                 <div class="card-body py-4">
                     @if ($errors->any())
@@ -60,7 +60,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('reseller_owner.bandwidth.detail', ['id' => $plan->id]) }}" class="btn btn-danger text-white">Batalkan perubahan</a>
+                        <a href="{{ route('reseller_owner.plan.detail', ['id' => $plan->id]) }}" class="btn btn-danger text-white">Batalkan perubahan</a>
                         <button class="btn btn-primary text-white" type="submit">Simpan Perubahan</button>
                     </div>
                 </div>

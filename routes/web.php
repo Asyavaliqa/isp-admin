@@ -10,11 +10,11 @@ use App\Http\Controllers\Client\PaymentController;
 use App\Http\Controllers\Client\ProfileController as ClientProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Reseller\BandwidthController;
 use App\Http\Controllers\Reseller\BillController;
 use App\Http\Controllers\Reseller\ClientController as ResellerClientController;
 use App\Http\Controllers\Reseller\EmployeeController;
 use App\Http\Controllers\Reseller\HistoryController;
+use App\Http\Controllers\Reseller\PlanController;
 use App\Http\Controllers\Reseller\ProfileController as ResellerProfileController;
 use App\Http\Controllers\Reseller\TransactionController;
 use Illuminate\Support\Facades\Route;
@@ -66,13 +66,13 @@ Route::middleware([
     Route::get('/reseller/client/edit/{id}', [ResellerClientController::class, 'edit'])->name('client.edit')->whereNumber('id');
     Route::post('/reseller/client/edit/{id}', [ResellerClientController::class, 'update'])->name('client.update')->whereNumber('id');
 
-    Route::get('/reseller/bandwidth', [BandwidthController::class, 'index'])->name('bandwidth');
-    Route::get('/reseller/bandwidth/{id}', [BandwidthController::class, 'detail'])->name('bandwidth.detail')->whereNumber('id');
-    Route::get('/reseller/bandwidth/create', [BandwidthController::class, 'create'])->name('bandwidth.create');
-    Route::post('/reseller/bandwidth/create', [BandwidthController::class, 'store'])->name('bandwidth.store');
-    Route::get('/reseller/bandwidth/edit/{id}', [BandwidthController::class, 'edit'])->name('bandwidth.edit')->whereNumber('id');
-    Route::post('/reseller/bandwidth/edit/{id}', [BandwidthController::class, 'update'])->name('bandwidth.update')->whereNumber('id');
-    Route::get('/reseller/bandwidth/delete/{id}', [BandwidthController::class, 'delete'])->name('bandwidth.delete')->whereNumber('id');
+    Route::get('/reseller/plan', [PlanController::class, 'index'])->name('plan');
+    Route::get('/reseller/plan/{id}', [PlanController::class, 'detail'])->name('plan.detail')->whereNumber('id');
+    Route::get('/reseller/plan/create', [PlanController::class, 'create'])->name('plan.create');
+    Route::post('/reseller/plan/create', [PlanController::class, 'store'])->name('plan.store');
+    Route::get('/reseller/plan/edit/{id}', [PlanController::class, 'edit'])->name('plan.edit')->whereNumber('id');
+    Route::post('/reseller/plan/edit/{id}', [PlanController::class, 'update'])->name('plan.update')->whereNumber('id');
+    Route::get('/reseller/plan/delete/{id}', [PlanController::class, 'delete'])->name('plan.delete')->whereNumber('id');
 
     Route::get('/reseller/bill', [BillController::class, 'index'])->name('bill');
     Route::get('/reseller/history', [HistoryController::class, 'index'])->name('history');
@@ -88,7 +88,7 @@ Route::middleware([
     'role:Reseller_Admin',
 ])->name('reseller_admin.')->group(function () {
     Route::get('/adminreseller/client', [ResellerClientController::class, 'index'])->name('client');
-    Route::get('/adminreseller/bandwidth', [BandwidthController::class, 'index'])->name('bandwidth');
+    Route::get('/adminreseller/plan', [PlanController::class, 'index'])->name('plan');
     Route::get('/adminreseller/bill', [BillController::class, 'index'])->name('bill');
     Route::get('/adminreseller/history', [HistoryController::class, 'index'])->name('history');
     Route::get('/adminreseller/transactions', [TransactionController::class, 'index'])->name('transaction');

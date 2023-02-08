@@ -33,7 +33,7 @@
                         <tr>
                             <th scope="col">Paket</th>
                             <td scope="col">:</td>
-                            <td scope="col">{{ $transaction->bandwidth->name ?? $transaction->bandwidth_name }}</td>
+                            <td scope="col">{{ $transaction->plan->name ?? $transaction->plan_name }}</td>
                         </tr>
                         <tr>
                             <th scope="col">Jumlah Bayar</th>
@@ -63,14 +63,14 @@
                         <tr>
                             <th scope="col">Nama Paket</th>
                             <td scope="col">:</td>
-                            <td scope="col">{{ $transaction->bandwidth->name ?? $transaction->bandwidth_name }}</td>
+                            <td scope="col">{{ $transaction->plan->name ?? $transaction->plan_name }}</td>
                         </tr>
                         <tr>
                             <th scope="col">Bandwidth</th>
                             <td scope="col">:</td>
                             <td scope="col">
                                 <span class="badge rounded-pill bg-primary">
-                                    {{ $transaction->bandwidth->bandwidth }} Mbps
+                                    {{ $transaction->plan->bandwidth }} Mbps
                                 </span>
                             </td>
                         </tr>

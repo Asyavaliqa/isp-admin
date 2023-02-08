@@ -35,7 +35,7 @@
                     @endif
                 </td>
                 <td>
-                    {{ $client->bandwidth->name }}
+                    {{ $client->plan->name }}
                 </td>
             </tr>
         @endforeach

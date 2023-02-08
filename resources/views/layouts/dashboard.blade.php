@@ -47,7 +47,7 @@
             <i class="nav-icon cil cil-user"></i> Pelanggan </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.paket' ? 'active' : '' }}" href="{{ route('reseller_owner.bandwidth') }}">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.paket' ? 'active' : '' }}" href="{{ route('reseller_owner.plan') }}">
             <i class="nav-icon cil cil-globe-alt"></i> Paket </a>
         </li>
         <li class="nav-item">
@@ -70,7 +70,7 @@
             <i class="nav-icon cil cil-user"></i> Pelanggan </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.paket' ? 'active' : '' }}" href="{{ route('reseller_owner.bandwidth') }}">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.paket' ? 'active' : '' }}" href="{{ route('reseller_owner.plan') }}">
             <i class="nav-icon cil cil-people"></i> Paket </a>
         </li>
         <li class="nav-item">

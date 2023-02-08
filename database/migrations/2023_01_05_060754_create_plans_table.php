@@ -8,19 +8,20 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('bandwidths', function (Blueprint $table) {
+        Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reseller_id')->constrained();
             $table->string('name');
             $table->bigInteger('bandwidth');
             $table->decimal('price', 15, 2)->nullable();
             $table->text('description')->nullable();
+            $table->softDeletesTz();
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('bandwidths');
+        Schema::dropIfExists('plans');
     }
 };

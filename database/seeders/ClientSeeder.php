@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Bandwidth;
 use App\Models\Client;
+use App\Models\Plan;
 use App\Models\Reseller;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
+use Spatie\Permission\Models\Role;
 
 class ClientSeeder extends Seeder
 {
@@ -20,8 +21,8 @@ class ClientSeeder extends Seeder
     {
         $faker = fake('id_ID');
         $reseller = Reseller::first();
-        $bandwidths = Bandwidth::select('id')->where('reseller_id', $reseller->id)->get();
-        $bandwidthIds = Arr::pluck($bandwidths, 'id');
+        $plans = Plan::select('id')->where('reseller_id', $reseller->id)->get();
+        $planIds = Arr::pluck($plans, 'id');
 
         $client = User::factory(1, [
             'username' => 'client',
@@ -39,7 +40,7 @@ class ClientSeeder extends Seeder
 
             $clients[] = [
                 'user_id' => $user->id,
-                'bandwidth_id' => $faker->randomElement($bandwidthIds),
+                'plan_id' => $faker->randomElement($planIds),
                 'reseller_id' => $reseller->id,
                 'payment_due_date' => "{$date}",
                 'is_ppn' => $faker->randomElement([1, 0]),
@@ -49,5 +50,7 @@ class ClientSeeder extends Seeder
         }
 
         Client::insert($clients);
+
+        Role::findByName('Client')->users()->sync(Arr::pluck($clients, 'user_id'));
     }
 }
