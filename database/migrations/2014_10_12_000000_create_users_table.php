@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('birth')->nullable();
             $table->set('gender', ['male', 'female', 'other'])->nullable();
             $table->rememberToken()->nullable();
+            $table->softDeletesTz();
             $table->timestamps();
         });
     }

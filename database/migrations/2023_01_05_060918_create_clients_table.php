@@ -15,6 +15,7 @@ return new class extends Migration
             $table->foreignId('reseller_id')->constrained();
             $table->string('payment_due_date')->nullable();
             $table->boolean('is_ppn')->default(false);
+            $table->softDeletesTz();
             $table->timestamps();
         });
     }

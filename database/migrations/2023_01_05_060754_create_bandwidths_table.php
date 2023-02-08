@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigInteger('bandwidth');
             $table->decimal('price', 15, 2)->nullable();
             $table->text('description')->nullable();
+            $table->softDeletesTz();
             $table->timestamps();
         });
     }

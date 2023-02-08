@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('contract_start_at')->nullable();
             $table->date('contract_end_at')->nullable();
             $table->date('inactive_at')->nullable();
+            $table->softDeletesTz();
             $table->timestamps();
         });
     }
