@@ -8,6 +8,7 @@ use App\Models\Reseller;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
+use Spatie\Permission\Models\Role;
 
 class ClientSeeder extends Seeder
 {
@@ -49,5 +50,7 @@ class ClientSeeder extends Seeder
         }
 
         Client::insert($clients);
+
+        Role::findByName('Client')->users()->sync(Arr::pluck($clients, 'user_id'));
     }
 }
