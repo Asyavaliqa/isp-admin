@@ -5,7 +5,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 9.48.0.
+ * Generated for Laravel 9.50.2.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1839,7 +1839,7 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
-         * Register a callback to be invoked when the command lifecyle duration exceeds a given amount of time.
+         * Register a callback to be invoked when the command lifecycle duration exceeds a given amount of time.
          *
          * @param  \DateTimeInterface|\Carbon\CarbonInterval|float|int  $threshold
          * @param  callable  $handler
@@ -4535,7 +4535,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param  string  $key
          * @param  \Closure|\DateTimeInterface|\DateInterval|int|null  $ttl
-         * @param \Closure():  TCacheValue  $callback
+         * @param  \Closure():  TCacheValue  $callback
          * @return \Illuminate\Cache\TCacheValue
          *
          * @static
@@ -4552,7 +4552,7 @@ namespace Illuminate\Support\Facades {
          * @template TCacheValue
          *
          * @param  string  $key
-         * @param \Closure():  TCacheValue  $callback
+         * @param  \Closure():  TCacheValue  $callback
          * @return \Illuminate\Cache\TCacheValue
          *
          * @static
@@ -4569,7 +4569,7 @@ namespace Illuminate\Support\Facades {
          * @template TCacheValue
          *
          * @param  string  $key
-         * @param \Closure():  TCacheValue  $callback
+         * @param  \Closure():  TCacheValue  $callback
          * @return \Illuminate\Cache\TCacheValue
          *
          * @static
@@ -7626,14 +7626,15 @@ namespace Illuminate\Support\Facades {
          *
          * @param  string  $path
          * @param  string  $content
+         * @param  int|null  $mode
          * @return void
          *
          * @static
          */
-        public static function replace($path, $content)
+        public static function replace($path, $content, $mode = null)
         {
             /** @var \Illuminate\Filesystem\Filesystem $instance */
-            $instance->replace($path, $content);
+            $instance->replace($path, $content, $mode);
         }
 
         /**
@@ -8162,7 +8163,7 @@ namespace Illuminate\Support\Facades {
          * @template TWhenParameter
          * @template TWhenReturnType
          *
-         * @param \Illuminate\Filesystem\(\Closure($this):  TWhenParameter)|TWhenParameter|null $value
+         * @param \Illuminate\Filesystem\(\Closure($this):  TWhenParameter)|TWhenParameter|null  $value
          * @param \Illuminate\Filesystem\(callable($this,  TWhenParameter): TWhenReturnType)|null  $callback
          * @param \Illuminate\Filesystem\(callable($this,  TWhenParameter): TWhenReturnType)|null  $default
          * @return $this|\Illuminate\Filesystem\TWhenReturnType
@@ -9475,6 +9476,21 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
+         * Add a handler to be executed in order to format a given class to a string during translation replacements.
+         *
+         * @param  callable|string  $class
+         * @param  callable|null  $handler
+         * @return void
+         *
+         * @static
+         */
+        public static function stringable($class, $handler = null)
+        {
+            /** @var \Illuminate\Translation\Translator $instance */
+            $instance->stringable($class, $handler);
+        }
+
+        /**
          * Set the parsed value of a key.
          *
          * @param  string  $key
@@ -9713,14 +9729,14 @@ namespace Illuminate\Support\Facades {
          * Unset the given channel instance.
          *
          * @param  string|null  $driver
-         * @return \Illuminate\Log\LogManager
+         * @return void
          *
          * @static
          */
         public static function forgetChannel($driver = null)
         {
             /** @var \Illuminate\Log\LogManager $instance */
-            return $instance->forgetChannel($driver);
+            $instance->forgetChannel($driver);
         }
 
         /**
@@ -18156,7 +18172,7 @@ namespace Illuminate\Support\Facades {
          * @template TWhenParameter
          * @template TWhenReturnType
          *
-         * @param \Illuminate\Filesystem\(\Closure($this):  TWhenParameter)|TWhenParameter|null $value
+         * @param \Illuminate\Filesystem\(\Closure($this):  TWhenParameter)|TWhenParameter|null  $value
          * @param \Illuminate\Filesystem\(callable($this,  TWhenParameter): TWhenReturnType)|null  $callback
          * @param \Illuminate\Filesystem\(callable($this,  TWhenParameter): TWhenReturnType)|null  $default
          * @return $this|\Illuminate\Filesystem\TWhenReturnType
@@ -20490,7 +20506,6 @@ namespace Illuminate\Support\Facades {
 }
 
 namespace Illuminate\Support {
-
     class Arr
     {
     }
@@ -20524,71 +20539,70 @@ namespace Illuminate\Support {
 }
 
 namespace Intervention\Image\Facades {
-
-        class Image
+    class Image
+    {
+        /**
+         * Overrides configuration settings
+         *
+         * @param  array  $config
+         * @return self
+         *
+         * @static
+         */
+        public static function configure($config = [])
         {
-            /**
-             * Overrides configuration settings
-             *
-             * @param  array  $config
-             * @return self
-             *
-             * @static
-             */
-            public static function configure($config = [])
-            {
-                /** @var \Intervention\Image\ImageManager $instance */
-                return $instance->configure($config);
-            }
+            /** @var \Intervention\Image\ImageManager $instance */
+            return $instance->configure($config);
+        }
 
-            /**
-             * Initiates an Image instance from different input types
-             *
-             * @param  mixed  $data
-             * @return \Intervention\Image\Image
-             *
-             * @static
-             */
-            public static function make($data)
-            {
-                /** @var \Intervention\Image\ImageManager $instance */
-                return $instance->make($data);
-            }
+        /**
+         * Initiates an Image instance from different input types
+         *
+         * @param  mixed  $data
+         * @return \Intervention\Image\Image
+         *
+         * @static
+         */
+        public static function make($data)
+        {
+            /** @var \Intervention\Image\ImageManager $instance */
+            return $instance->make($data);
+        }
 
-            /**
-             * Creates an empty image canvas
-             *
-             * @param  int  $width
-             * @param  int  $height
-             * @param  mixed  $background
-             * @return \Intervention\Image\Image
-             *
-             * @static
-             */
-            public static function canvas($width, $height, $background = null)
-            {
-                /** @var \Intervention\Image\ImageManager $instance */
-                return $instance->canvas($width, $height, $background);
-            }
+        /**
+         * Creates an empty image canvas
+         *
+         * @param  int  $width
+         * @param  int  $height
+         * @param  mixed  $background
+         * @return \Intervention\Image\Image
+         *
+         * @static
+         */
+        public static function canvas($width, $height, $background = null)
+        {
+            /** @var \Intervention\Image\ImageManager $instance */
+            return $instance->canvas($width, $height, $background);
+        }
 
-            /**
-             * Create new cached image and run callback
-             * (requires additional package intervention/imagecache)
-             *
-             * @param  \Closure  $callback
-             * @param  int  $lifetime
-             * @param  bool  $returnObj
-             * @return \Image
-             *
-             * @static
-             */
-            public static function cache($callback, $lifetime = null, $returnObj = false)
-            {
-                /** @var \Intervention\Image\ImageManager $instance */
-                return $instance->cache($callback, $lifetime, $returnObj);
-            }
+        /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param  \Closure  $callback
+         * @param  int  $lifetime
+         * @param  bool  $returnObj
+         * @return \Image
+         *
+         * @static
+         */
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+            /** @var \Intervention\Image\ImageManager $instance */
+            return $instance->cache($callback, $lifetime, $returnObj);
         }
     }
+}
 
 namespace Barryvdh\Debugbar\Facades {
     /**
@@ -20717,7 +20731,7 @@ namespace Barryvdh\Debugbar\Facades {
         /**
          * Adds an exception to be profiled in the debug bar
          *
-         * @param  \Exception  $e
+         * @param  \Throwable  $e
          *
          * @static
          */
@@ -21550,7 +21564,6 @@ namespace Spatie\LaravelIgnition\Facades {
 }
 
 namespace Illuminate\Http {
-
     class Request
     {
         /**
@@ -21618,7 +21631,6 @@ namespace Illuminate\Http {
 }
 
 namespace Illuminate\Routing {
-
     class Route
     {
         /**
@@ -22201,7 +22213,7 @@ namespace  {
         }
 
         /**
-         * Get an array with the values of a given column.
+         * Get a collection with the values of a given column.
          *
          * @param  string|\Illuminate\Database\Query\Expression  $column
          * @param  string|null  $key
@@ -22781,7 +22793,7 @@ namespace  {
          * @template TWhenParameter
          * @template TWhenReturnType
          *
-         * @param \Illuminate\Database\Eloquent\(\Closure($this):  TWhenParameter)|TWhenParameter|null $value
+         * @param \Illuminate\Database\Eloquent\(\Closure($this):  TWhenParameter)|TWhenParameter|null  $value
          * @param \Illuminate\Database\Eloquent\(callable($this,  TWhenParameter): TWhenReturnType)|null  $callback
          * @param \Illuminate\Database\Eloquent\(callable($this,  TWhenParameter): TWhenReturnType)|null  $default
          * @return $this|\Illuminate\Database\Eloquent\TWhenReturnType

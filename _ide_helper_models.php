@@ -17,10 +17,12 @@ namespace App\Models{
      * @property int $reseller_id
      * @property string $name
      * @property int $bandwidth
-     * @property string $price
+     * @property string|null $price
      * @property string|null $description
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Client> $clients
+     * @property-read int|null $clients_count
      * @property-read \App\Models\Reseller $reseller
      *
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth newModelQuery()
@@ -34,6 +36,8 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth wherePrice($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereResellerId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereUpdatedAt($value)
+     *
+     * @mixin \Eloquent
      */
     class IdeHelperBandwidth
     {
@@ -49,15 +53,18 @@ namespace App\Models{
      * @property int $bandwidth_id
      * @property int $reseller_id
      * @property string|null $payment_due_date
-     * @property int $is_ppn
+     * @property bool $is_ppn
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read \App\Models\Bandwidth $bandwidth
      * @property-read \App\Models\Reseller $reseller
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Transaction> $transactions
+     * @property-read int|null $transactions_count
      * @property-read \App\Models\User $user
      *
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client ppn()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client query()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereBandwidthId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereCreatedAt($value)
@@ -67,6 +74,8 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereResellerId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereUserId($value)
+     *
+     * @mixin \Eloquent
      */
     class IdeHelperClient
     {
@@ -89,22 +98,22 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $inactive_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Client[] $clients
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Client> $clients
      * @property-read int|null $clients_count
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $employees
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $employees
      * @property-read int|null $employees_count
      * @property-read string $balance
      * @property-read int $balance_int
      * @property-read \Bavix\Wallet\Models\Wallet $wallet
-     * @property-read \Illuminate\Database\Eloquent\Collection|\Bavix\Wallet\Models\Transaction[] $transactions
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \Bavix\Wallet\Models\Transaction> $transactions
      * @property-read int|null $transactions_count
-     * @property-read \Illuminate\Database\Eloquent\Collection|\Bavix\Wallet\Models\Transfer[] $transfers
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \Bavix\Wallet\Models\Transfer> $transfers
      * @property-read int|null $transfers_count
      * @property-read \App\Models\User $user
-     * @property-read \Illuminate\Database\Eloquent\Collection|\Bavix\Wallet\Models\Transaction[] $walletTransactions
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \Bavix\Wallet\Models\Transaction> $walletTransactions
      * @property-read int|null $wallet_transactions_count
      *
-     * @method static \Database\Factories\ResellerFactory factory(...$parameters)
+     * @method static \Database\Factories\ResellerFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller query()
@@ -120,6 +129,8 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller wherePhoto($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereUserId($value)
+     *
+     * @mixin \Eloquent
      */
     class IdeHelperReseller
     {
@@ -146,6 +157,8 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session wherePayload($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session whereUserAgent($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Session whereUserId($value)
+     *
+     * @mixin \Eloquent
      */
     class IdeHelperSession
     {
@@ -171,6 +184,8 @@ namespace App\Models{
      * @property string|null $deleted_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Models\Bandwidth|null $bandwidth
+     * @property-read \App\Models\Client|null $client
      * @property-read \App\Models\Reseller|null $reseller
      *
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction newModelQuery()
@@ -212,25 +227,25 @@ namespace App\Models{
      * @property string|null $address
      * @property string|null $nik
      * @property string|null $phone_number
-     * @property string|null $birthday
+     * @property \Illuminate\Support\Carbon|null $birthday
      * @property mixed|null $gender
      * @property string|null $remember_token
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read \App\Models\Client|null $client
-     * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+     * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
      * @property-read int|null $notifications_count
-     * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
      * @property-read int|null $permissions_count
      * @property-read \App\Models\Reseller|null $reseller
-     * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
      * @property-read int|null $roles_count
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Session[] $sessions
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Session> $sessions
      * @property-read int|null $sessions_count
-     * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
      * @property-read int|null $tokens_count
      *
-     * @method static \Database\Factories\UserFactory factory(...$parameters)
+     * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User permission($permissions)
@@ -250,6 +265,8 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUsername($value)
+     *
+     * @mixin \Eloquent
      */
     class IdeHelperUser
     {
