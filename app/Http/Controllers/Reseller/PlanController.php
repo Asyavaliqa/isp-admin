@@ -71,7 +71,7 @@ class PlanController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'price' => 'required|numeric',
-            'plan' => 'required|numeric',
+            'bandwidth' => 'required|numeric',
             'description' => 'nullable',
         ]);
 

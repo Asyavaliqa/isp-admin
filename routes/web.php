@@ -116,4 +116,6 @@ Route::middleware([
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
 
+Route::get('/signup', [AuthController::class, 'signup'])->name('signup');
+
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
