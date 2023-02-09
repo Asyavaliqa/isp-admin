@@ -23,22 +23,22 @@
                     <form action="" method="post" class="px-4" autocomplete="off" enctype="multipart/form-data">
                         @csrf
                         <fieldset class="border row p-3 mb-4 rounded-2">
-                            <legend class="float-none w-auto px-4">Informasi Instansi</legend>
+                            <legend class="float-none w-auto px-4">Informasi Reseller</legend>
                             <div class="col-md-12 mb-3">
-                                <label for="name" class="form-label">Nama Instansi</label>
+                                <label for="name" class="form-label">Nama Usaha Reseller</label>
                                 <input type="text" class="form-control" name="name" id="name"
                                     autocomplete="false" autofocus value="{{ old('name') }}">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label" for="email">Email Instansi</label>
+                                <label class="form-label" for="email">Email Reseller</label>
                                 <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label" for="phoneNumber">Nomor Telepon Instansi</label>
+                                <label class="form-label" for="phoneNumber">Nomor Telepon Reseller</label>
                                 <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" value="{{ old('phoneNumber') }}">
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="address" class="form-label">Alamat Lengkap Instansi</label>
+                                <label for="address" class="form-label">Alamat Lengkap Reseller</label>
                                 <textarea name="address" id="address" class="form-control" rows="5">{{ old('address') }}</textarea>
                             </div>
                             <div class="col-md-6 mb-3">

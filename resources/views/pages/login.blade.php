@@ -51,7 +51,7 @@
                                             <button class="btn btn-link btn-sm px-0" type="button">Lupa Password?</button>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <button class="btn btn-link btn-sm px-0" type="button">Daftar Akun</button>
+                                            <a href="{{ route('signup') }}"><button class="btn btn-link btn-sm px-0" type="button">Daftar Akun</button></a>
                                         </div>
                                     </div>
                                 </form>
