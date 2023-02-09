@@ -28,7 +28,7 @@
 
         {{-- Admin --}}
         {{-- reference: https://spatie.be/docs/laravel-permission/v5/basic-usage/blade-directives --}}
-        @hasanyrole('Admin')
+        @hasanyrole(\App\Models\Role::ADMIN)
         <li class="nav-item">
             <a class="nav-link {{ Request::route()->getName() == 'admin.reseller' ? 'active' : '' }}" href="{{ route('admin.reseller') }}">
             <i class="nav-icon cil cil-user"></i> Reseller</a>
@@ -41,7 +41,7 @@
 
         {{-- Reseller_Owner --}}
         {{-- reference: https://spatie.be/docs/laravel-permission/v5/basic-usage/blade-directives --}}
-        @hasanyrole('Reseller_Owner')
+        @hasanyrole(\App\Models\Role::RESELLER_OWNER)
         <li class="nav-item">
             <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.client' ? 'active' : '' }}" href="{{ route('reseller_owner.client') }}">
             <i class="nav-icon cil cil-user"></i> Pelanggan </a>
@@ -64,7 +64,7 @@
         </li>
         @endhasanyrole
 
-        @hasanyrole('Reseller_Admin')
+        @hasanyrole(\App\Models\Role::RESELLER_ADMIN)
         <li class="nav-item">
             <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.client' ? 'active' : '' }}" href="{{ route('reseller_owner.client') }}">
             <i class="nav-icon cil cil-user"></i> Pelanggan </a>
@@ -87,14 +87,14 @@
         </li>
         @endhasanyrole
 
-        @hasanyrole('Reseller_Teknisi')
+        @hasanyrole(\App\Models\Role::RESELLER_TECHNICIAN)
         <li class="nav-item">
             <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.client' ? 'active' : '' }}" href="{{ route('reseller_owner.client') }}">
             <i class="nav-icon cil cil-user"></i> Pelanggan </a>
         </li>
         @endhasanyrole
 
-        @hasanyrole('Client')
+        @hasanyrole(\App\Models\Role::CLIENT)
         <li class="nav-item">
             <a class="nav-link {{ Request::route()->getName() == 'client.invoice' ? 'active' : '' }}" href="{{ route('client.invoice') }}">
             <i class="nav-icon cil cil-user"></i> Tagihan</a>
@@ -153,12 +153,12 @@
           </button><a class="header-brand d-md-none">
               <img src="{{ mix('assets/brand/GMDP_name.jpg') }}"  style="width: 200px">
           <ul class="header-nav d-none d-md-flex">
-            @hasanyrole('Admin')
+            @hasanyrole(\App\Models\Role::ADMIN)
             <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.reseller' ? 'active' : '' }}" href="{{ route('admin.reseller') }}">Reseller</a></li>
             <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'admin.client' ? 'active' : '' }}" href="{{ route('admin.client') }}">Pelanggan</a></li>
             @endhasanyrole
-            @hasanyrole('Client')
+            @hasanyrole(\App\Models\Role::CLIENT)
             <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href="{{ route('home') }}">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'client.invoice' ? 'active' : '' }}" href="{{ route('client.invoice') }}">Tagihan</a></li>
             <li class="nav-item"><a class="nav-link {{ Request::route()->getName() == 'client.bill' ? 'active' : '' }}" href="{{ route('client.bill') }}">Transaksi</a></li>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -17,7 +18,7 @@ class MainUserSeeder extends Seeder
         User::factory(1, [
             'username' => 'admin',
         ])->create()->each(function (User $user) {
-            $user->assignRole('Admin');
+            $user->assignRole(Role::ADMIN);
         });
     }
 }

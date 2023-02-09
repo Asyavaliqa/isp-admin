@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Reseller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
 {
@@ -21,16 +21,18 @@ class HomeController extends Controller
     {
         $user = User::with('roles')->find(Auth::id());
 
-        if ($user->hasRole('Admin')) {
+        if ($user->hasRole(Role::ADMIN)) {
             return $this->adminPages($request);
-        } elseif ($user->hasRole('Reseller_Owner')) {
+        } elseif ($user->hasRole(Role::RESELLER_OWNER)) {
             return $this->resellerOwnerPages($request);
-        } elseif ($user->hasRole('Reseller_Teknisi')) {
+        } elseif ($user->hasRole(Role::RESELLER_TECHNICIAN)) {
             return $this->resellerTeknisiPages($request);
-        } elseif ($user->hasRole('Reseller_Admin')) {
+        } elseif ($user->hasRole(Role::RESELLER_ADMIN)) {
             return $this->resellerAdminPages($request);
-        } elseif ($user->hasRole('Client')) {
+        } elseif ($user->hasRole(Role::CLIENT)) {
             return $this->clientPages($request);
+        } else {
+            abort(403);
         }
     }
 

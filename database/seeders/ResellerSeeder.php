@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Reseller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +19,7 @@ class ResellerSeeder extends Seeder
         $faker = fake('id_ID');
 
         foreach (User::factory(1, ['username' => 'reseller_owner'])->create() as $owner) {
-            $owner->assignRole('Reseller_Owner');
+            $owner->assignRole(Role::RESELLER_OWNER);
 
             $reseller = Reseller::create(Reseller::factory(1, [
                 'user_id' => $owner->id,
@@ -34,7 +35,7 @@ class ResellerSeeder extends Seeder
                 'updated_at' => $reseller->updated_at,
             ])->create();
             foreach ($resellerAdmin->merge($dummyResellerAdmin) as $admin) {
-                $admin->assignRole('Reseller_Admin');
+                $admin->assignRole(Role::RESELLER_ADMIN);
                 $reseller->employees()->attach($admin->id);
             }
 
@@ -48,7 +49,7 @@ class ResellerSeeder extends Seeder
                 'updated_at' => $reseller->updated_at,
             ])->create();
             foreach ($resellerTeknisi->merge($dummyResellerTeknisi) as $teknisi) {
-                $teknisi->assignRole('Reseller_Teknisi');
+                $teknisi->assignRole(Role::RESELLER_TECHNICIAN);
                 $reseller->employees()->attach($teknisi->id);
             }
         }
