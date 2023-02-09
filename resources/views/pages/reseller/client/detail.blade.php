@@ -117,9 +117,13 @@
                 <div class="table-responsive px-3">
                     @php
                         $transactions = $client->transactions;
+                        $hideClientCol = true;
                     @endphp
                     @include('pages.reseller.transaction.indexTable')
                 </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+                <a href="{{ route('reseller_owner.transaction', ['client_id' => $client->id]) }}" class="btn btn-info text-white">Selengkapnya</a>
             </div>
         </div>
     </div>

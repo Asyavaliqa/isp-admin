@@ -27,6 +27,10 @@ class TransactionController extends Controller
             ])
             ->latest();
 
+        if ($request->has('client_id')) {
+            $transactions->where('client_id', $request->client_id);
+        }
+
         return view('pages.reseller.transaction.index', [
             'title' => 'Transaksi',
             'transactions' => $transactions->paginate(20)->appends($request->all()),
