@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Reseller;
+use App\Models\Role;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -155,7 +156,7 @@ class ResellerController extends Controller
 
             $user->save();
 
-            $user->assignRole('Reseller_Owner');
+            $user->assignRole(Role::RESELLER_OWNER);
 
             $reseller = new Reseller([
                 'name' => $request->input('name'),

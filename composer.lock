@@ -2623,16 +2623,16 @@
         },
         {
             "name": "nunomaduro/termwind",
-            "version": "v1.15.0",
+            "version": "v1.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/termwind.git",
-                "reference": "594ab862396c16ead000de0c3c38f4a5cbe1938d"
+                "reference": "8ab0b32c8caa4a2e09700ea32925441385e4a5dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/termwind/zipball/594ab862396c16ead000de0c3c38f4a5cbe1938d",
-                "reference": "594ab862396c16ead000de0c3c38f4a5cbe1938d",
+                "url": "https://api.github.com/repos/nunomaduro/termwind/zipball/8ab0b32c8caa4a2e09700ea32925441385e4a5dc",
+                "reference": "8ab0b32c8caa4a2e09700ea32925441385e4a5dc",
                 "shasum": ""
             },
             "require": {
@@ -2689,7 +2689,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/termwind/issues",
-                "source": "https://github.com/nunomaduro/termwind/tree/v1.15.0"
+                "source": "https://github.com/nunomaduro/termwind/tree/v1.15.1"
             },
             "funding": [
                 {
@@ -2705,7 +2705,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-20T19:00:15+00:00"
+            "time": "2023-02-08T01:06:31+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -6807,16 +6807,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.20.0",
+            "version": "v1.20.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "65dc0556d5809f47f7c39267df4e93f3cc59c512"
+                "reference": "4b85dbfa3dceeaf7227e3029707562fd60297e86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/65dc0556d5809f47f7c39267df4e93f3cc59c512",
-                "reference": "65dc0556d5809f47f7c39267df4e93f3cc59c512",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/4b85dbfa3dceeaf7227e3029707562fd60297e86",
+                "reference": "4b85dbfa3dceeaf7227e3029707562fd60297e86",
                 "shasum": ""
             },
             "require": {
@@ -6864,7 +6864,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2023-02-05T15:12:03+00:00"
+            "time": "2023-02-08T02:08:37+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -7065,34 +7065,34 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v7.0.0",
+            "version": "v7.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "ad7b2fc3182407ad326934426077c5e8dd0062ad"
+                "reference": "0422294fcfb1ca2e15dfc20122d218c45c5bbf51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/ad7b2fc3182407ad326934426077c5e8dd0062ad",
-                "reference": "ad7b2fc3182407ad326934426077c5e8dd0062ad",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/0422294fcfb1ca2e15dfc20122d218c45c5bbf51",
+                "reference": "0422294fcfb1ca2e15dfc20122d218c45c5bbf51",
                 "shasum": ""
             },
             "require": {
                 "filp/whoops": "^2.14.6",
-                "nunomaduro/termwind": "^1.15.0",
+                "nunomaduro/termwind": "^1.15.1",
                 "php": "^8.1.0",
                 "symfony/console": "^6.2.5"
             },
             "require-dev": {
                 "laravel/framework": "^10.0.0",
                 "laravel/pint": "^1.4.1",
-                "laravel/sail": "^1.19.0",
+                "laravel/sail": "^1.20.1",
                 "laravel/sanctum": "^3.2.1",
                 "laravel/tinker": "^2.8.0",
                 "nunomaduro/larastan": "^2.4.0",
                 "orchestra/testbench-core": "^8.0.0",
                 "pestphp/pest": "^2.0.0",
-                "phpunit/phpunit": "^10.0.5",
+                "phpunit/phpunit": "^10.0.6",
                 "spatie/laravel-ignition": "^2.0.0"
             },
             "type": "library",
@@ -7152,7 +7152,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-02-07T15:13:11+00:00"
+            "time": "2023-02-08T12:07:35+00:00"
         },
         {
             "name": "phar-io/manifest",
