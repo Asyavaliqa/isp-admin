@@ -90,12 +90,12 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-3">                                 {{-- todo --}}
                                 <label class="mb-2">Apakah User PPN ?</label>
                                 <div class="form-check form-switch form-switch-lg">
-                                    <input class="form-check-input" type="checkbox" name="ppn" id="ppn"
-                                        @checked(old('ppn') ?? $client->is_ppn)>
-                                    <label class="form-check-label" for="ppn">PPN</label>
+                                    <input class="form-check-input" type="checkbox" name="is_ppn" id="is_ppn"
+                                        @checked(old('is_ppn') ?? $client->is_ppn)>
+                                    <label class="form-check-label" for="is_ppn">PPN</label>
                                 </div>
                             </div>
                         </fieldset>

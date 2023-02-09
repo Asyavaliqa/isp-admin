@@ -48,6 +48,23 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
+   /**
+    * Handle an authentication attempt.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+   public function signup(Request $request)
+   {
+       if ($request->user()) {
+           return redirect()->route('home');
+       }
+
+       return view('pages/signup', [
+           'pageTitle' => 'SignUp',
+       ]);
+   }
+
     /**
      * Handle logout process
      *
