@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Client;
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class TransactionSeeder extends Seeder
@@ -23,23 +24,19 @@ class TransactionSeeder extends Seeder
         ])->get();
 
         foreach ($clients as $client) {
-            for ($i = 1; $i < $client->created_at->diffInMonths(now()); $i++) {
-                $now = $client->created_at->addMonths($i + 1);
-                $digits = 4;
-                $randNumber = sprintf(
-                    '%04d',
-                    random_int(1, pow(10, $digits) - 1)
-                );
+            for ($i = 0; $i < Carbon::parse($client->created_at->format('Y-m'))->diffInMonths(now()) - 1; $i++) {
+                $now = Carbon::parse($client->created_at->format('Y-m'))->addMonths($i + 1)->addDays(mt_rand(1, 3));
+
                 $invoiceId = sprintf(
                     'INV/%s/%03d/%s',
                     $now->format('Ymd'),
                     $client->id,
-                    $randNumber
+                    random_number(4)
                 );
 
                 array_push($transactions, [
                     'invoice_id' => $invoiceId,
-                    'type' => Transaction::TYPE_NEW_PURCHASE,
+                    'type' => $i <= 0 ? Transaction::TYPE_NEW_PURCHASE : Transaction::TYPE_EXTENSION,
                     'bill_photo' => 'assets/img/bills/bukti-bayar-200x300.png',
                     'balance' => $client->plan->price,
                     'reseller_id' => $client->reseller->id,
@@ -48,7 +45,15 @@ class TransactionSeeder extends Seeder
                     'client_name' => $client->user->fullname,
                     'plan_id' => $client->plan_id,
                     'plan_name' => $client->plan->name,
+                    'description' => $i <= 0 ? sprintf(
+                        'Pembelian pertama paket %s',
+                        $client->plan->name
+                    ) : sprintf(
+                        'Perpanjangan paket %s',
+                        $client->plan->name
+                    ),
                     'accepted_at' => $now->addHour(),
+                    'payed_at' => $now->addMinutes(15),
                     'created_at' => $now,
                     'updated_at' => $now,
                 ]);

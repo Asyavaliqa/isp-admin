@@ -21,6 +21,15 @@
                             <td scope="col">{{ $transaction->invoice_id }}</td>
                         </tr>
                         <tr>
+                            <th scope="col">Pembayaran Bulan</th>
+                            <td scope="col">:</td>
+                            <td scope="col">
+                                <span class="badge badge-pills bg-info">
+                                    {{ $transaction->created_at->subMonth()->isoFormat('MMMM g') }}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
                             <th scope="col">Tanggal Pembayaran</th>
                             <td scope="col">:</td>
                             <td scope="col">{{ $transaction->created_at->isoFormat('dddd, D MMMM g') }}</td>

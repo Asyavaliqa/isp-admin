@@ -25,7 +25,9 @@ return new class extends Migration
             $table->string('client_name');
             $table->foreignId('plan_id')->nullable()->constrained();
             $table->string('plan_name');
+            $table->text('description')->nullable();
             $table->timestamp('accepted_at')->nullable();
+            $table->timestamp('payed_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

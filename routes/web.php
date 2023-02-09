@@ -81,6 +81,7 @@ Route::middleware([
 
     Route::get('/reseller/transactions', [TransactionController::class, 'index'])->name('transaction');
     Route::get('/reseller/transaction/{id}', [TransactionController::class, 'show'])->name('transaction.detail')->whereNumber('id');
+    Route::get('/reseller/transactions/bills', [TransactionController::class, 'bills'])->name('transaction.bill');
 });
 
 Route::middleware([
