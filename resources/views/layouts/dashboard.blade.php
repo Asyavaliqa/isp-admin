@@ -51,7 +51,7 @@
             <i class="nav-icon cil cil-globe-alt"></i> Paket </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.bill' ? 'active' : '' }}" href="{{ route('reseller_owner.bill') }}">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.transaction.bill' ? 'active' : '' }}" href="{{ route('reseller_owner.transaction.bill') }}">
             <i class="nav-icon cil cil-chart"></i> Tagihan </a>
         </li>
         <li class="nav-item">
@@ -74,7 +74,7 @@
             <i class="nav-icon cil cil-people"></i> Paket </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.bill' ? 'active' : '' }}" href="{{ route('reseller_owner.bill') }}">
+            <a class="nav-link {{ Request::route()->getName() == 'reseller_owner.transaction.bill' ? 'active' : '' }}" href="{{ route('reseller_owner.transaction.bill') }}">
             <i class="nav-icon cil cil-people"></i> Tagihan </a>
         </li>
         <li class="nav-item">

@@ -1,5 +1,5 @@
 <table class="table table-hover align-middle custom-table">
-    <thead>
+    <thead class="align-middle">
         <tr>
             <th scope="col">Invoice</th>
             <th scope="col">Pelanggan</th>
@@ -10,7 +10,7 @@
             <th scope="col" class="text-center">Dikonfirmasi</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="align-middle">
         @foreach ($transactions as $transaction)
             <tr>
                 <th>
