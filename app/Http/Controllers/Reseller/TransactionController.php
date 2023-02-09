@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Reseller;
 use App\Http\Controllers\Controller;
 use App\Models\Reseller;
 use App\Models\Transaction;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,42 @@ class TransactionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
+    {
+        $transactions = $this->_getTransactions($request);
+
+        $transactions->whereNotNull('payed_at');
+
+        return view('pages.reseller.transaction.index', [
+            'title' => 'Transaksi',
+            'transactions' => $transactions->paginate(20)->appends($request->all()),
+        ]);
+    }
+
+    /**
+     * Get bill
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function bills(Request $request)
+    {
+        $transactions = $this->_getTransactions($request);
+
+        $transactions->whereNull('payed_at');
+
+        return view('pages.reseller.transaction.bills', [
+            'title' => 'Tagihan',
+            'transactions' => $transactions->paginate(20)->appends($request->all()),
+        ]);
+    }
+
+    /**
+     * Get all data
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    private function _getTransactions(Request $request): Builder
     {
         $reseller = Reseller::select('id')->where('user_id', Auth::id())->first();
 
@@ -31,10 +68,7 @@ class TransactionController extends Controller
             $transactions->where('client_id', $request->client_id);
         }
 
-        return view('pages.reseller.transaction.index', [
-            'title' => 'Transaksi',
-            'transactions' => $transactions->paginate(20)->appends($request->all()),
-        ]);
+        return $transactions;
     }
 
     /**
