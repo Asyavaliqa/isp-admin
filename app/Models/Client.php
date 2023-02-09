@@ -86,4 +86,14 @@ class Client extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+
+    /**
+     * Get Last Transactions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function lastTransaction()
+    {
+        return $this->hasOne(Transaction::class)->latestOfMany();
+    }
 }
