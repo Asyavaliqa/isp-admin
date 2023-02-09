@@ -62,15 +62,15 @@
                                 <tr>
                                     <td>Jabatan</td>
                                     <td>
-                                        @if ($owner->hasRole('Admin'))
+                                        @if ($owner->hasRole(\App\Models\Role::ADMIN))
                                             <span class="badge badge-rounded bg-primary">Admin Sistem</span>
-                                        @elseif ($owner->hasRole('Reseller_Owner'))
+                                        @elseif ($owner->hasRole(\App\Models\Role::RESELLER_OWNER))
                                         <span    class="badge badge-rounded bg-primary">Pemilik Instansi</span>
-                                        @elseif ($owner->hasRole('Reseller_Teknisi'))
+                                        @elseif ($owner->hasRole(\App\Models\Role::RESELLER_TECHNICIAN))
                                         <span class="badge badge-rounded bg-primary">Teknisi Reseller</span>
-                                        @elseif ($owner->hasRole('Reseller_Admin'))
+                                        @elseif ($owner->hasRole(\App\Models\Role::RESELLER_ADMIN))
                                         <span class="badge badge-rounded bg-primary">Admin Reseller</span>
-                                        @elseif ($owner->hasRole('Client'))
+                                        @elseif ($owner->hasRole(\App\Models\Role::CLIENT))
                                         <span class="badge badge-rounded bg-primary">Klien</span>
                                         @endif
                                     </td>

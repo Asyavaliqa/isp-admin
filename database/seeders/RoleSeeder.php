@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
 class RoleSeeder extends Seeder
@@ -19,11 +19,11 @@ class RoleSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $roles = [
-            'Admin',
-            'Reseller_Owner',
-            'Reseller_Teknisi',
-            'Reseller_Admin',
-            'Client',
+            Role::ADMIN,
+            Role::RESELLER_OWNER,
+            Role::RESELLER_TECHNICIAN,
+            Role::RESELLER_ADMIN,
+            Role::CLIENT,
         ];
 
         collect($roles)->map(function ($role) {
