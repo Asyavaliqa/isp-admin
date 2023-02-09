@@ -11,52 +11,18 @@
 
 namespace App\Models{
     /**
-     * App\Models\Bandwidth
-     *
-     * @property int $id
-     * @property int $reseller_id
-     * @property string $name
-     * @property int $bandwidth
-     * @property string|null $price
-     * @property string|null $description
-     * @property \Illuminate\Support\Carbon|null $created_at
-     * @property \Illuminate\Support\Carbon|null $updated_at
-     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Client> $clients
-     * @property-read int|null $clients_count
-     * @property-read \App\Models\Reseller $reseller
-     *
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth query()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereBandwidth($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereDescription($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth wherePrice($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereResellerId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bandwidth whereUpdatedAt($value)
-     *
-     * @mixin \Eloquent
-     */
-    class IdeHelperBandwidth
-    {
-    }
-}
-
-namespace App\Models{
-    /**
      * App\Models\Client
      *
      * @property int $id
      * @property int $user_id
-     * @property int $bandwidth_id
+     * @property int $plan_id
      * @property int $reseller_id
      * @property string|null $payment_due_date
      * @property bool $is_ppn
+     * @property \Illuminate\Support\Carbon|null $deleted_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
-     * @property-read \App\Models\Bandwidth $bandwidth
+     * @property-read \App\Models\Plan $plan
      * @property-read \App\Models\Reseller $reseller
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Transaction> $transactions
      * @property-read int|null $transactions_count
@@ -64,20 +30,98 @@ namespace App\Models{
      *
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client onlyTrashed()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client ppn()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client query()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereBandwidthId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereDeletedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereIsPpn($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client wherePaymentDueDate($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client wherePlanId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereResellerId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereUserId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client withTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client withoutTrashed()
      *
      * @mixin \Eloquent
      */
     class IdeHelperClient
+    {
+    }
+}
+
+namespace App\Models{
+    /**
+     * App\Models\Permission
+     *
+     * @property int $id
+     * @property string $name
+     * @property string $guard_name
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Permission> $permissions
+     * @property-read int|null $permissions_count
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
+     * @property-read int|null $roles_count
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+     * @property-read int|null $users_count
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\Spatie\Permission\Models\Permission permission($permissions)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission query()
+     * @method static \Illuminate\Database\Eloquent\Builder|\Spatie\Permission\Models\Permission role($roles, $guard = null)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereGuardName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Permission whereUpdatedAt($value)
+     *
+     * @mixin \Eloquent
+     */
+    class IdeHelperPermission
+    {
+    }
+}
+
+namespace App\Models{
+    /**
+     * App\Models\Plan
+     *
+     * @property int $id
+     * @property int $reseller_id
+     * @property string $name
+     * @property int $bandwidth
+     * @property string|null $price
+     * @property string|null $description
+     * @property \Illuminate\Support\Carbon|null $deleted_at
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Client> $clients
+     * @property-read int|null $clients_count
+     * @property-read \App\Models\Reseller $reseller
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan onlyTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan query()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereBandwidth($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereDeletedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereDescription($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan wherePrice($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereResellerId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan withTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan withoutTrashed()
+     *
+     * @mixin \Eloquent
+     */
+    class IdeHelperPlan
     {
     }
 }
@@ -96,6 +140,7 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $contract_start_at
      * @property \Illuminate\Support\Carbon|null $contract_end_at
      * @property \Illuminate\Support\Carbon|null $inactive_at
+     * @property \Illuminate\Support\Carbon|null $deleted_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Client> $clients
@@ -116,11 +161,13 @@ namespace App\Models{
      * @method static \Database\Factories\ResellerFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller onlyTrashed()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller query()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereAddress($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereContractEndAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereContractStartAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereDeletedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereEmail($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereInactiveAt($value)
@@ -129,10 +176,43 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller wherePhoto($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller whereUserId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller withTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Reseller withoutTrashed()
      *
      * @mixin \Eloquent
      */
     class IdeHelperReseller
+    {
+    }
+}
+
+namespace App\Models{
+    /**
+     * App\Models\Role
+     *
+     * @property int $id
+     * @property string $name
+     * @property string $guard_name
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Permission> $permissions
+     * @property-read int|null $permissions_count
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+     * @property-read int|null $users_count
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\Spatie\Permission\Models\Role permission($permissions)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role query()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereGuardName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Role whereUpdatedAt($value)
+     *
+     * @mixin \Eloquent
+     */
+    class IdeHelperRole
     {
     }
 }
@@ -178,23 +258,22 @@ namespace App\Models{
      * @property string $reseller_name
      * @property int|null $client_id
      * @property string $client_name
-     * @property int|null $bandwidth_id
-     * @property string $bandwidth_name
+     * @property int|null $plan_id
+     * @property string $plan_name
      * @property string|null $accepted_at
-     * @property string|null $deleted_at
+     * @property \Illuminate\Support\Carbon|null $deleted_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
-     * @property-read \App\Models\Bandwidth|null $bandwidth
      * @property-read \App\Models\Client|null $client
+     * @property-read \App\Models\Plan|null $plan
      * @property-read \App\Models\Reseller|null $reseller
      *
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction onlyTrashed()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction query()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereAcceptedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereBalance($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereBandwidthId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereBandwidthName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereBillPhoto($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereClientId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereClientName($value)
@@ -202,10 +281,14 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereDeletedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereInvoiceId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction wherePlanId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction wherePlanName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereResellerId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereResellerName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereType($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction withTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction withoutTrashed()
      *
      * @mixin \Eloquent
      */
@@ -227,18 +310,19 @@ namespace App\Models{
      * @property string|null $address
      * @property string|null $nik
      * @property string|null $phone_number
-     * @property \Illuminate\Support\Carbon|null $birthday
+     * @property \Illuminate\Support\Carbon|null $birth
      * @property mixed|null $gender
      * @property string|null $remember_token
+     * @property \Illuminate\Support\Carbon|null $deleted_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read \App\Models\Client|null $client
      * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
      * @property-read int|null $notifications_count
-     * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Permission> $permissions
      * @property-read int|null $permissions_count
      * @property-read \App\Models\Reseller|null $reseller
-     * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
      * @property-read int|null $roles_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Session> $sessions
      * @property-read int|null $sessions_count
@@ -248,12 +332,14 @@ namespace App\Models{
      * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User onlyTrashed()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User permission($permissions)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User role($roles, $guard = null)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereAddress($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereBirthday($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereBirth($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereDeletedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereEmail($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereFullname($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereGender($value)
@@ -265,6 +351,8 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUsername($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User withTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User withoutTrashed()
      *
      * @mixin \Eloquent
      */

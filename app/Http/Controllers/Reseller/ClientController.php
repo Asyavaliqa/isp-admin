@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Plan;
 use App\Models\Reseller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
@@ -267,7 +268,7 @@ class ClientController extends Controller
                 ]);
 
                 $user->save();
-                $user->assignRole('Client');
+                $user->assignRole(Role::CLIENT);
 
                 $user->client()->save(new Client([
                     'plan_id' => $request->input('plan'),
