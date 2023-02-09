@@ -24,7 +24,7 @@ class TransactionSeeder extends Seeder
 
         foreach ($clients as $client) {
             for ($i = 1; $i < $client->created_at->diffInMonths(now()); $i++) {
-                $now = $client->created_at->addMonths($i + 1);
+                $now = $client->created_at->addMonths($i + 1)->addDays(mt_rand(1, 3));
                 $digits = 4;
                 $randNumber = sprintf(
                     '%04d',
@@ -39,7 +39,7 @@ class TransactionSeeder extends Seeder
 
                 array_push($transactions, [
                     'invoice_id' => $invoiceId,
-                    'type' => Transaction::TYPE_NEW_PURCHASE,
+                    'type' => $i <= 1 ? Transaction::TYPE_NEW_PURCHASE : Transaction::TYPE_EXTENSION,
                     'bill_photo' => 'assets/img/bills/bukti-bayar-200x300.png',
                     'balance' => $client->plan->price,
                     'reseller_id' => $client->reseller->id,
@@ -48,7 +48,15 @@ class TransactionSeeder extends Seeder
                     'client_name' => $client->user->fullname,
                     'plan_id' => $client->plan_id,
                     'plan_name' => $client->plan->name,
+                    'description' => $i <= 1 ? sprintf(
+                        'Pembelian pertama paket %s',
+                        $client->plan->name
+                    ) : sprintf(
+                        'Perpanjangan paket %s',
+                        $client->plan->name
+                    ),
                     'accepted_at' => $now->addHour(),
+                    'payed_at' => $now->addMinutes(15),
                     'created_at' => $now,
                     'updated_at' => $now,
                 ]);
