@@ -128,6 +128,27 @@ class HomeController extends Controller
             ->orderBy('id', 'ASC')
             ->pluck('count', 'month_name');
 
+        $totalClient = Client::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->count();
+
+        $totalEmployee = Reseller::where('user_id', Auth::id())
+            ->withCount('employees')->first()->employees_count;
+
+        $unpayedBill = Transaction::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })
+            ->whereNull('accepted_at')
+            ->count();
+
+        $totalEarning = Transaction::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })
+        ->select(DB::raw('SUM(balance) as total'))
+            ->whereMonth('created_at', now()->format('m') - 1)
+            ->whereNotNull('accepted_at')
+            ->first()?->total;
+
         return view('pages.reseller.home', [
             'client' => [
                 'labels' => $clients->keys(),
@@ -136,6 +157,12 @@ class HomeController extends Controller
             'earning' => [
                 'labels' => $transactions->keys(),
                 'data' => $transactions->values(),
+            ],
+            'widget' => [
+                'totalClient' => $totalClient ?? 0,
+                'totalEmployee' => $totalEmployee ?? 0,
+                'unpayedBill' => $unpayedBill ?? 0,
+                'totalEarning' => $totalEarning ?? 0,
             ],
         ]);
     }
