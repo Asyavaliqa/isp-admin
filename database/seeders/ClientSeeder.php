@@ -23,20 +23,22 @@ class ClientSeeder extends Seeder
         $reseller = Reseller::first();
         $plans = Plan::select('id')->where('reseller_id', $reseller->id)->get();
         $planIds = Arr::pluck($plans, 'id');
+        $createdAt = now()->setMonth(1)->setDay(1)->subYear();
 
         $client = User::factory(1, [
             'username' => 'client',
-            'created_at' => $createdAt = $faker->dateTimeBetween($reseller->created_at, '-4 months'),
+            'created_at' => $createdAt,
             'updated_at' => $createdAt,
         ])->create();
         $dummyClients = User::factory(mt_rand(12, 18), [
-            'created_at' => $createdAt = $faker->dateTimeBetween($reseller->created_at, '-4 months'),
+            'created_at' => $createdAt,
             'updated_at' => $createdAt,
         ])->create();
         $clients = [];
 
-        foreach ($client->merge($dummyClients) as $user) {
+        foreach ($client->merge($dummyClients) as $i => $user) {
             $date = $faker->numberBetween(1, 30);
+            $createdAt = $user->created_at->addMonth($i);
 
             $clients[] = [
                 'user_id' => $user->id,
@@ -44,8 +46,8 @@ class ClientSeeder extends Seeder
                 'reseller_id' => $reseller->id,
                 'payment_due_date' => "{$date}",
                 'is_ppn' => $faker->randomElement([1, 0]),
-                'created_at' => $user->created_at,
-                'updated_at' => $user->updated_at,
+                'created_at' => $createdAt,
+                'updated_at' => $createdAt,
             ];
         }
 

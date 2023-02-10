@@ -12,13 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/chartjs@3.0.0/dist/css/coreui-chartjs.min.css">
 @endsection
 
-@section('script')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.1.2/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/chartjs@3.0.0/dist/js/coreui-chartjs.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/utils@1.3.1/dist/coreui-utils.js"></script>
-    <script src="js/main.js"></script>
-@endsection
-
 @section('content')
     <div class="container-lg">
         <div class="row mb-4">
@@ -29,7 +22,7 @@
                             <i class="icon icon-xl cil-people"></i>
                         </div>
                         <div>
-                            <div class="fs-6 fw-semibold text-primary">100</div>
+                            <div class="fs-6 fw-semibold text-primary">{{ $widget['totalClient'] }}</div>
                             <div class="text-medium-emphasis text-uppercase fw-semibold small">Pelanggan</div>
                         </div>
                     </div>
@@ -42,7 +35,7 @@
                             <i class="icon icon-xl cil-people"></i>
                         </div>
                         <div>
-                            <div class="fs-6 fw-semibold text-primary">5</div>
+                            <div class="fs-6 fw-semibold text-primary">{{ $widget['totalEmployee'] }}</div>
                             <div class="text-medium-emphasis text-uppercase fw-semibold small">Pegawai</div>
                         </div>
                     </div>
@@ -55,7 +48,7 @@
                             <i class="icon icon-xl cil-people"></i>
                         </div>
                         <div>
-                            <div class="fs-6 fw-semibold text-primary">30</div>
+                            <div class="fs-6 fw-semibold text-primary">{{ $widget['unpayedBill'] }}</div>
                             <div class="text-medium-emphasis text-uppercase fw-semibold small">pelanggan belum bayar</div>
                         </div>
                     </div>
@@ -68,7 +61,7 @@
                             <i class="icon icon-xl cil-people"></i>
                         </div>
                         <div>
-                            <div class="fs-6 fw-semibold text-primary">Rp 5.000.000</div>
+                            <div class="fs-6 fw-semibold text-primary">Rp{{ number_format($widget['totalEarning'], 2, ',', '.') }}</div>
                             <div class="text-medium-emphasis text-uppercase fw-semibold small">Penghasilan</div>
                         </div>
                     </div>
@@ -76,144 +69,79 @@
             </div>
             <!-- /.col-->
         </div>
-        <!-- /.row-->
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row mb-4">
+            <div class="col-md-6">
                 <div class="card mb-4">
-                    <div class="card-header text-center fw-semibold">Daftar Pelanggan Belum Bayar</div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table border mb-0">
-                                <thead class="table-light fw-semibold">
-                                    <tr class="align-middle">
-                                        <th class="text-center">
-                                            <svg class="icon">
-                                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                                            </svg>
-                                        </th>
-                                        <th class="text-center">Pelanggan</th>
-                                        <th class="text-center">Alamat</th>
-                                        <th class="text-center">Tagihan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/1.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div> {{-- edit lagi --}}
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
-                                            {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center  "> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center">Rp.200.000</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/2.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div> {{-- edit lagi --}}
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
-                                            {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center">Rp.200.000</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/3.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div> {{-- edit lagi --}}
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
-                                            {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center">Rp.200.000</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/4.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div> {{-- edit lagi --}}
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
-                                            {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center">Rp.200.000</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/5.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>
-                                            {{-- edit lagi --}}
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
-                                            {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center">Rp.200.000</div>
-                                        </td>
-                                    </tr>
-                                    <tr class="align-middle">
-                                        <td class="text-center">
-                                            <div class="avatar avatar-md"><img class="avatar-img"
-                                                    src="assets/img/avatars/6.jpg" alt="user@email.com"></div>
-                                        </td>
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Yiorgos Avraamu</div>
-                                            {{-- edit lagi --}}
-                                        </td>
-                                        <td>
-                                            <div class="fw-semibold text-center">Mojogedang, Karanganyar</div>
-                                            {{-- edit lagi --}}
-                                            <div class="small text-medium-emphasis text-center"> +628999</div>
-                                        </td>
-                                        <td>
-                                            <div class="fw-bold text-center">Rp.200.000</div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <canvas id="earningChart" aria-label="Grafik Penghasilan Perbulan" role="img">
+                            Your browser does not support the canvas element
+                        </canvas>
                     </div>
                 </div>
             </div>
-            <!-- /.col-->
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <canvas id="clientChart" aria-label="Grafik Pelanggan" role="img">
+                            Your browser does not support the canvas element
+                        </canvas>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /.row-->
     </div>
+@endsection
+
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
+    <script>
+        const clientCtx = document.getElementById('clientChart');
+        const earningCtx = document.getElementById('earningChart')
+
+        new Chart(clientCtx, {
+            type: 'line',
+            data: {
+                labels: {{ Js::from($client['labels']) }},
+                datasets: [{
+                    label: 'Pelanggan Aktif',
+                    data: {{ Js::from($client['data']) }},
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(earningCtx, {
+            type: 'line',
+            data: {
+                labels: {{ Js::from($earning['labels']) }},
+                datasets: [{
+                    label: 'Penghasilan Perbulan',
+                    data: {{ Js::from($earning['data']) }},
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 @endsection
