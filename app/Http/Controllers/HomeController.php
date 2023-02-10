@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Reseller;
 use App\Models\Role;
+use App\Models\Transaction;
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -72,9 +75,11 @@ class HomeController extends Controller
         $clientTotal = Client::select('id')->count();
         $mitraNonaktif = Reseller::select('inactive_at')->count();
 
-        $mitras = Reseller::with([
-            'user',
-        ])->withCount('clients')->orderBy('clients_count', 'desc')->limit(10)->get();
+        $mitras = Reseller::with(['user'])
+            ->withCount('clients')
+            ->orderBy('clients_count', 'desc')
+            ->limit(10)
+            ->get();
 
         return view('pages.admin.home', [
             'title' => 'Admin Dashboard',
@@ -101,7 +106,38 @@ class HomeController extends Controller
      */
     public function resellerOwnerPages(Request $request)
     {
-        return view('pages.reseller.home');
+        $currentMonth = CarbonImmutable::parse(date('Y-m') . '-1');
+        $from = $currentMonth->subMonth(6)->toDateTimeString();
+        $to = $currentMonth->toDateTimeString();
+
+        $transactions = Transaction::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })
+            ->select(DB::raw('sum(balance) as total'), DB::raw('CONCAT(MONTHNAME(created_at), " / ", YEAR(created_at)) as month_name'))
+            ->whereBetween('created_at', [$from, $to])
+            ->groupBy(DB::raw('MONTH(created_at)'), DB::raw('month_name'), DB::raw('YEAR(created_at)'))
+            ->orderBy('id', 'ASC')
+            ->pluck('total', 'month_name');
+
+        $clients = Client::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })
+            ->select(DB::raw('COUNT(id) as count'), DB::raw('CONCAT(MONTHNAME(created_at), " / ", YEAR(created_at)) as month_name'))
+            ->whereBetween('created_at', [$from, $to])
+            ->groupBy(DB::raw('month_name'), DB::raw('YEAR(created_at)'))
+            ->orderBy('id', 'ASC')
+            ->pluck('count', 'month_name');
+
+        return view('pages.reseller.home', [
+            'client' => [
+                'labels' => $clients->keys(),
+                'data' => $clients->values(),
+            ],
+            'earning' => [
+                'labels' => $transactions->keys(),
+                'data' => $transactions->values(),
+            ],
+        ]);
     }
 
     /**
