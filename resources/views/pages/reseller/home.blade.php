@@ -99,11 +99,11 @@
         const earningCtx = document.getElementById('earningChart')
 
         new Chart(clientCtx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: {{ Js::from($client['labels']) }},
                 datasets: [{
-                    label: 'Pelanggan Aktif',
+                    label: 'Pelanggan Terdaftar',
                     data: {{ Js::from($client['data']) }},
                     borderWidth: 1,
                     fill: false
