@@ -14,12 +14,12 @@
         @foreach ($bills as $bill)
             <tr>
                 <th>
-                    <a href="{{ route('reseller_owner.transaction.detail', ['id' => $bill->id]) }}">
+                    <a href="{{ route('business.billMenu.detail', ['id' => $bill->id]) }}">
                         {{ $bill->invoice_id }}
                     </a>
                 </th>
                 <td>
-                    <a href="{{ route('reseller_owner.client.detail', ['id' => $bill->client_id]) }}">
+                    <a href="{{ route('business.clientMenu.detail', ['id' => $bill->client_id]) }}">
                         <img alt="{{ $bill->client->user->fullname ?? $bill->client_name }}"
                             src="{{ asset($bill->client->user->photo ?? $bill->client_name ?? 'assets/brand/GMDP_100x100.png') }}"
                             class="img-thumbnail rounded-circle" style="width: 60px">
@@ -27,7 +27,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="{{ route('reseller_owner.client.detail', ['id' => $bill->plan_id]) }}">
+                    <a href="{{ route('business.clientMenu.detail', ['id' => $bill->plan_id]) }}">
                         {{ $bill->plan_name }}
                     </a>
                 </td>

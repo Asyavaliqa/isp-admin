@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <strong>Tambah Paket Internet</strong>
                 </div>
-                <form action="{{ route('reseller_owner.plan.store') }}" method="post">
+                <form action="{{ route('business.planMenu.store') }}" method="post">
                     @csrf
                     <div class="card-body py-4">
                         @if ($errors->any())

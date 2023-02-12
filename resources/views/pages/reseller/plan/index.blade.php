@@ -17,7 +17,7 @@
                             <input type="text" class="form-control" placeholder="Search ..">
                         </div>
                         <div class="px-3">
-                            <a href="{{ route('reseller_owner.plan.create') }}"
+                            <a href="{{ route('business.planMenu.create') }}"
                                 class="btn btn-primary btn-outline">Tambah Paket</a>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                         <th scope="col">{{ $loop->iteration }}</th>
                                         <td scope="col">
                                             <a
-                                                href="{{ route('reseller_owner.plan.detail', ['id' => $plan->id]) }}">{{ $plan->name }}</a>
+                                                href="{{ route('business.planMenu.detail', ['id' => $plan->id]) }}">{{ $plan->name }}</a>
                                         </td>
                                         <td scope="col" class="text-center">
                                             <span class="badge badge-pills bg-info">

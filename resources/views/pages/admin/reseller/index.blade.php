@@ -17,7 +17,7 @@
                         <input type="text" class="form-control" placeholder="Search ..">
                     </div>
                     <div class="px-3">
-                        <a href="{{ route('admin.reseller.create') }}" class="btn btn-primary btn-outline">Tambah Reseller</a>
+                        <a href="{{ route('admin.resellerMenu.create') }}" class="btn btn-primary btn-outline">Tambah Reseller</a>
                     </div>
                 </div>
                 @if (session('status'))
@@ -41,13 +41,13 @@
                             @foreach ($resellers as $reseller)
                                 <tr>
                                     <th>
-                                        <a href="{{ route('admin.reseller.detail', ['id' => $reseller->id]) }}">
+                                        <a href="{{ route('admin.resellerMenu.detail', ['id' => $reseller->id]) }}">
                                             <img alt="{{ $reseller->name }}" src="{{ asset($reseller->photo ?? 'assets/brand/GMDP_100x100.png') }}" class="img-thumbnail rounded-circle" style="width: 60px">
                                             <span class="ms-2">{{ $reseller->name }}</span>
                                         </a>
                                     </th>
                                     <td>
-                                        <a href="{{ route('admin.user', ['id' => $reseller->user->id]) }}">
+                                        <a href="{{ route('admin.userMenu.detail', ['id' => $reseller->user->id]) }}">
                                             {{ $reseller->user->fullname }}
                                         </a>
                                     </td>

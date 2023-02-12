@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-end">
-                <a href="{{ route('reseller_owner.client.edit', ['id' => $client->id]) }}" class="text-white btn btn-info">Edit</a>
+                <a href="{{ route('business.clientMenu.edit', ['id' => $client->id]) }}" class="text-white btn btn-info">Edit</a>
             </div>
         </div>
         <div class="card mb-4">
@@ -89,7 +89,7 @@
                             <td scope="col"><strong>Paket Internet</strong></td>
                             <td>:</td>
                             <td>
-                                <a href="{{ route('reseller_owner.plan.detail', ['id' => $client->plan->id]) }}">
+                                <a href="{{ route('business.planMenu.detail', ['id' => $client->plan->id]) }}">
                                     {{ $client->plan->name }}
                                 </a>
                             </td>
@@ -123,7 +123,7 @@
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-end">
-                <a href="{{ route('reseller_owner.transaction', ['client_id' => $client->id]) }}" class="btn btn-info text-white">Selengkapnya</a>
+                <a href="{{ route('business.billMenu.index', ['client_id' => $client->id]) }}" class="btn btn-info text-white">Selengkapnya</a>
             </div>
         </div>
     </div>
