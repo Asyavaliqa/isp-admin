@@ -9,7 +9,7 @@
         <div class="row g-0 mb-4">
             <div class="card">
                 <div class="card-header">
-                    <strong>Transaksi</strong>
+                    <strong>{{ $title }}</strong>
                 </div>
                 <div class="card-body py-4">
                     <div class="d-flex justify-content-between mb-3">
