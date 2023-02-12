@@ -37,6 +37,7 @@
                                     <th scope="col" class="text-center">Bandwidth</th>
                                     <th scope="col" class="text-center">Jumlah Pengguna</th>
                                     <th scope="col">Harga</th>
+                                    <th scope="col">Pajak</th>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
@@ -58,6 +59,13 @@
                                             </span>
                                         </td>
                                         <td scope="col">Rp{{ number_format($plan->price, 2, ',', '.') }}</td>
+                                        <td>
+                                            @if ($plan->tax_type === App\Models\Plan::TAX_INCLUDED)
+                                                <span class="badge badge-pills bg-success">Sudah Termasuk</span>
+                                            @else
+                                                <span class="badge badge-pills bg-danger">Belum Termasuk</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
