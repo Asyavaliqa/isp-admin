@@ -17,7 +17,8 @@ Route::prefix('client')->name('clientMenu.')->group(function () {
 
 Route::prefix('plan')->name('planMenu.')->group(function () {
     Route::get('/', [PlanController::class, 'index'])->name('index');
-    Route::get('/{id}', [PlanController::class, 'detail'])->name('detail')->whereNumber('id');
+    Route::get('/dataTable', [PlanController::class, 'dataTable'])->name('dataTable');
+    Route::get('/{id?}', [PlanController::class, 'detail'])->name('detail')->whereNumber('id');
     Route::get('/create', [PlanController::class, 'create'])->name('create');
     Route::post('/create', [PlanController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [PlanController::class, 'edit'])->name('edit')->whereNumber('id');
