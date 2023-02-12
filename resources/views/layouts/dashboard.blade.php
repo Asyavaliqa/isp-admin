@@ -98,7 +98,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('business.billMenu.paid') }}">
-                    <i class="nav-icon cil cil-chart"></i>
+                    <i class="nav-icon cil cil-chart-line"></i>
                     Tagihan dibayar
                     @if ($totalPaidBill)
                         <span class="badge badge-pills bg-info ms-auto badge-sm">{{ $totalPaidBill }}</span>
@@ -107,7 +107,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('business.billMenu.paidOff') }}">
-                    <i class="nav-icon cil cil-chart"></i> Tagihan Selesai</a>
+                    <i class="nav-icon cil cil-chart-pie"></i> Tagihan Selesai</a>
             </li>
 
             {{-- @hasanyrole(\App\Models\Role::RESELLER_ADMIN)
