@@ -73,7 +73,7 @@
                                     <tr>
                                         <td>Pemilik</td>
                                         <td>
-                                            <a href="{{ route('admin.user', ['id' => $reseller->user->id]) }}">
+                                            <a href="{{ route('admin.userMenu', ['id' => $reseller->user->id]) }}">
                                                 {{ $reseller->user->fullname }}
                                             </a>
                                         </td>

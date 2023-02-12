@@ -34,13 +34,13 @@
                                         <tr>
                                             <th>
                                                 <a
-                                                    href="{{ route('reseller_owner.transaction.detail', ['id' => $transaction->id]) }}">
+                                                    href="{{ route('business.billMenu.detail', ['id' => $transaction->id]) }}">
                                                     {{ $transaction->invoice_id }}
                                                 </a>
                                             </th>
                                             <td>
                                                 <a
-                                                    href="{{ route('reseller_owner.client.detail', ['id' => $transaction->client_id]) }}">
+                                                    href="{{ route('business.clientMenu.detail', ['id' => $transaction->client_id]) }}">
                                                     <img alt="{{ $transaction->client->user->fullname ?? $transaction->client_name }}"
                                                         src="{{ asset($transaction->client->user->photo ?? ($transaction->client_name ?? 'assets/brand/GMDP_100x100.png')) }}"
                                                         class="img-thumbnail rounded-circle" style="width: 60px">
@@ -49,7 +49,7 @@
                                             </td>
                                             <td>
                                                 <a
-                                                    href="{{ route('reseller_owner.client.detail', ['id' => $transaction->plan_id]) }}">
+                                                    href="{{ route('business.clientMenu.detail', ['id' => $transaction->plan_id]) }}">
                                                     {{ $transaction->plan_name }}
                                                 </a>
                                             </td>

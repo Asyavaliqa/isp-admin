@@ -91,7 +91,7 @@ class PlanController extends Controller
             Log::error($e->getMessage());
             abort(500, $e->getMessage());
         } finally {
-            return redirect()->route('reseller_owner.plan')->with('status', 'Paket "' . $request->input('name') . '" Telah Ditambahkan');
+            return redirect()->route('business.planMenu.index')->with('status', 'Paket "' . $request->input('name') . '" Telah Ditambahkan');
         }
     }
 
@@ -144,7 +144,7 @@ class PlanController extends Controller
             Log::error($e->getMessage());
             abort(500, $e->getMessage());
         } finally {
-            return redirect()->route('reseller_owner.plan')->with('status', 'Paket "' . $request->input('name') . '" Telah Diubah');
+            return redirect()->route('business.planMenu.index')->with('status', 'Paket "' . $request->input('name') . '" Telah Diubah');
         }
     }
 
@@ -163,7 +163,7 @@ class PlanController extends Controller
 
         if ($plan->clients_count > 0) {
             return redirect()
-                ->route('reseller_owner.plan.detail', ['id' => $id])
+                ->route('business.planMenu.detail', ['id' => $id])
                 ->with('status', 'Paket "' . $plan->name . '" sedang digunakan oleh pelanggan lain !');
         }
 
@@ -173,7 +173,7 @@ class PlanController extends Controller
             Log::error($e->getMessage());
             abort(500, $e->getMessage());
         } finally {
-            return redirect()->route('reseller_owner.plan')->with('status', 'Paket "' . $plan->name . '" Telah Dihapus');
+            return redirect()->route('business.planMenu.index')->with('status', 'Paket "' . $plan->name . '" Telah Dihapus');
         }
     }
 }

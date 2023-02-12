@@ -17,7 +17,7 @@
                             <input type="text" class="form-control" placeholder="Search ..">
                         </div>
                         <div class="px-3">
-                        <a href="{{ route('reseller_owner.client.create') }}" class="btn btn-primary btn-outline">Tambah Pelanggan</a>
+                        <a href="{{ route('business.clientMenu.create') }}" class="btn btn-primary btn-outline">Tambah Pelanggan</a>
                     </div>
                     </div>
                     <div class="table-responsive px-3">
@@ -42,13 +42,13 @@
 
                                 <tr>
                                     <th>
-                                        <a href="{{ route('reseller_owner.client.detail', ['id' => $client->id]) }}">
+                                        <a href="{{ route('business.clientMenu.detail', ['id' => $client->id]) }}">
                                             <img alt="{{ $client->user->fullname }}" src="{{ asset($client->user->photo ?? 'assets/brand/GMDP_100x100.png') }}" class="img-thumbnail rounded-circle" style="width: 60px">
                                             <span class="ms-2">{{ $client->user->fullname }}</span>
                                         </a>
                                     </th>
                                     <td>
-                                        <a href="{{ route('reseller_owner.plan.detail', ['id' => $client->plan->id]) }}">
+                                        <a href="{{ route('business.planMenu.detail', ['id' => $client->plan->id]) }}">
                                             {{ $client->plan->name }}
                                         </a>
                                     </td>

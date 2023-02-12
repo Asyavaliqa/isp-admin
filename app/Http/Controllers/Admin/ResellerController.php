@@ -171,6 +171,6 @@ class ResellerController extends Controller
             $user->reseller()->save($reseller);
         }, 5);
 
-        return redirect()->route('admin.reseller')->with('status', 'Mitra ' . $request->input('name') . ' Telah Ditambahkan');
+        return redirect()->route('admin.resellerMenu.index')->with('status', 'Mitra ' . $request->input('name') . ' Telah Ditambahkan');
     }
 }

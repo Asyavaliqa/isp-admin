@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <strong>Pelanggan</strong>
                 </div>
-                <form action="{{ route('reseller_owner.client.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('business.clientMenu.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body p-4">
                         @if ($errors->any())

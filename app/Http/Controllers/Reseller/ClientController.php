@@ -179,7 +179,7 @@ class ClientController extends Controller
             }, 5);
 
             return redirect()
-                ->route('reseller_owner.client')
+                ->route('business.clientMenu.index')
                 ->with('status', 'Pelanggan "' . $user->fullname . '" Telah Diubah');
         } catch (Throwable $e) {
             Log::critical($e->getMessage(), $e->getTrace());
@@ -279,7 +279,7 @@ class ClientController extends Controller
             }, 5);
 
             return redirect()
-                ->route('reseller_owner.client')
+                ->route('business.clientMenu.index')
                 ->with('status', 'Pelanggan ' . $request->input('fullname') . ' Telah Ditambahkan');
         } catch (Throwable $e) {
             Log::critical($e->getMessage(), $e->getTrace());

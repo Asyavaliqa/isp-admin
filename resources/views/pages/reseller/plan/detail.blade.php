@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-footer d-flex justify-content-between">
                     <a class="btn btn-info text-white"
-                        href="{{ route('reseller_owner.plan.edit', ['id' => $plan->id]) }}">
+                        href="{{ route('business.planMenu.edit', ['id' => $plan->id]) }}">
                         Ubah Paket
                     </a>
                     <button type="button" class="btn btn-danger text-white" data-coreui-toggle="modal"
@@ -88,7 +88,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
                     <button type="button" class="btn btn-success text-white" data-coreui-dismiss="modal">TIDAK</button>
-                    <a href="{{ route('reseller_owner.plan.delete', ['id' => $plan->id]) }}" class="btn btn-danger text-white">YA</a>
+                    <a href="{{ route('business.planMenu.delete', ['id' => $plan->id]) }}" class="btn btn-danger text-white">YA</a>
                 </div>
             </div>
         </div>
