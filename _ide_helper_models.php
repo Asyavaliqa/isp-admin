@@ -150,9 +150,12 @@ namespace App\Models{
      * @property int $id
      * @property int $reseller_id
      * @property string $name
-     * @property int $bandwidth
+     * @property int|null $bandwidth
      * @property string|null $price
      * @property string|null $description
+     * @property mixed $type
+     * @property mixed $tax_type
+     * @property mixed $subscription
      * @property \Illuminate\Support\Carbon|null $deleted_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
@@ -172,6 +175,9 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan wherePrice($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereResellerId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereSubscription($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereTaxType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereType($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan withTrashed()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Plan withoutTrashed()
