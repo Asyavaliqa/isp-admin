@@ -42,6 +42,23 @@
                         href="{{ route('admin.clientMenu.index') }}">
                         <i class="nav-icon cil cil-people"></i> Pelanggan </a>
                 </li>
+
+                <li class="nav-title">Data Sistem</li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::route()->getName() == 'admin.admin' ? 'active' : '' }}"
+                        href="{{ route('admin.adminMenu.index') }}">
+                        <i class="nav-icon cil cil-people"></i> Admin </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::route()->getName() == 'admin.register' ? 'active' : '' }}"
+                        href="{{ route('admin.registerMenu.index') }}">
+                        <i class="nav-icon cil cil-people"></i> Pendaftaran Akun </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::route()->getName() == 'admin.client' ? 'active' : '' }}"
+                        href="{{ route('admin.clientMenu.index') }}">
+                        <i class="nav-icon cil cil-people"></i> Reset Password </a>
+                </li>
             @endhasanyrole
 
             {{-- Reseller_Owner --}}
@@ -82,7 +99,7 @@
                         <li class="nav-item"><a class="nav-link" href="forms/checks-radios.html"> Tagihan selesai</a></li>
                     </ul>
                 </li> --}}
-            @endhasanyrole
+            
 
             <li class="nav-title">Data Tagihan</li>
 
@@ -109,6 +126,7 @@
                 <a class="nav-link" href="{{ route('business.billMenu.paidOff') }}">
                     <i class="nav-icon cil cil-chart-pie"></i> Tagihan Selesai</a>
             </li>
+            @endhasanyrole
 
             {{-- @hasanyrole(\App\Models\Role::RESELLER_ADMIN)
                 <li class="nav-item">

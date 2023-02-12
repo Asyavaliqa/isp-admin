@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\ResellerController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +34,22 @@ Route::name('userMenu.')
     ->prefix('user')
     ->group(function () {
         Route::get('/{id}', [UserController::class, 'detail'])->name('detail')->whereNumber('id');
+    });
+
+/**
+ * Admin menu
+ */
+Route::name('adminMenu.')
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+    });
+
+/**
+ * Register menu
+ */
+Route::name('registerMenu.')
+    ->prefix('register')
+    ->group(function () {
+        Route::get('/', [RegisterController::class, 'index'])->name('index');
     });

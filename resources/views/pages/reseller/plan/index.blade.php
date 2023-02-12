@@ -37,7 +37,7 @@
                                     <th scope="col" class="text-center">Bandwidth</th>
                                     <th scope="col" class="text-center">Jumlah Pengguna</th>
                                     <th scope="col">Harga</th>
-                                    <th scope="col">Pajak</th>
+                                    <th scope="col">Pajak PPN</th>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
