@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Bill;
 use App\Models\Client;
+use App\Models\Plan;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -34,11 +35,17 @@ class BillSeeder extends Seeder
                     random_number(4)
                 );
 
+                if ($client->plan->tax_type === Plan::TAX_INCLUDED) {
+                    $price = $client->plan->price;
+                } else {
+                    $price = $client->plan->price + ($client->plan->price * Plan::TAX);
+                }
+
                 array_push($bills, [
                     'invoice_id' => $invoiceId,
                     'type' => $i <= 0 ? Bill::TYPE_NEW_PURCHASE : Bill::TYPE_EXTENSION,
                     'bill_photo' => 'assets/img/bills/bukti-bayar-200x300.png',
-                    'balance' => $client->plan->price,
+                    'balance' => $price,
                     'reseller_id' => $client->reseller->id,
                     'reseller_name' => $client->reseller->name,
                     'client_id' => $client->id,
