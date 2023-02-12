@@ -11,6 +11,45 @@ use Illuminate\Support\Facades\Auth;
 
 class BillController extends Controller
 {
+    public function outstanding(Request $request)
+    {
+        $bills = $this->_getTransactions($request);
+
+        $bills->whereNull('payed_at');
+        $bills->whereNull('accepted_at');
+
+        return view('pages.reseller.transaction.index', [
+            'title' => 'Tagihan Terhutang',
+            'bills' => $bills->paginate(20)->appends($request->all()),
+        ]);
+    }
+
+    public function paid(Request $request)
+    {
+        $bills = $this->_getTransactions($request);
+
+        $bills->whereNotNull('payed_at');
+        $bills->whereNull('accepted_at');
+
+        return view('pages.reseller.transaction.index', [
+            'title' => 'Tagihan Yang Telah Dibayar',
+            'bills' => $bills->paginate(20)->appends($request->all()),
+        ]);
+    }
+
+    public function paidOff(Request $request)
+    {
+        $bills = $this->_getTransactions($request);
+
+        $bills->whereNotNull('payed_at');
+        $bills->whereNotNull('accepted_at');
+
+        return view('pages.reseller.transaction.index', [
+            'title' => 'Tagihan Selesai',
+            'bills' => $bills->paginate(20)->appends($request->all()),
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *

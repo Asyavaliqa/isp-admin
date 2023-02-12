@@ -27,7 +27,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="{{ route('business.clientMenu.detail', ['id' => $bill->plan_id]) }}">
+                    <a href="{{ route('business.planMenu.detail', ['id' => $bill->plan_id]) }}">
                         {{ $bill->plan_name }}
                     </a>
                 </td>
