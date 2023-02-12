@@ -57,7 +57,7 @@
                         href="{{ route('business.planMenu.index') }}">
                         <i class="nav-icon cil cil-globe-alt"></i> Paket </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ Request::route()->getName() == 'business.billMenu.index' ? 'active' : '' }}"
                         href="{{ route('business.billMenu.index') }}">
                         <i class="nav-icon cil cil-chart"></i> Tagihan </a>
@@ -66,13 +66,49 @@
                     <a class="nav-link {{ Request::route()->getName() == 'business.billMenu.history' ? 'active' : '' }}"
                         href="{{ route('business.billMenu.history') }}">
                         <i class="nav-icon cil cil-briefcase"></i> Transaksi</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link {{ Request::route()->getName() == 'business.employeeMenu.index' ? 'active' : '' }}"
                         href="{{ route('business.employeeMenu.index') }}">
                         <i class="nav-icon cil cil-badge"></i> Pegawai </a>
                 </li>
+                {{-- <li class="nav-group" aria-expanded="true">
+                    <a class="nav-link nav-group-toggle {{ Request::route()->getName() == 'business.billMenu.index' ? 'show' : '' }}"
+                        href="#">
+                        <i class="nav-icon cil cil-briefcase"></i> Tagihan </a>
+                    <ul class="nav-group-items" style="height: auto;">
+                        <li class="nav-item"><a class="nav-link" href="forms/form-control.html"> Tagihan belum dibayar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="forms/select.html"> Tagihan sudah dibayar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="forms/checks-radios.html"> Tagihan selesai</a></li>
+                    </ul>
+                </li> --}}
             @endhasanyrole
+
+            <li class="nav-title">Data Tagihan</li>
+
+            <li
+                class="nav-item {{ Str::contains(Request::route()->getName(), ['business.billMenu.paidOff', 'business.billMenu.paid', 'business.billMenu.outstanding']) ? 'show' : '' }}">
+                <a class="nav-link" href="{{ route('business.billMenu.outstanding') }}">
+                    <i class="nav-icon cil cil-chart"></i>
+                    Tagihan Terhutang
+                    @if ($totalOutstandingBill)
+                        <span class="badge badge-pills bg-danger ms-auto badge-sm">{{ $totalOutstandingBill }}</span>
+                    @endif
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('business.billMenu.paid') }}">
+                    <i class="nav-icon cil cil-chart"></i>
+                    Tagihan dibayar
+                    @if ($totalPaidBill)
+                        <span class="badge badge-pills bg-info ms-auto badge-sm">{{ $totalPaidBill }}</span>
+                    @endif
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('business.billMenu.paidOff') }}">
+                    <i class="nav-icon cil cil-chart"></i> Tagihan Selesai</a>
+            </li>
 
             {{-- @hasanyrole(\App\Models\Role::RESELLER_ADMIN)
                 <li class="nav-item">
@@ -220,15 +256,15 @@
                 <ul class="header-nav ms-3">
                     {{-- <li class="nav-item nav-link">{{ Auth::user()->fullname }}</li> --}}
                     <li class="nav-item dropdown">
-                        <a class="nav-link py-0" data-coreui-toggle="dropdown"
-                            href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">
                             <span class="mx-2">
                                 {{ Auth::user()->fullname }}
                             </span>
                             <div class="avatar avatar-md">
-                                <img class="avatar-img"
-                                    src="{{ asset('assets/img/avatars/8.jpg') }}" alt="{{ Auth::user()->fullname }}">
-                                </div>
+                                <img class="avatar-img" src="{{ asset('assets/img/avatars/8.jpg') }}"
+                                    alt="{{ Auth::user()->fullname }}">
+                            </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end pt-0">
                             <div class="dropdown-header bg-light py-2">
