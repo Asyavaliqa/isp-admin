@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Throwable;
+use Yajra\DataTables\Facades\DataTables;
 
 class PlanController extends Controller
 {
@@ -29,6 +30,15 @@ class PlanController extends Controller
             'title' => 'Paket Internet',
             'plans' => $plans->paginate(20)->appends($request->all()),
         ]);
+    }
+
+    public function dataTable(Request $request)
+    {
+        $plans = Plan::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->withCount('clients');
+
+        return DataTables::eloquent($plans)->setRowId('id')->toJson();
     }
 
     /**

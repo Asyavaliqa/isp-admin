@@ -13,12 +13,12 @@
                 </div>
                 <div class="card-body py-4">
                     <div class="d-flex justify-content-between mb-3">
-                        <div class="px-3">
+                        {{-- <div class="px-3">
                             <input type="text" class="form-control" placeholder="Search ..">
-                        </div>
+                        </div> --}}
                         <div class="px-3">
-                            <a href="{{ route('business.planMenu.create') }}"
-                                class="btn btn-primary btn-outline">Tambah Paket</a>
+                            <a href="{{ route('business.planMenu.create') }}" class="btn btn-primary btn-outline">Tambah
+                                Paket</a>
                         </div>
                     </div>
                     @if (session('status'))
@@ -28,7 +28,21 @@
                                 aria-label="Close"></button>
                         </div>
                     @endif
-                    <div class="table-responsive px-3">
+                    <div class="table-responsive p-2">
+                        <table id="planTable" class="table table-hover custom-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">#</th>
+                                    <th scope="col">Nama Paket</th>
+                                    <th scope="col" class="text-center">Bandwidth</th>
+                                    <th scope="col" class="text-center">Jumlah Pengguna</th>
+                                    <th scope="col">Harga</th>
+                                    <th scope="col">Pajak PPN</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    {{-- <div class="table-responsive px-3">
                         <table class="table table-hover align-middle custom-table">
                             <thead>
                                 <tr>
@@ -72,9 +86,114 @@
                         </table>
 
                         {{ $plans->links('components.pagination') }}
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('stylesheet')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
+@endsection
+
+@section('script')
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const planTable = $('#planTable').DataTable({
+                serverSide: true,
+                processing: true,
+                ajax: '{{ route('business.planMenu.dataTable') }}',
+                columnDefs: [{
+                    searchable: false,
+                    orderable: false,
+                    targets: 0,
+                }],
+                stateSave: true,
+                pagingType: 'simple_numbers',
+                columns: [{
+                        data: 'id',
+                        name: 'id',
+                        searchable: false,
+                        orderable: true,
+                        className: 'dt-center',
+                    }, {
+                        data: 'name',
+                        name: 'name',
+                        searchable: true,
+                        orderable: true,
+                        render: (data, type, row, meta) => {
+                            return `<a href="{{ route('business.planMenu.detail', ['id' => null]) }}/${row.id}">${row.name}</a>`;
+                        }
+                    },
+                    {
+                        data: 'bandwidth',
+                        name: 'bandwidth',
+                        searchable: false,
+                        orderable: true,
+                        className: 'dt-center',
+                        render: (data, type) => {
+                            if (type === 'display') {
+                                return `<span class="badge badge-pills bg-info">
+                                            ${data} Pengguna
+                                        </span>`;
+                            }
+
+                            return data
+                        }
+                    },
+                    {
+                        data: 'clients_count',
+                        name: 'clients_count',
+                        searchable: false,
+                        orderable: true,
+                        className: 'dt-center',
+                        render: (data, type) => {
+                            if (type === 'display') {
+                                return `<span class="badge badge-pills bg-primary">
+                                            ${data} Pengguna
+                                        </span>`;
+                            }
+
+                            return data
+                        }
+                    },
+                    {
+                        data: 'price',
+                        name: 'price',
+                        searchable: false,
+                        orderable: true,
+                        render: $.fn.dataTable.render.number( '.', ',', 2, 'Rp' )
+                    },
+                    {
+                        data: 'tax_type',
+                        name: 'tax_type',
+                        searchable: false,
+                        orderable: true,
+                        render: (data, type) => {
+                            if (data === {{ Js::from(App\Models\Plan::TAX_INCLUDED) }}) {
+                                return `<span class="badge badge-pills bg-success">Sudah Termasuk</span>`
+                            } else {
+                                return `<span class="badge badge-pills bg-danger">Belum Termasuk</span>`
+                            }
+                        }
+                    }
+                ],
+            });
+
+            planTable.on('order.dt search.dt', function() {
+                let i = 1;
+
+                planTable.cells(null, 0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).every(function(cell) {
+                    this.data(i++);
+                });
+            }).draw();
+        });
+    </script>
 @endsection
