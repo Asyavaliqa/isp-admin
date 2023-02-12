@@ -11,38 +11,38 @@
         </tr>
     </thead>
     <tbody class="align-middle">
-        @foreach ($transactions as $transaction)
+        @foreach ($bills as $bill)
             <tr>
                 <th>
-                    <a href="{{ route('reseller_owner.transaction.detail', ['id' => $transaction->id]) }}">
-                        {{ $transaction->invoice_id }}
+                    <a href="{{ route('reseller_owner.transaction.detail', ['id' => $bill->id]) }}">
+                        {{ $bill->invoice_id }}
                     </a>
                 </th>
                 <td>
-                    <a href="{{ route('reseller_owner.client.detail', ['id' => $transaction->client_id]) }}">
-                        <img alt="{{ $transaction->client->user->fullname ?? $transaction->client_name }}"
-                            src="{{ asset($transaction->client->user->photo ?? $transaction->client_name ?? 'assets/brand/GMDP_100x100.png') }}"
+                    <a href="{{ route('reseller_owner.client.detail', ['id' => $bill->client_id]) }}">
+                        <img alt="{{ $bill->client->user->fullname ?? $bill->client_name }}"
+                            src="{{ asset($bill->client->user->photo ?? $bill->client_name ?? 'assets/brand/GMDP_100x100.png') }}"
                             class="img-thumbnail rounded-circle" style="width: 60px">
-                        <span class="ms-2">{{ $transaction->client->user->fullname }}</span>
+                        <span class="ms-2">{{ $bill->client->user->fullname }}</span>
                     </a>
                 </td>
                 <td>
-                    <a href="{{ route('reseller_owner.client.detail', ['id' => $transaction->plan_id]) }}">
-                        {{ $transaction->plan_name }}
+                    <a href="{{ route('reseller_owner.client.detail', ['id' => $bill->plan_id]) }}">
+                        {{ $bill->plan_name }}
                     </a>
                 </td>
                 <td>
-                    Rp{{ number_format($transaction->balance, 2, ',', '.') }}
+                    Rp{{ number_format($bill->balance, 2, ',', '.') }}
                 </td>
                 <td class="text-center">
                     <span
-                        class="badge badge-pills bg-info">{{ $transaction->created_at->subMonth()->isoFormat('MMMM g') }}</span>
+                        class="badge badge-pills bg-info">{{ $bill->created_at->subMonth()->isoFormat('MMMM g') }}</span>
                 </td>
                 <td>
-                    {{ $transaction->created_at->isoFormat('dddd, D MMMM g') }}
+                    {{ $bill->created_at->isoFormat('dddd, D MMMM g') }}
                 </td>
                 <td class="text-center">
-                    @if ($transaction->accepted_at)
+                    @if ($bill->accepted_at)
                         <span class="badge rounded-pills bg-primary">Ya</span>
                     @else
                         <span class="badge rounded-pills bg-danger">Tidak</span>

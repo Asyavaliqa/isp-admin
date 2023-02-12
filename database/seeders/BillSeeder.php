@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Bill;
 use App\Models\Client;
-use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class TransactionSeeder extends Seeder
+class BillSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class TransactionSeeder extends Seeder
      */
     public function run()
     {
-        $transactions = [];
+        $bills = [];
         $clients = Client::with([
             'user:id,fullname',
             'plan:id,name,price',
@@ -34,9 +34,9 @@ class TransactionSeeder extends Seeder
                     random_number(4)
                 );
 
-                array_push($transactions, [
+                array_push($bills, [
                     'invoice_id' => $invoiceId,
-                    'type' => $i <= 0 ? Transaction::TYPE_NEW_PURCHASE : Transaction::TYPE_EXTENSION,
+                    'type' => $i <= 0 ? Bill::TYPE_NEW_PURCHASE : Bill::TYPE_EXTENSION,
                     'bill_photo' => 'assets/img/bills/bukti-bayar-200x300.png',
                     'balance' => $client->plan->price,
                     'reseller_id' => $client->reseller->id,
@@ -60,6 +60,6 @@ class TransactionSeeder extends Seeder
             }
         }
 
-        Transaction::insert($transactions);
+        Bill::insert($bills);
     }
 }

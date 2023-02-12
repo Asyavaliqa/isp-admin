@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             ResellerSeeder::class,
             PlanSeeder::class,
             ClientSeeder::class,
-            TransactionSeeder::class,
+            BillSeeder::class,
             WalletSeeder::class,
         ]);
     }

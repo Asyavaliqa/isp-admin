@@ -20,7 +20,7 @@
                     <div class="table-responsive px-3">
                         @include('pages.reseller.transaction.indexTable')
                     </div>
-                    {{ $transactions->links('components.pagination') }}
+                    {{ $bills->links('components.pagination') }}
                 </div>
             </div>
         </div>

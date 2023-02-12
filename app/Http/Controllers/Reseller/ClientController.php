@@ -56,7 +56,7 @@ class ClientController extends Controller
         $client = Client::with([
             'user',
             'plan',
-            'transactions' => function (HasMany $q) {
+            'bills' => function (HasMany $q) {
                 $q->limit(5);
                 $q->orderBy('id', 'desc');
             },
@@ -82,7 +82,7 @@ class ClientController extends Controller
         $client = Client::with([
             'user',
             'plan',
-            'transactions' => function (HasMany $q) {
+            'bills' => function (HasMany $q) {
                 $q->limit(5);
                 $q->orderBy('id', 'desc');
             },

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Transaction;
+use App\Models\Bill;
 use Illuminate\Database\Seeder;
 
 class WalletSeeder extends Seeder
@@ -14,10 +14,10 @@ class WalletSeeder extends Seeder
      */
     public function run()
     {
-        $transactions = Transaction::with('reseller')->whereNotNull('accepted_at')->get();
+        $bills = Bill::with('reseller')->whereNotNull('accepted_at')->get();
 
-        foreach ($transactions as $transaction) {
-            $transaction->reseller->deposit($transaction->balance);
+        foreach ($bills as $bill) {
+            $bill->reseller->deposit($bill->balance);
         }
     }
 }
