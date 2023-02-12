@@ -78,22 +78,22 @@ class Client extends Model
     }
 
     /**
-     * Relation to transactions
+     * Relation to bills
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function transactions()
+    public function bills()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Bill::class);
     }
 
     /**
-     * Get Last Transactions
+     * Get Last bill
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function lastTransaction()
+    public function lastBill()
     {
-        return $this->hasOne(Transaction::class)->latestOfMany();
+        return $this->hasOne(Bill::class)->latestOfMany();
     }
 }

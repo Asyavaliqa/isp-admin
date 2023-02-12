@@ -116,7 +116,7 @@
             <div class="card-body">
                 <div class="table-responsive px-3">
                     @php
-                        $transactions = $client->transactions;
+                        $bills = $client->bills;
                         $hideClientCol = true;
                     @endphp
                     @include('pages.reseller.transaction.indexTable')

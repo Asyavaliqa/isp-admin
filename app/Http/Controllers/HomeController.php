@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bill;
 use App\Models\Client;
 use App\Models\Reseller;
 use App\Models\Role;
-use App\Models\Transaction;
 use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
@@ -110,7 +110,7 @@ class HomeController extends Controller
         $from = $currentMonth->subMonth(6)->toDateTimeString();
         $to = $currentMonth->toDateTimeString();
 
-        $transactions = Transaction::whereHas('reseller', function ($q) {
+        $bills = Bill::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })
             ->select(DB::raw('sum(balance) as total'), DB::raw('CONCAT(MONTHNAME(created_at), " / ", YEAR(created_at)) as month_name'))
@@ -135,13 +135,13 @@ class HomeController extends Controller
         $totalEmployee = Reseller::where('user_id', Auth::id())
             ->withCount('employees')->first()->employees_count;
 
-        $unpayedBill = Transaction::whereHas('reseller', function ($q) {
+        $unpayedBill = Bill::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })
             ->whereNull('accepted_at')
             ->count();
 
-        $totalEarning = Transaction::whereHas('reseller', function ($q) {
+        $totalEarning = Bill::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })
         ->select(DB::raw('SUM(balance) as total'))
@@ -155,8 +155,8 @@ class HomeController extends Controller
                 'data' => $clients->values(),
             ],
             'earning' => [
-                'labels' => $transactions->keys(),
-                'data' => $transactions->values(),
+                'labels' => $bills->keys(),
+                'data' => $bills->values(),
             ],
             'widget' => [
                 'totalClient' => $totalClient ?? 0,

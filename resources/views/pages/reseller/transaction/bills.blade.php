@@ -12,7 +12,7 @@
                     <strong>Tagihan</strong>
                 </div>
                 <div class="card-body py-4">
-                    @if ($transactions)
+                    @if ($bills)
                         <div class="d-flex justify-content-between mb-3">
                             <div class="px-3">
                                 <input type="text" class="form-control" placeholder="Search ..">
@@ -30,7 +30,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="align-middle">
-                                    @foreach ($transactions as $transaction)
+                                    @foreach ($bills as $transaction)
                                         <tr>
                                             <th>
                                                 <a
@@ -66,7 +66,7 @@
                             </table>
 
                         </div>
-                        {{ $transactions->links('components.pagination') }}
+                        {{ $bills->links('components.pagination') }}
                     @else
                         <div class="alert alert-info" role="alert">
                             <h4 class="alert-heading">Tagihan Kosong !</h4>

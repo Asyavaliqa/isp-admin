@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @mixin IdeHelperTransaction
+ * @mixin IdeHelperBill
  */
-class Transaction extends Model
+class Bill extends Model
 {
     use HasFactory, SoftDeletes;
 

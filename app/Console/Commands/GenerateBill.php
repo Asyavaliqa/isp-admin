@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Bill;
 use App\Models\Client;
-use App\Models\Transaction;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -42,13 +42,13 @@ class GenerateBill extends Command
             'user:id,fullname',
             'plan:id,name,price',
             'reseller:id,name',
-            'lastTransaction',
+            'lastBill',
         ])->orderBy('id', 'desc')->get();
 
-        $transactions = [];
+        $bills = [];
 
         foreach ($clients as $client) {
-            $createdAt = Carbon::parse($client->lastTransaction->created_at ?? now()->setDay(1)->subMonths(1));
+            $createdAt = Carbon::parse($client->lastBill->created_at ?? now()->setDay(1)->subMonths(1));
             $diffMonth = Carbon::parse($createdAt->format('Y-m'))->diffInMonths();
 
             // Skip creating bill when user had bill
@@ -63,9 +63,9 @@ class GenerateBill extends Command
                 random_number(4)
             );
 
-            array_push($transactions, [
+            array_push($bills, [
                 'invoice_id' => $invoiceId,
-                'type' => Transaction::TYPE_EXTENSION,
+                'type' => Bill::TYPE_EXTENSION,
                 'balance' => $client->plan->price,
                 'reseller_id' => $client->reseller->id,
                 'reseller_name' => $client->reseller->name,
@@ -83,8 +83,8 @@ class GenerateBill extends Command
         }
 
         try {
-            DB::transaction(function () use ($transactions) {
-                Transaction::insert($transactions);
+            DB::transaction(function () use ($bills) {
+                Bill::insert($bills);
             }, 5);
         } catch (Throwable $e) {
             Log::error($e->getMessage(), $e->getTrace());

@@ -16,7 +16,6 @@ use App\Http\Controllers\Reseller\EmployeeController;
 use App\Http\Controllers\Reseller\HistoryController;
 use App\Http\Controllers\Reseller\PlanController;
 use App\Http\Controllers\Reseller\ProfileController as ResellerProfileController;
-use App\Http\Controllers\Reseller\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,9 +78,9 @@ Route::middleware([
     Route::get('/reseller/employee', [EmployeeController::class, 'index'])->name('employee');
     Route::get('/reseller/profile', [ResellerProfileController::class, 'index'])->name('profile');
 
-    Route::get('/reseller/transactions', [TransactionController::class, 'index'])->name('transaction');
-    Route::get('/reseller/transaction/{id}', [TransactionController::class, 'show'])->name('transaction.detail')->whereNumber('id');
-    Route::get('/reseller/transactions/bills', [TransactionController::class, 'bills'])->name('transaction.bill');
+    Route::get('/reseller/transactions', [BillController::class, 'index'])->name('transaction');
+    Route::get('/reseller/transaction/{id}', [BillController::class, 'show'])->name('transaction.detail')->whereNumber('id');
+    Route::get('/reseller/transactions/bills', [BillController::class, 'bills'])->name('transaction.bill');
 });
 
 Route::middleware([
@@ -92,8 +91,8 @@ Route::middleware([
     Route::get('/adminreseller/plan', [PlanController::class, 'index'])->name('plan');
     Route::get('/adminreseller/bill', [BillController::class, 'index'])->name('bill');
     Route::get('/adminreseller/history', [HistoryController::class, 'index'])->name('history');
-    Route::get('/adminreseller/transactions', [TransactionController::class, 'index'])->name('transaction');
-    Route::get('/adminreseller/transaction/{id}', [TransactionController::class, 'show'])->name('transaction.detail')->whereNumber('id');
+    Route::get('/adminreseller/transactions', [BillController::class, 'index'])->name('transaction');
+    Route::get('/adminreseller/transaction/{id}', [BillController::class, 'show'])->name('transaction.detail')->whereNumber('id');
 });
 
 Route::middleware([
