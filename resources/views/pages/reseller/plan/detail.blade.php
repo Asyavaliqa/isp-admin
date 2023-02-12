@@ -48,6 +48,40 @@
                                 <td>{{ $plan->description ?? '-' }}</td>
                             </tr>
                             <tr>
+                                <th scope="col">Status Pajak PPN</th>
+                                <td>:</td>
+                                <td>
+                                    @if ($plan->tax_type === App\Models\Plan::TAX_INCLUDED)
+                                        <span class="badge badge-pills bg-info">
+                                            Harga Sudah termasuk PPN 11%
+                                        </span>
+                                    @else
+                                        <span class="badge badge-pills bg-danger">
+                                            Harga Belum Sudah termasuk PPN 11%
+                                        </span>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Harga Paket</th>
+                                <td>:</td>
+                                <td>{{ $plan->price_formated }}</td>
+                            </tr>
+                            @if ($plan->tax_type === App\Models\Plan::TAX_INCLUDED)
+                            <tr>
+                                <th scope="col">Jumlah Pajak</th>
+                                <td>:</td>
+                                <td>{{ $plan->tax_formated }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Harga dibayar (setelah pajak)</th>
+                                <td>:</td>
+                                <td>
+                                        {{ $plan->price_tax_formated }}
+                                </td>
+                            </tr>
+                            @endif
+                            <tr>
                                 <th scope="col">Terakhir diubah</th>
                                 <td>:</td>
                                 <td>{{ $plan->updated_at->isoFormat('dddd, D MMMM g HH:mm:ss') }}</td>

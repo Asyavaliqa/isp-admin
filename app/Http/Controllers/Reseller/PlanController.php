@@ -8,6 +8,7 @@ use App\Models\Reseller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 use Throwable;
 
 class PlanController extends Controller
@@ -73,6 +74,19 @@ class PlanController extends Controller
             'price' => 'required|numeric',
             'bandwidth' => 'required|numeric',
             'description' => 'nullable',
+            'subscription' => [
+                'required',
+                Rule::in([
+                    Plan::SUBSCRIPTION_POSTPAID,
+                ]),
+            ],
+            'tax_type' => [
+                'required',
+                Rule::in([
+                    Plan::TAX_EXCLUDED,
+                    Plan::TAX_INCLUDED,
+                ]),
+            ],
         ]);
 
         try {
@@ -83,6 +97,8 @@ class PlanController extends Controller
                 'price' => $request->input('price'),
                 'bandwidth' => $request->input('bandwidth'),
                 'description' => $request->input('description'),
+                'tax_type' => $request->input('tax_type'),
+                'subscription' => $request->input('subscription'),
                 'reseller_id' => $reseller->id,
             ]);
 
@@ -127,6 +143,19 @@ class PlanController extends Controller
             'price' => 'required|numeric',
             'bandwidth' => 'required|numeric',
             'description' => 'nullable',
+            'subscription' => [
+                'required',
+                Rule::in([
+                    Plan::SUBSCRIPTION_POSTPAID,
+                ]),
+            ],
+            'tax_type' => [
+                'required',
+                Rule::in([
+                    Plan::TAX_EXCLUDED,
+                    Plan::TAX_INCLUDED,
+                ]),
+            ],
         ]);
 
         $plan = Plan::whereHas('reseller', function ($q) {
@@ -137,6 +166,7 @@ class PlanController extends Controller
         $plan->price = $request->input('price');
         $plan->bandwidth = $request->input('bandwidth');
         $plan->description = $request->input('description');
+        $plan->tax_type = $request->input('tax_type');
 
         try {
             $plan->save();

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Bill;
 use App\Models\Client;
+use App\Models\Plan;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -63,10 +64,16 @@ class GenerateBill extends Command
                 random_number(4)
             );
 
+            if ($client->plan->tax_type === Plan::TAX_INCLUDED) {
+                $price = $client->plan->price;
+            } else {
+                $price = $client->plan->price + ($client->plan->price * Plan::TAX);
+            }
+
             array_push($bills, [
                 'invoice_id' => $invoiceId,
                 'type' => Bill::TYPE_EXTENSION,
-                'balance' => $client->plan->price,
+                'balance' => $price,
                 'reseller_id' => $client->reseller->id,
                 'reseller_name' => $client->reseller->name,
                 'client_id' => $client->id,

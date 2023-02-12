@@ -51,6 +51,40 @@
                                 <span class="input-group-text">,00</span>
                             </div>
                         </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Pajak</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" @checked($plan->tax_type === App\Models\Plan::TAX_INCLUDED) name="tax_type"
+                                        value="{{ App\Models\Plan::TAX_INCLUDED }}">
+                                    Sudah termasuk
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio"  @checked($plan->tax_type === App\Models\Plan::TAX_EXCLUDED) name="tax_type" value="{{ App\Models\Plan::TAX_EXCLUDED }}">
+                                    Belum termasuk
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Jenis Langganan</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" checked name="subscription"
+                                        value="{{ App\Models\Plan::SUBSCRIPTION_POSTPAID }}">
+                                    Pascabayar
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="subscription" disabled value="{{ App\Models\Plan::SUBSCRIPTION_POSTPAID }}">
+                                    Prabayar
+                                </label>
+                            </div>
+                        </div>
                         <div class="col-md-12 mb-3">
                             <label for="description" class="form-label">Deskripsi Paket Internet</label>
                             <textarea name="description" id="description" cols="30" rows="5" class="form-control"
@@ -58,6 +92,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
                         <a href="{{ route('business.planMenu.detail', ['id' => $plan->id]) }}" class="btn btn-danger text-white">Batalkan perubahan</a>

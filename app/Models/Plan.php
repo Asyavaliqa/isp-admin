@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +15,49 @@ class Plan extends Model
     use HasFactory, SoftDeletes;
 
     /**
+     * Plan Fixed
+     *
+     * for personal or home usage
+     */
+    const PLAN_FIXED = 'FIXED';
+
+    /**
+     * Plan Dynamic
+     *
+     * for corporate usage
+     */
+    const PLAN_DYNAMIC = 'DYNAMIC';
+
+    /**
+     * Subscription postpaid
+     */
+    const SUBSCRIPTION_POSTPAID = 'POSTPAID';
+
+    /**
+     * Subscription Prepaid
+     */
+    const SUBSCRIPTION_PREPAID = 'PREPAID';
+
+    /**
+     * Price include Tax
+     *
+     * for personal or home usage
+     */
+    const TAX_INCLUDED = 'INCLUDED';
+
+    /**
+     * Price exclude Tax
+     *
+     * for corporate usage
+     */
+    const TAX_EXCLUDED = 'EXCLUDED';
+
+    /**
+     * Tax Percentage
+     */
+    const TAX = .11;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -24,7 +68,83 @@ class Plan extends Model
         'bandwidth',
         'price',
         'description',
+        'tax_type',
+        'type',
     ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'price' => null,
+        'description' => null,
+        'tax_type' => self::TAX_INCLUDED,
+        'type' => self::PLAN_FIXED,
+        'subscription' => self::SUBSCRIPTION_POSTPAID,
+    ];
+
+    /**
+     * Format price
+     *
+     * @return Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function priceFormated(): Attribute
+    {
+        return Attribute::make(
+            function ($value, $attributes) {
+                if ($attributes['tax_type'] === self::TAX_EXCLUDED) {
+                    $price = $attributes['price'];
+                } else {
+                    $price = $attributes['price'] - ($attributes['price'] * self::TAX);
+                }
+
+                return sprintf(
+                    'Rp%s',
+                    number_format($price, 2, ',', '.')
+                );
+            }
+        );
+    }
+
+    /**
+     * Total tax from price
+     *
+     * @return Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function taxFormated(): Attribute
+    {
+        return Attribute::make(
+            fn ($value, $attributes) => sprintf(
+                'Rp%s',
+                number_format($attributes['price'] * .11, 2, ',', '.')
+            )
+        );
+    }
+
+    /**
+     * Total Price after tax
+     *
+     * @return Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function priceTaxFormated(): Attribute
+    {
+        return Attribute::make(
+            function ($value, $attributes) {
+                if ($attributes['tax_type'] === self::TAX_EXCLUDED) {
+                    $price = $attributes['price'] + ($attributes['price'] * .11);
+                } else {
+                    $price = $attributes['price'];
+                }
+
+                return sprintf(
+                    'Rp%s',
+                    number_format($price, 2, ',', '.')
+                );
+            }
+        );
+    }
 
     /**
      * Relation to reseller
