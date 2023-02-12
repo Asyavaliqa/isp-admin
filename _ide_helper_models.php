@@ -11,6 +11,62 @@
 
 namespace App\Models{
     /**
+     * App\Models\Bill
+     *
+     * @property int $id
+     * @property string $invoice_id
+     * @property int $type
+     * @property string $balance
+     * @property string|null $bill_photo
+     * @property int|null $reseller_id
+     * @property string $reseller_name
+     * @property int|null $client_id
+     * @property string $client_name
+     * @property int|null $plan_id
+     * @property string $plan_name
+     * @property string|null $description
+     * @property string|null $accepted_at
+     * @property string|null $payed_at
+     * @property \Illuminate\Support\Carbon|null $deleted_at
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Models\Client|null $client
+     * @property-read \App\Models\Plan|null $plan
+     * @property-read \App\Models\Reseller|null $reseller
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill onlyTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill query()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereAcceptedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereBalance($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereBillPhoto($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereClientId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereClientName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereDeletedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereDescription($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereInvoiceId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill wherePayedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill wherePlanId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill wherePlanName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereResellerId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereResellerName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill withTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Bill withoutTrashed()
+     *
+     * @mixin \Eloquent
+     */
+    class IdeHelperBill
+    {
+    }
+}
+
+namespace App\Models{
+    /**
      * App\Models\Client
      *
      * @property int $id
@@ -22,10 +78,11 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $deleted_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Bill> $bills
+     * @property-read int|null $bills_count
+     * @property-read \App\Models\Bill|null $lastBill
      * @property-read \App\Models\Plan $plan
      * @property-read \App\Models\Reseller $reseller
-     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Transaction> $transactions
-     * @property-read int|null $transactions_count
      * @property-read \App\Models\User $user
      *
      * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client newModelQuery()
@@ -241,58 +298,6 @@ namespace App\Models{
      * @mixin \Eloquent
      */
     class IdeHelperSession
-    {
-    }
-}
-
-namespace App\Models{
-    /**
-     * App\Models\Transaction
-     *
-     * @property int $id
-     * @property string $invoice_id
-     * @property int $type
-     * @property string $balance
-     * @property string|null $bill_photo
-     * @property int|null $reseller_id
-     * @property string $reseller_name
-     * @property int|null $client_id
-     * @property string $client_name
-     * @property int|null $plan_id
-     * @property string $plan_name
-     * @property string|null $accepted_at
-     * @property \Illuminate\Support\Carbon|null $deleted_at
-     * @property \Illuminate\Support\Carbon|null $created_at
-     * @property \Illuminate\Support\Carbon|null $updated_at
-     * @property-read \App\Models\Client|null $client
-     * @property-read \App\Models\Plan|null $plan
-     * @property-read \App\Models\Reseller|null $reseller
-     *
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction onlyTrashed()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction query()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereAcceptedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereBalance($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereBillPhoto($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereClientId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereClientName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereDeletedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereInvoiceId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction wherePlanId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction wherePlanName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereResellerId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereResellerName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereType($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereUpdatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction withTrashed()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction withoutTrashed()
-     *
-     * @mixin \Eloquent
-     */
-    class IdeHelperTransaction
     {
     }
 }
