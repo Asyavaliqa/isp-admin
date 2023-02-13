@@ -115,6 +115,7 @@
                     orderable: false,
                     targets: 0,
                 }],
+                order: [[0, 'desc']],
                 language: {
                     url: '{{ asset('/js/datatable-id.json') }}',
                 },
