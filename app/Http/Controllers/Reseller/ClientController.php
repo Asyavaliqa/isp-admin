@@ -148,10 +148,28 @@ class ClientController extends Controller
             'ppn' => 'nullable',
         ]);
 
+        $photoPath = null;
+
+        try {
+            if ($request->hasFile('photo')) {
+                $logo = Image::make($request->file('photo'));
+                $logo->fit($logo->width());
+
+                $photoPath = 'images/client/' . Str::slug($request->input('name')) . time() . '.webp';
+
+                Storage::disk('public')->put(
+                    $photoPath,
+                    $logo->encode('webp')
+                );
+            }
+        } catch (Throwable $e) {
+            Log::error($e->getMessage(), $e->getTrace());
+        }
+
         $user = User::find($client->user_id);
 
         try {
-            DB::transaction(function () use (&$request, &$client, &$user) {
+            DB::transaction(function () use (&$request, &$client, &$user, &$photoPath) {
                 $allowedInput = [
                     'fullname',
                     'username',
@@ -167,6 +185,10 @@ class ClientController extends Controller
                     if ($request->has($key)) {
                         $user->{$key} = $request->input($key);
                     }
+                }
+
+                if ($photoPath) {
+                    $user->photo = $photoPath ? 'storage/' . $photoPath : null;
                 }
 
                 $user->save();
@@ -186,6 +208,9 @@ class ClientController extends Controller
                 ->route('business.clientMenu.index')
                 ->with('status', 'Pelanggan "' . $user->fullname . '" Telah Diubah');
         } catch (Throwable $e) {
+            if ($photoPath) {
+                Storage::delete($photoPath);
+            }
             Log::critical($e->getMessage(), $e->getTrace());
 
             return abort(500, $e->getMessage());
@@ -286,6 +311,10 @@ class ClientController extends Controller
                 ->route('business.clientMenu.index')
                 ->with('status', 'Pelanggan ' . $request->input('fullname') . ' Telah Ditambahkan');
         } catch (Throwable $e) {
+            if ($photoPath) {
+                Storage::delete($photoPath);
+            }
+
             Log::critical($e->getMessage(), $e->getTrace());
 
             return abort(500, $e->getMessage());
