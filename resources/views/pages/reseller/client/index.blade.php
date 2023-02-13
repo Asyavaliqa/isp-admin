@@ -125,7 +125,7 @@
                         className: 'align-middle',
                         render: (data, type, row, meta) => {
                             const photoUrl = row.user.photo ?? 'assets/brand/GMDP_100x100.png'
-                            return `<a href="{{ route('business.clientMenu.detail') }}/${row.user_id}">
+                            return `<a href="{{ route('business.clientMenu.detail') }}/${row.id}">
                                 <img alt="${row.user.fullname}"
                                     src="{{ asset('') }}${photoUrl}"
                                     class="img-thumbnail rounded-circle" style="width: 60px">
