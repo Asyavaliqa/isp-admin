@@ -5,7 +5,7 @@
     "infoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
     "lengthMenu": "Tampilkan _MENU_ entri",
     "loadingRecords": "Sedang memuat...",
-    "processing": "Sedang memproses...",
+    "processing": "<div class=\"text-center mt-2 align-middle\"><div class=\"spinner-border\" role=\"status\"><span class=\"visually-hidden\">Loading...</span></div><div class=\"mt-2\">Loading ..</div></div>",
     "search": "Cari:",
     "zeroRecords": "Tidak ditemukan data yang sesuai",
     "thousands": "'",
