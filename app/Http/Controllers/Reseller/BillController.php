@@ -4,13 +4,19 @@ namespace App\Http\Controllers\Reseller;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bill;
-use App\Models\Reseller;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class BillController extends Controller
 {
+    /**
+     * Outstanding balance bill
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function outstanding(Request $request)
     {
         $bills = $this->_getTransactions($request);
@@ -18,12 +24,22 @@ class BillController extends Controller
         $bills->whereNull('payed_at');
         $bills->whereNull('accepted_at');
 
+        if ($request->ajax() || $request->has('is_ajax')) {
+            return DataTables::eloquent($bills)->toJson();
+        }
+
         return view('pages.reseller.transaction.index', [
             'title' => 'Tagihan Terhutang',
-            'bills' => $bills->paginate(20)->appends($request->all()),
+            // 'bills' => $bills->paginate(20)->appends($request->all()),
         ]);
     }
 
+    /**
+     * Paid bill but not confirmed
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function paid(Request $request)
     {
         $bills = $this->_getTransactions($request);
@@ -31,12 +47,22 @@ class BillController extends Controller
         $bills->whereNotNull('payed_at');
         $bills->whereNull('accepted_at');
 
+        if ($request->ajax() || $request->has('is_ajax')) {
+            return DataTables::eloquent($bills)->toJson();
+        }
+
         return view('pages.reseller.transaction.index', [
             'title' => 'Tagihan Yang Telah Dibayar',
-            'bills' => $bills->paginate(20)->appends($request->all()),
+            // 'bills' => $bills->paginate(20)->appends($request->all()),
         ]);
     }
 
+    /**
+     * Bill has been paid and confirmed
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function paidOff(Request $request)
     {
         $bills = $this->_getTransactions($request);
@@ -44,9 +70,13 @@ class BillController extends Controller
         $bills->whereNotNull('payed_at');
         $bills->whereNotNull('accepted_at');
 
+        if ($request->ajax() || $request->has('is_ajax')) {
+            return DataTables::eloquent($bills)->toJson();
+        }
+
         return view('pages.reseller.transaction.index', [
             'title' => 'Tagihan Selesai',
-            'bills' => $bills->paginate(20)->appends($request->all()),
+            // 'bills' => $bills->paginate(20)->appends($request->all()),
         ]);
     }
 
@@ -94,14 +124,11 @@ class BillController extends Controller
      */
     private function _getTransactions(Request $request): Builder
     {
-        $reseller = Reseller::select('id')->where('user_id', Auth::id())->first();
-
-        $bills = Bill::where('reseller_id', $reseller->id)
+        $bills = Bill::whereHas('reseller', fn ($q) => $q->where('user_id', Auth::id()))
             ->with([
                 'client:id,user_id',
                 'client.user',
-            ])
-            ->latest();
+            ]);
 
         if ($request->has('client_id')) {
             $bills->where('client_id', $request->client_id);
