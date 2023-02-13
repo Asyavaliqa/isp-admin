@@ -25,6 +25,8 @@ class ResellerSeeder extends Seeder
                 'user_id' => $owner->id,
             ])->makeOne()->toArray());
 
+            $reseller->employees()->attach($owner->id);
+
             $resellerAdmin = User::factory(1, [
                 'username' => 'reseller_admin',
                 'created_at' => $reseller->created_at,

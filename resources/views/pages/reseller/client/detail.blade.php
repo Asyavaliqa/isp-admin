@@ -56,7 +56,7 @@
                                     <tr>
                                         <td scope="col"><strong>Tanggal Lahir</strong></td>
                                         <td>:</td>
-                                        <td>{{ $client->user->birth->isoFormat('dddd, D MMMM g') ?? '-' }}</td>
+                                        <td>{{ $client->user->birth?->isoFormat('dddd, D MMMM g') ?? '-' }}</td>
                                     </tr>
                                     <tr>
                                         <td scope="col"><strong>Alamat</strong></td>

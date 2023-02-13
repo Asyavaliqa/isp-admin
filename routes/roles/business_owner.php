@@ -27,6 +27,12 @@ Route::prefix('plan')->name('planMenu.')->group(function () {
 
 Route::prefix('employee')->name('employeeMenu.')->group(function () {
     Route::get('/', [EmployeeController::class, 'index'])->name('index');
+    Route::get('/{id?}', [EmployeeController::class, 'detail'])->name('detail')->whereNumber('id');
+    Route::get('/create', [EmployeeController::class, 'create'])->name('create');
+    Route::post('/create', [EmployeeController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [EmployeeController::class, 'edit'])->name('edit')->whereNumber('id');
+    Route::post('/edit/{id}', [EmployeeController::class, 'update'])->name('update')->whereNumber('id');
+    Route::get('/delete/{id}', [EmployeeController::class, 'delete'])->name('delete')->whereNumber('id');
 });
 
 Route::prefix('bill')->name('billMenu.')->group(function () {
