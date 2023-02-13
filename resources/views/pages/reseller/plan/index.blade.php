@@ -99,6 +99,8 @@
 
 @section('script')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js">
+    </script>
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
     <script>
@@ -106,12 +108,17 @@
             const planTable = $('#planTable').DataTable({
                 serverSide: true,
                 processing: true,
-                ajax: '{{ route('business.planMenu.dataTable') }}',
+                ajax: '',
+                info: true,
                 columnDefs: [{
                     searchable: false,
                     orderable: false,
                     targets: 0,
                 }],
+                order: [[0, 'desc']],
+                language: {
+                    url: '{{ asset('/js/datatable-id.json') }}',
+                },
                 stateSave: true,
                 pagingType: 'simple_numbers',
                 columns: [{
@@ -166,7 +173,7 @@
                         name: 'price',
                         searchable: false,
                         orderable: true,
-                        render: $.fn.dataTable.render.number( '.', ',', 2, 'Rp' )
+                        render: $.fn.dataTable.render.number('.', ',', 2, 'Rp')
                     },
                     {
                         data: 'tax_type',

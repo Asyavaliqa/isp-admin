@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Throwable;
+use Yajra\DataTables\Facades\DataTables;
 
 class ClientController extends Controller
 {
@@ -36,11 +37,14 @@ class ClientController extends Controller
             'plan:id,name',
         ])->whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
-        })->paginate();
+        });
+
+        if ($request->ajax() || $request->has('is_ajax')) {
+            return DataTables::eloquent($clients)->toJson();
+        }
 
         return view('pages.reseller.client.index', [
             'title' => 'Tambah Pelanggan',
-            'clients' => $clients,
         ]);
     }
 

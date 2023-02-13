@@ -24,11 +24,15 @@ class PlanController extends Controller
     {
         $plans = Plan::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
-        })->withCount('clients')->orderBy('id', 'desc');
+        })->withCount('clients');
+
+        if ($request->ajax() || $request->has('ajax')) {
+            return DataTables::eloquent($plans)->setRowId('id')->toJson();
+        }
 
         return view('pages.reseller.plan.index', [
             'title' => 'Paket Internet',
-            'plans' => $plans->paginate(20)->appends($request->all()),
+            // 'plans' => $plans->paginate(20)->appends($request->all()),
         ]);
     }
 

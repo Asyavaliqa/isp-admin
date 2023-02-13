@@ -61,6 +61,7 @@ class BillSeeder extends Seeder
                     ),
                     'accepted_at' => $now->addHour(),
                     'payed_at' => $now->addMinutes(15),
+                    'payment_month' => $now->setDay(1)->subMonth(),
                     'created_at' => $now,
                     'updated_at' => $now,
                 ]);

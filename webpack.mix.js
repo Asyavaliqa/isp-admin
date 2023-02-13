@@ -41,6 +41,7 @@ mix.js('resources/js/popovers.js', PATH + '/js');
 mix.js('resources/js/toasts.js', PATH + '/js');
 mix.js('resources/js/tooltips.js', PATH + '/js');
 mix.js('resources/js/widgets.js', PATH + '/js');
+mix.copy('resources/js/datatable-id.json', PATH + '/js');
 
 mix.copyDirectory('resources/assets', PATH + '/assets')
 
