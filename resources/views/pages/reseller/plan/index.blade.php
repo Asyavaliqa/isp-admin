@@ -112,6 +112,9 @@
                     orderable: false,
                     targets: 0,
                 }],
+                language: {
+                    url: '{{ asset('/js/datatable-id.json') }}',
+                },
                 stateSave: true,
                 pagingType: 'simple_numbers',
                 columns: [{
