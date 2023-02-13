@@ -16,6 +16,7 @@
                         <table class="table table-hover align-middle custom-table" id="billTable">
                             <thead class="align-middle">
                                 <tr>
+                                    <th scope="col">#</th>
                                     <th scope="col">Invoice</th>
                                     <th scope="col">Pelanggan</th>
                                     <th scope="col">Paket</th>
@@ -55,10 +56,18 @@
                 },
                 stateSave: true,
                 pagingType: 'simple_numbers',
+                order: [[0, 'desc']],
                 columns: [
                     {
-                        data: 'invoice_id',
+                        data: 'id',
                         name: 'id',
+                        orderable: true,
+                        searchable: false,
+                        className: 'text-center',
+                    },
+                    {
+                        data: 'invoice_id',
+                        name: 'invoice_id',
                         searchable: false,
                         orderable: true,
                         className: 'dt-center',
@@ -133,16 +142,16 @@
                 ],
             })
 
-            // table.on('order.dt search.dt', function() {
-            //     let i = 1;
+            table.on('order.dt search.dt', function() {
+                let i = 1;
 
-            //     table.cells(null, 0, {
-            //         search: 'applied',
-            //         order: 'applied'
-            //     }).every(function(cell) {
-            //         this.data(i++);
-            //     });
-            // }).draw();
+                table.cells(null, 0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).every(function(cell) {
+                    this.data(i++);
+                });
+            }).draw();
         })
     </script>
 @endsection
