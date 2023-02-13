@@ -107,6 +107,7 @@
                 language: {
                     url: '{{ asset('/js/datatable-id.json') }}',
                 },
+                order: [[0, 'desc']],
                 stateSave: true,
                 pagingType: 'simple_numbers',
                 columns: [
