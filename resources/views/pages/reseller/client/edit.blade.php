@@ -51,7 +51,7 @@
                             <div class="col-md-6 mb-3">
                                 <label for="birth" class="form-label">Tanggal Lahir</label>
                                 <input type="date" name="birth" id="birth" class="form-control"
-                                    value="{{ old('birth') ?? $client->user->birth->format('Y-m-d') }}">
+                                    value="{{ old('birth') ?? $client->user->birth?->format('Y-m-d') }}">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="gender" class="form-label">Jenis Kelamin</label>
