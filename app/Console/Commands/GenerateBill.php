@@ -85,6 +85,7 @@ class GenerateBill extends Command
                     $client->plan->name
                 ),
                 'created_at' => $now,
+                'payment_month' => $now->setDay(1)->subMonth(),
                 'updated_at' => $now,
             ]);
         }

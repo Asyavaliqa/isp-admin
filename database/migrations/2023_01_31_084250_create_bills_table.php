@@ -28,6 +28,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamp('accepted_at')->nullable();
             $table->timestamp('payed_at')->nullable();
+            $table->date('payment_month')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
