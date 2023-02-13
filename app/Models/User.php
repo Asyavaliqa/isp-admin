@@ -3,10 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -55,6 +58,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['created_at_formated'];
+
+    /**
      * Relation to all user sessions
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -62,6 +72,16 @@ class User extends Authenticatable
     public function sessions()
     {
         return $this->hasMany(Session::class, 'user_id', 'id');
+    }
+
+    /**
+     * Relation to resellers
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function resellers()
+    {
+        return $this->belongsToMany(Reseller::class, 'reseller_employee')->withTimestamps();
     }
 
     /**
@@ -75,12 +95,27 @@ class User extends Authenticatable
     }
 
     /**
-     * Relation to reseller data (if exitst)
+     * Relation to reseller owner data (if exitst)
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function reseller()
     {
         return $this->hasOne(Reseller::class);
+    }
+
+    /**
+     * Format creation datetime
+     *
+     * @return Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function createdAtFormated(): Attribute
+    {
+        return Attribute::make(
+            function ($value, $attributes) {
+                return Carbon::parse($attributes['created_at'])
+                    ->isoFormat('dddd, D MMMM g');
+            }
+        );
     }
 }
