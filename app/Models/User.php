@@ -113,6 +113,10 @@ class User extends Authenticatable
     {
         return Attribute::make(
             function ($value, $attributes) {
+                if (empty($attributes['created_at'])) {
+                    return null;
+                }
+
                 return Carbon::parse($attributes['created_at'])
                     ->isoFormat('dddd, D MMMM g');
             }
