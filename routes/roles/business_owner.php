@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('client')->name('clientMenu.')->group(function () {
     Route::get('/', [ClientController::class, 'index'])->name('index');
-    Route::get('/{id}', [ClientController::class, 'detail'])->name('detail')->whereNumber('id');
+    Route::get('/{id?}', [ClientController::class, 'detail'])->name('detail')->whereNumber('id');
     Route::get('/create', [ClientController::class, 'create'])->name('create');
     Route::post('/create', [ClientController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [ClientController::class, 'edit'])->name('edit')->whereNumber('id');
@@ -32,7 +32,7 @@ Route::prefix('employee')->name('employeeMenu.')->group(function () {
 Route::prefix('bill')->name('billMenu.')->group(function () {
     Route::get('/', [BillController::class, 'index'])->name('index');
     Route::get('/history', [BillController::class, 'index'])->name('history');
-    Route::get('/{id}', [BillController::class, 'show'])->name('detail')->whereNumber('id');
+    Route::get('/{id?}', [BillController::class, 'show'])->name('detail')->whereNumber('id');
     Route::get('//bills', [BillController::class, 'bills'])->name('bill');
 
     Route::get('/outstanding', [BillController::class, 'outstanding'])->name('outstanding');
