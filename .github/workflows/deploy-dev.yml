@@ -46,7 +46,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /var/www
+            cd /var/www/ebilling-dev.gmdp.net.id
             php artisan down
 
       - name: Fetch latest code
@@ -57,7 +57,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /var/www
+            cd /var/www/ebilling-dev.gmdp.net.id
             git fetch origin master
             git reset --hard FETCH_HEAD
 
@@ -70,7 +70,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /var/www
+            cd /var/www/ebilling-dev.gmdp.net.id
             composer install -n
 
       - name: Installing and rebuild resources
@@ -82,7 +82,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /var/www
+            cd /var/www/ebilling-dev.gmdp.net.id
             npm ci
             npm run dev
             php artisan storage:link
@@ -96,7 +96,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /var/www
+            cd /var/www/ebilling-dev.gmdp.net.id
             php artisan migrate:fresh --seed --force
 
       - name: Deactivate maintenance mode
@@ -107,5 +107,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /var/www
+            cd /var/www/ebilling-dev.gmdp.net.id
             php artisan up
