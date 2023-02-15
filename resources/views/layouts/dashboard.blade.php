@@ -162,30 +162,30 @@
                         href="{{ route('business.clientMenu.index') }}">
                         <i class="nav-icon cil cil-user"></i> Pelanggan </a>
                 </li>
-            @endhasanyrole
+            @endhasanyrole --}}
 
             @hasanyrole(\App\Models\Role::CLIENT)
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::route()->getName() == 'client.invoice' ? 'active' : '' }}"
-                        href="{{ route('client.invoice') }}">
+                    <a class="nav-link {{ Request::route()->getName() == 'client.invoiceMenu.index' ? 'active' : '' }}"
+                        href="{{ route('client.invoiceMenu.index') }}">
                         <i class="nav-icon cil cil-user"></i> Tagihan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::route()->getName() == 'client.bill' ? 'active' : '' }}"
-                        href="{{ route('client.bill') }}">
+                    <a class="nav-link {{ Request::route()->getName() == 'client.billMenu.index' ? 'active' : '' }}"
+                        href="{{ route('client.billMenu.index') }}">
                         <i class="nav-icon cil cil-gem"></i> Transaksi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::route()->getName() == 'client.payment' ? 'active' : '' }}"
-                        href="{{ route('client.payment') }}">
+                    <a class="nav-link {{ Request::route()->getName() == 'client.paymentMenu.index' ? 'active' : '' }}"
+                        href="{{ route('client.paymentMenu.index') }}">
                         <i class="nav-icon cil cil-user"></i> Pembayaran</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::route()->getName() == 'client.profile' ? 'active' : '' }}"
-                        href="{{ route('client.profile') }}">
+                    <a class="nav-link {{ Request::route()->getName() == 'client.profileMenu.index' ? 'active' : '' }}"
+                        href="{{ route('client.profileMenu.index') }}">
                         <i class="nav-icon cil cil-user"></i> Profile</a>
                 </li>
-            @endhasanyrole --}}
+            @endhasanyrole
 
             {{-- /Admin --}}
             {{-- <li class="nav-divider"></li>
