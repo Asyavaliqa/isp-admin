@@ -47,9 +47,7 @@ class GenerateBill extends Command
             $now = now()->setMonth(1)->setDay(1);
             $createdAt = CarbonImmutable::parse($client->lastBill->payment_month);
             $diffMonth = CarbonImmutable::parse($createdAt->format('Y-m'))
-                ->setHour($now->hour())
-                ->setMinute($now->minute())
-                ->setSecond($now->second())
+                ->setTime($now->hour, $now->minute, $now->second)
                 ->diffInMonths($now);
 
             // Skip creating bill when user had bill
