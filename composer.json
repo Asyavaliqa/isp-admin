@@ -20,6 +20,7 @@
         "barryvdh/laravel-debugbar": "^3.7",
         "barryvdh/laravel-ide-helper": "^2.12",
         "beyondcode/laravel-query-detector": "^1.6",
+        "deployer/deployer": "^7.1",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
