@@ -14,14 +14,16 @@
                 <div class="card-body py-4">
                     <div class="d-flex justify-content-between mb-3">
                         <div class="px-3">
-                        <a href="{{ route('business.clientMenu.create') }}" class="btn btn-primary btn-outline">Tambah Pelanggan</a>
-                    </div>
+                            <a href="{{ route('business.clientMenu.create') }}" class="btn btn-primary btn-outline">Tambah
+                                Pelanggan</a>
+                        </div>
                     </div>
                     @if (session('status'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Berhasil!</strong> {{ session('status') }}
-                        <button type="button" class="btn-close" data-coreui-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Berhasil!</strong> {{ session('status') }}
+                            <button type="button" class="btn-close" data-coreui-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
                     @endif
                     <div class="table-responsive p-2">
                         <table class="table table-hover align-middle custom-table" id="clientTable">
@@ -110,8 +112,7 @@
                 order: [[0, 'desc']],
                 stateSave: true,
                 pagingType: 'simple_numbers',
-                columns: [
-                    {
+                columns: [{
                         data: 'id',
                         name: 'id',
                         searchable: false,
@@ -179,16 +180,16 @@
                 ],
             })
 
-            table.on('order.dt search.dt', function() {
-                let i = 1;
-
-                table.cells(null, 0, {
+            table.on('draw.dt', function() {
+                var info = table.page.info();
+                table.column(0, {
                     search: 'applied',
-                    order: 'applied'
-                }).every(function(cell) {
-                    this.data(i++);
+                    order: 'applied',
+                    page: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1 + info.start;
                 });
-            }).draw();
+            });
         })
     </script>
 @endsection
