@@ -5,8 +5,8 @@ namespace App\Console\Commands;
 use App\Models\Bill;
 use App\Models\Client;
 use App\Models\Plan;
+use Carbon\CarbonImmutable;
 use Illuminate\Console\Command;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Log;
 use Throwable;
@@ -32,13 +32,8 @@ class GenerateBill extends Command
      *
      * @return int
      */
-    public function handle($month = null)
+    public function handle()
     {
-        $now = now();
-        if (empty($month)) {
-            $month = $now->format('m');
-        }
-
         $clients = Client::with([
             'user:id,fullname',
             'plan:id,name,price',
@@ -49,13 +44,18 @@ class GenerateBill extends Command
         $bills = [];
 
         foreach ($clients as $client) {
-            $createdAt = Carbon::parse($client->lastBill->created_at ?? now()->setDay(1)->subMonths(1));
-            $diffMonth = Carbon::parse($createdAt->format('Y-m'))->diffInMonths();
+            $now = now()->setMonth(1)->setDay(1);
+            $createdAt = CarbonImmutable::parse($client->lastBill->payment_month);
+            $diffMonth = CarbonImmutable::parse($createdAt->format('Y-m'))
+                ->setTime($now->hour, $now->minute, $now->second)
+                ->diffInMonths($now);
 
             // Skip creating bill when user had bill
             if (empty($diffMonth)) {
                 continue;
             }
+
+            $now = $createdAt->addMonths(2);
 
             $invoiceId = sprintf(
                 'INV/%s/%03d/%s',

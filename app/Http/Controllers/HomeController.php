@@ -8,7 +8,10 @@ use App\Models\Reseller;
 use App\Models\Role;
 use App\Models\User;
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterval;
+use DatePeriod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -107,56 +110,94 @@ class HomeController extends Controller
     public function resellerOwnerPages(Request $request)
     {
         $currentMonth = CarbonImmutable::parse(date('Y-m') . '-1');
-        $from = $currentMonth->subMonth(6)->toDateTimeString();
+        $from = $currentMonth->subMonth(12)->toDateTimeString();
         $to = $currentMonth->toDateTimeString();
 
         $bills = Bill::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })
-            ->select(DB::raw('sum(balance) as total'), DB::raw('CONCAT(MONTHNAME(created_at), " / ", YEAR(created_at)) as month_name'))
-            ->whereBetween('created_at', [$from, $to])
-            ->groupBy(DB::raw('MONTH(created_at)'), DB::raw('month_name'), DB::raw('YEAR(created_at)'))
-            ->orderBy('id', 'ASC')
-            ->pluck('total', 'month_name');
+        ->select(DB::raw('sum(balance) as total'), DB::raw('DATE_FORMAT(payment_month,\'%Y-%m-01\') as monthNum'))
+            ->whereBetween('payment_month', [$from, $to])
+            ->orderBy('monthNum')
+            ->groupBy('monthNum')
+            ->whereNotNull('payed_at')
+            ->whereNotNull('accepted_at')->get();
+
+        $bills = $this->graph($bills, $from, $to);
+
+        $outstanding = Bill::whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })
+            ->select(DB::raw('sum(balance) as total'), DB::raw('DATE_FORMAT(payment_month,\'%Y-%m-01\') as monthNum'))
+            ->whereBetween('payment_month', [$from, $to])
+            ->orderBy('monthNum')
+            ->groupBy('monthNum')
+            ->whereNull('payed_at')
+            ->orWhereNull('accepted_at')->get();
+
+        $outstanding = $this->graph($outstanding, $from, $to);
 
         $clients = Client::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })
-            ->select(DB::raw('COUNT(id) as count'), DB::raw('CONCAT(MONTHNAME(created_at), " / ", YEAR(created_at)) as month_name'))
+            ->select(DB::raw('count(id) as total'), DB::raw('DATE_FORMAT(created_at,\'%Y-%m-01\') as monthNum'))
             ->whereBetween('created_at', [$from, $to])
-            ->groupBy(DB::raw('month_name'), DB::raw('YEAR(created_at)'))
-            ->orderBy('id', 'ASC')
-            ->pluck('count', 'month_name');
+            ->orderBy('monthNum')
+            ->groupBy('monthNum')->get();
 
-        $totalClient = Client::whereHas('reseller', function ($q) {
+        $clients = $this->graph($clients, $from, $to);
+
+        $clientsData = [];
+        foreach ($clients->values as $value) {
+            $clientsData[] = (last($clientsData) ?? 0) + $value;
+        }
+
+        $totalClient = Client::select(DB::raw('count(id) as total'))->whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
-        })->count();
+        })->first()?->total ?? 0;
+
+        $totalPPNUsers = Client::select(DB::raw('count(id) as total'))->whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->where('is_ppn', true)
+            ->first()?->total ?? 0;
+
+        $totalNonPPNUsers = Client::select(DB::raw('count(id) as total'))->whereHas('reseller', function ($q) {
+            $q->where('user_id', Auth::id());
+        })->where('is_ppn', false)
+            ->first()?->total ?? 0;
 
         $totalEmployee = Reseller::where('user_id', Auth::id())
             ->withCount('employees')->first()->employees_count;
 
-        $unpayedBill = Bill::whereHas('reseller', function ($q) {
+        $unpayedBill = Bill::select(DB::raw('count(id) as total'))->whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })
             ->whereNull('accepted_at')
-            ->count();
+            ->first()->total ?? 0;
 
+        $lastMonth = $currentMonth->subMonth();
         $totalEarning = Bill::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })
-        ->select(DB::raw('SUM(balance) as total'))
-            ->whereMonth('created_at', now()->format('m') - 1)
+            ->select(DB::raw('SUM(balance) as total'))
+            ->whereMonth('payment_month', $lastMonth->format('m'))
+            ->whereYear('payment_month', $lastMonth->format('Y'))
             ->whereNotNull('accepted_at')
-            ->first()?->total;
+            ->whereNotNull('payed_at')
+            ->first()?->total ?? 0;
 
         return view('pages.reseller.home', [
             'client' => [
-                'labels' => $clients->keys(),
-                'data' => $clients->values(),
+                'labels' => $clients->keys,
+                'data' => $clientsData,
             ],
             'earning' => [
-                'labels' => $bills->keys(),
-                'data' => $bills->values(),
+                'labels' => $bills->keys,
+                'data' => $bills->values,
+            ],
+            'outstanding' => [
+                'labels' => $outstanding->keys,
+                'data' => $outstanding->values,
             ],
             'widget' => [
                 'totalClient' => $totalClient ?? 0,
@@ -164,6 +205,8 @@ class HomeController extends Controller
                 'unpayedBill' => $unpayedBill ?? 0,
                 'totalEarning' => $totalEarning ?? 0,
             ],
+            'totalPPNusers' => $totalPPNUsers,
+            'totalNonPPNUsers' => $totalNonPPNUsers,
         ]);
     }
 
@@ -196,5 +239,34 @@ class HomeController extends Controller
     public function clientPages(Request $request)
     {
         return view('pages.client.home');
+    }
+
+    /**
+     * Generate Graph data
+     */
+    public function graph($results, $from, $to)
+    {
+        $results = collect($results)->keyBy('monthNum')->map(function ($item) {
+            $item->monthNum = Carbon::parse($item->monthNum);
+
+            return $item;
+        });
+
+        $periods = new DatePeriod(Carbon::parse($from), CarbonInterval::month(), Carbon::parse($to));
+
+        $keys = [];
+        $values = [];
+
+        foreach ($periods as $period) {
+            $monthKey = $period->format('Y-m-') . '01';
+
+            $keys[] = Carbon::parse($period)->isoFormat('MMMM g');
+            $values[] = $results->get($monthKey)->total ?? 0;
+        }
+
+        return (object) [
+            'keys' => $keys,
+            'values' => $values,
+        ];
     }
 }

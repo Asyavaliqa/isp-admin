@@ -6,6 +6,7 @@ use App\Models\Bill;
 use App\Models\Client;
 use App\Models\Plan;
 use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Seeder;
 
 class BillSeeder extends Seeder
@@ -25,8 +26,11 @@ class BillSeeder extends Seeder
         ])->get();
 
         foreach ($clients as $client) {
-            for ($i = 0; $i < Carbon::parse($client->created_at->format('Y-m'))->diffInMonths(now()) - 1; $i++) {
-                $now = Carbon::parse($client->created_at->format('Y-m'))->addMonths($i + 1)->addDays(mt_rand(1, 3));
+            $now = Carbon::parse($client->created_at)->setDay(1);
+            $totalMonth = $now->diffInMonths(now()) - 1;
+
+            for ($i = 1; $i <= $totalMonth; $i++) {
+                $current = CarbonImmutable::parse($now->addMonth());
 
                 $invoiceId = sprintf(
                     'INV/%s/%03d/%s',
@@ -59,11 +63,11 @@ class BillSeeder extends Seeder
                         'Perpanjangan paket %s',
                         $client->plan->name
                     ),
-                    'accepted_at' => $now->addHour(),
-                    'payed_at' => $now->addMinutes(15),
-                    'payment_month' => $now->setDay(1)->subMonth(),
-                    'created_at' => $now,
-                    'updated_at' => $now,
+                    'accepted_at' => $current->addHour(),
+                    'payed_at' => $current->addMinutes(15),
+                    'payment_month' => $current->setDay(1)->subMonth(),
+                    'created_at' => $current,
+                    'updated_at' => $current,
                 ]);
             }
         }

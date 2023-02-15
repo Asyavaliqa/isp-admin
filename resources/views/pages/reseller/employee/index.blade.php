@@ -23,9 +23,9 @@
                         <button type="button" class="btn-close" data-coreui-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
-                <div class="table-responsive p-3">
+                <div class="table-responsive p-2">
                     <table class="table table-hover align-middle custom-table" id="staffTable">
-                        <thead>
+                        <thead class="align-middle">
                             <tr>
                               <th scope="col">#</th>
                               <th scope="col">Nama</th>
@@ -135,16 +135,16 @@
                 ],
             })
 
-            table.on('order.dt search.dt', function() {
-                let i = 1;
-
-                table.cells(null, 0, {
+            table.on('draw.dt', function() {
+                var info = table.page.info();
+                table.column(0, {
                     search: 'applied',
-                    order: 'applied'
-                }).every(function(cell) {
-                    this.data(i++);
+                    order: 'applied',
+                    page: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1 + info.start;
                 });
-            }).draw();
+            });
         })
     </script>
 @endsection
