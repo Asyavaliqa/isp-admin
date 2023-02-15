@@ -1,0 +1,37 @@
+name: Deploy to production
+
+on:
+  workflow_dispatch:
+
+concurrency: production_environment
+
+jobs:
+    deploy:
+        name: Deployment
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.2
+
+            - name: Install Dependencies
+              run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+            - name: Make envfile
+              uses: SpicyPizza/create-envfile@v1.3
+              with:
+                  envkey_DEPLOYER_HOSTNAME: ${{ secrets.DEPLOYER_HOSTNAME }}
+                  envkey_DEPLOYER_PORT: ${{ secrets.DEPLOYER_PORT }}
+                  envkey_DEPLOYER_REMOTE_USER: ${{ secrets.DEPLOYER_REMOTE_USER }}
+                  envkey_DEPLOYER_DEPLOY_PATH: ${{ secrets.DEPLOYER_DEPLOY_PATH }}
+
+            - name: Deploy
+              uses: deployphp/action@master
+              with:
+                  private-key: ${{ secrets.PRIVATE_KEY }}
+                  known-hosts: ${{ secrets.KNOWN_HOSTS }}
+                  dep: deploy ${{ github.event.inputs.deploy_env }} -v
