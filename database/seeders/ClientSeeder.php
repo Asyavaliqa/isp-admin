@@ -23,14 +23,14 @@ class ClientSeeder extends Seeder
         $reseller = Reseller::first();
         $plans = Plan::select('id')->where('reseller_id', $reseller->id)->get();
         $planIds = Arr::pluck($plans, 'id');
-        $createdAt = now()->setMonth(1)->setDay(1)->subYear();
+        $createdAt = now()->setMonth(1)->setDay(1)->subYears(1)->subMonths(2);
 
         $client = User::factory(1, [
             'username' => 'client',
             'created_at' => $createdAt,
             'updated_at' => $createdAt,
         ])->create();
-        $dummyClients = User::factory(mt_rand(12, 18), [
+        $dummyClients = User::factory(mt_rand(12, 15), [
             'created_at' => $createdAt,
             'updated_at' => $createdAt,
         ])->create();
