@@ -66,7 +66,7 @@ Route::middleware([
         sprintf('role:', Role::CLIENT),
     ])
         ->prefix('client')
-        ->name('client')
+        ->name('client.')
         ->group(base_path('routes/roles/client.php'));
 });
 
