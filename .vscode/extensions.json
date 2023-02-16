@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "shufo.vscode-blade-formatter",
+        "onecentlin.laravel-blade",
+        "austenc.laravel-blade-spacer",
+        "bmewburn.vscode-intelephense-client"
+    ]
+}
