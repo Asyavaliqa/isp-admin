@@ -30,6 +30,7 @@ class BillController extends Controller
 
         return view('pages.reseller.transaction.index', [
             'title' => 'Tagihan Terhutang',
+            'transaction_type' => 'outstanding',
             // 'bills' => $bills->paginate(20)->appends($request->all()),
         ]);
     }
@@ -53,6 +54,7 @@ class BillController extends Controller
 
         return view('pages.reseller.transaction.index', [
             'title' => 'Tagihan Yang Telah Dibayar',
+            'transaction_type' => 'paid',
             // 'bills' => $bills->paginate(20)->appends($request->all()),
         ]);
     }
@@ -76,6 +78,7 @@ class BillController extends Controller
 
         return view('pages.reseller.transaction.index', [
             'title' => 'Tagihan Selesai',
+            'transaction_type' => 'paidOff',
             // 'bills' => $bills->paginate(20)->appends($request->all()),
         ]);
     }
@@ -93,7 +96,7 @@ class BillController extends Controller
         $bills->whereNotNull('payed_at');
 
         return view('pages.reseller.transaction.index', [
-            'title' => 'Transaksi',
+            'title' => 'Tagihan',
             'bills' => $bills->paginate(20)->appends($request->all()),
         ]);
     }
@@ -156,7 +159,7 @@ class BillController extends Controller
           ->firstOrFail();
 
         return view('pages.reseller.transaction.detail', [
-            'title' => 'Detail Transaksi: ' . $transaction->invoice_id,
+            'title' => 'Detail Tagihan: ' . $transaction->invoice_id,
             'transaction' => $transaction,
         ]);
     }
