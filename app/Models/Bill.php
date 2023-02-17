@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Bavix\Wallet\Models\Transaction;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,21 @@ use Illuminate\Support\Carbon;
 class Bill extends Model
 {
     use HasFactory, SoftDeletes;
+
+    /**
+     * Tax Percentage (PPN)
+     */
+    const TAX = 0.11;
+
+    /**
+     * BHP USO Percentage
+     */
+    const BHP_USO = 0.0175;
+
+    /**
+     * KSO Percentage
+     */
+    const KSO = 0.0575;
 
     /**
      * Purchase of a new data package
@@ -41,7 +57,7 @@ class Bill extends Model
      *
      * @var array
      */
-    protected $appends = ['balance_formated', 'created_at_formated', 'payment_month_formated'];
+    protected $appends = ['grand_total_formated', 'created_at_formated', 'payment_month_formated'];
 
     /**
      * The attributes that should be cast.
@@ -83,17 +99,25 @@ class Bill extends Model
     }
 
     /**
+     * Relation to transaction table
+     */
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class, 'transaction_id');
+    }
+
+    /**
      * Format price
      *
      * @return Illuminate\Database\Eloquent\Casts\Attribute
      */
-    protected function balanceFormated(): Attribute
+    protected function grandTotalFormated(): Attribute
     {
         return Attribute::make(
             function ($value, $attributes) {
                 return sprintf(
                     'Rp%s',
-                    number_format($attributes['balance'], 2, ',', '.')
+                    number_format($attributes['grand_total'], 2, ',', '.')
                 );
             }
         );

@@ -32,7 +32,7 @@
                     </a>
                 </td>
                 <td>
-                    Rp{{ number_format($bill->balance, 2, ',', '.') }}
+                    {{ $transaction->grand_total_formated }}
                 </td>
                 <td class="text-center">
                     <span
