@@ -172,7 +172,7 @@ class HomeController extends Controller
         $unpayedBill = Bill::select(DB::raw('count(id) as total'))->whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })
-            ->whereNull('accepted_at')
+            ->whereNull('payed_at')
             ->first()->total ?? 0;
 
         $lastMonth = $currentMonth->subMonth();
