@@ -44,4 +44,6 @@ Route::prefix('bill')->name('billMenu.')->group(function () {
     Route::get('/outstanding', [BillController::class, 'outstanding'])->name('outstanding');
     Route::get('/paid', [BillController::class, 'paid'])->name('paid');
     Route::get('/paid-off', [BillController::class, 'paidOff'])->name('paidOff');
+
+    Route::post('/confirm/{id}', [BillController::class, 'confirm'])->name('confirm')->whereNumber('id');
 });

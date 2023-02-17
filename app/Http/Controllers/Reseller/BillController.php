@@ -7,6 +7,9 @@ use App\Models\Bill;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 use Yajra\DataTables\Facades\DataTables;
 
 class BillController extends Controller
@@ -162,5 +165,41 @@ class BillController extends Controller
             'title' => 'Detail Tagihan: ' . $transaction->invoice_id,
             'transaction' => $transaction,
         ]);
+    }
+
+    /**
+     * Confirm bill
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm(Request $request, string $id)
+    {
+        $bill = Bill::with('reseller')->where('id', $id)
+          ->firstOrFail();
+
+        if ($bill->payed_at && $bill->accepted_at) {
+            return redirect()
+                ->route('business.billMenu.detail', $id);
+        }
+
+        try {
+            DB::transaction(function () use ($bill) {
+                $transaction = $bill->reseller->deposit($bill->grand_total, [
+                    'description' => 'Pembayaran invoice: ' . $bill->invoice_id,
+                ]);
+                $bill->accepted_at = now();
+                $bill->transaction()->associate($transaction);
+                $bill->save();
+            }, 5);
+        } catch (Throwable $e) {
+            Log::error($e->getMessage(), $e->getTrace());
+            abort(500);
+        }
+
+        return redirect()
+            ->route('business.billMenu.detail', $id)
+            ->with('status', 'Tagihan Telah dikonfirmasi');
     }
 }
