@@ -35,9 +35,9 @@ class GenerateBill extends Command
     public function handle()
     {
         $clients = Client::with([
-            'user:id,fullname',
-            'plan:id,name,price',
-            'reseller:id,name',
+            'user',
+            'plan',
+            'reseller',
             'lastBill',
         ])->orderBy('id', 'desc')->get();
 
@@ -65,21 +65,30 @@ class GenerateBill extends Command
             );
 
             if ($client->plan->tax_type === Plan::TAX_INCLUDED) {
-                $price = $client->plan->price;
+                $tax = $client->plan->price * Bill::TAX;
+                $price = $client->plan->price - $tax;
             } else {
-                $price = $client->plan->price + ($client->plan->price * Plan::TAX);
+                $tax = $client->plan->price * Bill::TAX;
+                $price = $client->plan->price;
             }
+
+            $grandTotal = $price + $tax;
 
             array_push($bills, [
                 'invoice_id' => $invoiceId,
                 'type' => Bill::TYPE_EXTENSION,
-                'balance' => $price,
+                'amount' => $price,
+                'tax' => $tax,
+                'grand_total' => $grandTotal,
                 'reseller_id' => $client->reseller->id,
                 'reseller_name' => $client->reseller->name,
                 'client_id' => $client->id,
                 'client_name' => $client->user->fullname,
                 'plan_id' => $client->plan_id,
                 'plan_name' => $client->plan->name,
+                'plan_price' => $client->plan->price,
+                'plan_tax_type' => $client->plan->tax_type,
+                'plan_bandwidth' => $client->plan->bandwidth,
                 'description' => sprintf(
                     'Perpanjangan paket %s',
                     $client->plan->name

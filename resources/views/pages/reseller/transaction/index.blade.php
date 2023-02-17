@@ -22,7 +22,9 @@
                                     <th scope="col">Paket</th>
                                     <th scope="col">Nilai</th>
                                     <th scope="col" class="text-center">Pembayaran Bulan</th>
+                                    @if ($transaction_type !== 'outstanding')
                                     <th scope="col" class="text-center">Dibayar Tanggal</th>
+                                    @endif
                                     {{-- <th scope="col" class="text-center">Dikonfirmasi</th> --}}
                                 </tr>
                             </thead>
@@ -105,8 +107,8 @@
                         }
                     },
                     {
-                        data: 'balance_formated',
-                        name: 'balance',
+                        data: 'grand_total_formated',
+                        name: 'grand_total',
                         className: 'text-left',
                         searchable: false,
                         orderable: true,
@@ -123,6 +125,7 @@
                             </span>`;
                         }
                     },
+                    @if ($transaction_type !== 'outstanding')
                     {
                         data: 'created_at_formated',
                         name: 'created_at',
@@ -135,6 +138,7 @@
                             </span>`;
                         }
                     },
+                    @endif
                     // {
                     //     data: 'accepted_at',
                     //     name: 'accepted_at',

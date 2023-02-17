@@ -20,9 +20,9 @@ class BillSeeder extends Seeder
     {
         $bills = [];
         $clients = Client::with([
-            'user:id,fullname',
-            'plan:id,name,price',
-            'reseller:id,name',
+            'user',
+            'plan',
+            'reseller',
         ])->get();
 
         foreach ($clients as $client) {
@@ -40,22 +40,31 @@ class BillSeeder extends Seeder
                 );
 
                 if ($client->plan->tax_type === Plan::TAX_INCLUDED) {
-                    $price = $client->plan->price;
+                    $tax = $client->plan->price * Bill::TAX;
+                    $price = $client->plan->price - $tax;
                 } else {
-                    $price = $client->plan->price + ($client->plan->price * Plan::TAX);
+                    $tax = $client->plan->price * Bill::TAX;
+                    $price = $client->plan->price;
                 }
+
+                $grandTotal = $price + $tax;
 
                 array_push($bills, [
                     'invoice_id' => $invoiceId,
                     'type' => $i <= 0 ? Bill::TYPE_NEW_PURCHASE : Bill::TYPE_EXTENSION,
                     'bill_photo' => 'assets/img/bills/bukti-bayar-200x300.png',
-                    'balance' => $price,
+                    'amount' => $price,
+                    'tax' => $tax,
+                    'grand_total' => $grandTotal,
                     'reseller_id' => $client->reseller->id,
                     'reseller_name' => $client->reseller->name,
                     'client_id' => $client->id,
                     'client_name' => $client->user->fullname,
                     'plan_id' => $client->plan_id,
                     'plan_name' => $client->plan->name,
+                    'plan_price' => $client->plan->price,
+                    'plan_tax_type' => $client->plan->tax_type,
+                    'plan_bandwidth' => $client->plan->bandwidth,
                     'description' => $i <= 0 ? sprintf(
                         'Pembelian pertama paket %s',
                         $client->plan->name

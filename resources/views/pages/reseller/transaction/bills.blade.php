@@ -54,7 +54,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                Rp{{ number_format($transaction->balance, 2, ',', '.') }}
+                                                Rp{{ number_format($transaction->grand_total, 2, ',', '.') }}
                                             </td>
                                             <td class="text-center">
                                                 <span

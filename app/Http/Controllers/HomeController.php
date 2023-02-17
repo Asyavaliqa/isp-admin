@@ -116,7 +116,7 @@ class HomeController extends Controller
         $bills = Bill::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })
-        ->select(DB::raw('sum(balance) as total'), DB::raw('DATE_FORMAT(payment_month,\'%Y-%m-01\') as monthNum'))
+        ->select(DB::raw('sum(grand_total) as total'), DB::raw('DATE_FORMAT(payment_month,\'%Y-%m-01\') as monthNum'))
             ->whereBetween('payment_month', [$from, $to])
             ->orderBy('monthNum')
             ->groupBy('monthNum')
@@ -128,7 +128,7 @@ class HomeController extends Controller
         $outstanding = Bill::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })
-            ->select(DB::raw('sum(balance) as total'), DB::raw('DATE_FORMAT(payment_month,\'%Y-%m-01\') as monthNum'))
+            ->select(DB::raw('sum(grand_total) as total'), DB::raw('DATE_FORMAT(payment_month,\'%Y-%m-01\') as monthNum'))
             ->whereBetween('payment_month', [$from, $to])
             ->orderBy('monthNum')
             ->groupBy('monthNum')
@@ -179,7 +179,7 @@ class HomeController extends Controller
         $totalEarning = Bill::whereHas('reseller', function ($q) {
             $q->where('user_id', Auth::id());
         })
-            ->select(DB::raw('SUM(balance) as total'))
+            ->select(DB::raw('SUM(grand_total) as total'))
             ->whereMonth('payment_month', $lastMonth->format('m'))
             ->whereYear('payment_month', $lastMonth->format('Y'))
             ->whereNotNull('accepted_at')

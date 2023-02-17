@@ -10,7 +10,7 @@
     <div class="row g-0 mb-4">
         <div class="card mb-4">
             <div class="card-header">
-                <strong>Detail Transaksi</strong>
+                <strong>Detail Tagihan</strong>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -30,7 +30,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="col">Tanggal Pembayaran</th>
+                            <th scope="col">Tagihan dibuat pada</th>
                             <td scope="col">:</td>
                             <td scope="col">{{ $transaction->created_at->isoFormat('dddd, D MMMM g') }}</td>
                         </tr>
@@ -47,8 +47,9 @@
                         <tr>
                             <th scope="col">Jumlah Bayar</th>
                             <td scope="col">:</td>
-                            <td scope="col">Rp{{ number_format($transaction->balance, 2, ',', '.') }}</td>
+                            <td scope="col">{{ $transaction->grand_total_formated }}</td>
                         </tr>
+                        @if ($transaction->payed_at)
                         <tr>
                             <th scope="col">Bukti Pembayaran</th>
                             <td scope="col">:</td>
@@ -57,6 +58,46 @@
                                     Tampilkan Bukti Bayar
                                 </button>
                             </td>
+                        </tr>
+                        @endif
+                        <tr>
+                            <th scope="col">Status Tagihan</th>
+                            <td scope="col">:</td>
+                            <td scope="col">
+                                @if (empty($transaction->payed_at) && empty($transaction->accepted_at))
+                                    <span class="badge badge-pills bg-danger">Belum dibayar</span>
+                                @elseif ($transaction->payed_at && empty($transaction->accepted_at))
+                                    <span class="badge badge-pills bg-warning">Belum dikonfirmasi</span>
+                                @elseif ($transaction->payed_at && $transaction->accepted_at)
+                                <span class="badge badge-pills bg-success">Sudah diselesai</span>
+                                @endif
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <strong>Rincian Pembayaran</strong>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tr>
+                            <th scope="col">Nilai sebelum PPN</th>
+                            <td scope="col">:</td>
+                            <td scope="col">Rp{{ number_format($transaction->amount, 2, ',', '.') }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Nilai PPN</th>
+                            <td scope="col">:</td>
+                            <td scope="col">Rp{{ number_format($transaction->tax, 2, ',', '.') }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Nilai setelah Pajak/Nilai Invoice</th>
+                            <td scope="col">:</td>
+                            <td scope="col" class="fw-bold">Rp{{ number_format($transaction->grand_total, 2, ',', '.') }}</td>
                         </tr>
                     </table>
                 </div>
@@ -72,21 +113,21 @@
                         <tr>
                             <th scope="col">Nama Paket</th>
                             <td scope="col">:</td>
-                            <td scope="col">{{ $transaction->plan->name ?? $transaction->plan_name }}</td>
+                            <td scope="col">{{ $transaction->plan_name }}</td>
                         </tr>
                         <tr>
                             <th scope="col">Bandwidth</th>
                             <td scope="col">:</td>
                             <td scope="col">
                                 <span class="badge rounded-pill bg-primary">
-                                    {{ $transaction->plan->bandwidth }} Mbps
+                                    {{ $transaction->plan_bandwidth }} Mbps
                                 </span>
                             </td>
                         </tr>
                         <tr>
                             <th scope="col">Harga</th>
                             <td scope="col">:</td>
-                            <td scope="col">Rp{{ number_format($transaction->balance, 2, ',', '.') }}</td>
+                            <td scope="col">Rp{{ number_format($transaction->plan_price, 2, ',', '.') }}</td>
                         </tr>
                     </table>
                 </div>
@@ -123,6 +164,7 @@
     </div>
 </div>
 
+@if ($transaction->payed_at)
 <div class="modal fade" id="billPhoto" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1" aria-labelledby="billPhotoLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -141,4 +183,5 @@
       </div>
     </div>
   </div>
+  @endif
 @endsection
