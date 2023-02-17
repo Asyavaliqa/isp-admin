@@ -57,7 +57,7 @@ class Bill extends Model
      *
      * @var array
      */
-    protected $appends = ['grand_total_formated', 'created_at_formated', 'payment_month_formated'];
+    protected $appends = ['grand_total_formated', 'created_at_formated', 'payment_month_formated', 'payed_at_formated'];
 
     /**
      * The attributes that should be cast.
@@ -133,6 +133,21 @@ class Bill extends Model
         return Attribute::make(
             function ($value, $attributes) {
                 return Carbon::parse($attributes['created_at'])
+                    ->isoFormat('dddd, D MMMM g');
+            }
+        );
+    }
+
+    /**
+     * Format payed datetime
+     *
+     * @return Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function payedAtFormated(): Attribute
+    {
+        return Attribute::make(
+            function ($value, $attributes) {
+                return Carbon::parse($attributes['payed_at'])
                     ->isoFormat('dddd, D MMMM g');
             }
         );
