@@ -14,10 +14,14 @@ class WalletSeeder extends Seeder
      */
     public function run()
     {
-        $bills = Bill::with('reseller')->whereNotNull('accepted_at')->get();
+        $bills = Bill::with('reseller')->whereNotNull('accepted_at')->whereNotNull('payed_at')->get();
 
         foreach ($bills as $bill) {
-            $bill->reseller->deposit($bill->balance);
+            $transaction = $bill->reseller->deposit($bill->grand_total, [
+                'description' => 'Pembayaran invoice: ' . $bill->invoice_id,
+            ]);
+            $bill->transaction()->associate($transaction);
+            $bill->save();
         }
     }
 }
