@@ -33,11 +33,25 @@ class AppServiceProvider extends ServiceProvider
                 Role::RESELLER_ADMIN,
                 Role::RESELLER_OWNER,
             ])) {
-                $bill = Bill::select(DB::raw('count(id) as total'))->whereHas('reseller', function ($q) {
-                    $q->where('user_id', Auth::id());
-                });
-                $totalOutstandingBill = $bill->whereNull('payed_at')->whereNull('accepted_at')->first()->total ?? 0;
-                $totalPaidBill = $bill->whereNotNull('payed_at')->whereNull('accepted_at')->first()->total ?? 0;
+                $totalOutstandingBill = Bill::select(DB::raw('count(id) as total'))
+                    ->whereHas('reseller', function ($q) {
+                        $q->where('user_id', Auth::id());
+                    })->whereNull('payed_at')->whereNull('accepted_at')->first()->total ?? 0;
+                $totalPaidBill = Bill::select(DB::raw('count(id) as total'))
+                    ->whereHas('reseller', function ($q) {
+                        $q->where('user_id', Auth::id());
+                    })->whereNotNull('payed_at')->whereNull('accepted_at')->first()->total ?? 0;
+            }
+
+            if (Auth::check() && Auth::user()->hasRole(Role::CLIENT)) {
+                $totalOutstandingBill = Bill::select(DB::raw('count(id) as total'))
+                    ->whereHas('client.user', function ($q) {
+                        $q->where('id', Auth::id());
+                    })->whereNull('payed_at')->whereNull('accepted_at')->first()->total ?? 0;
+                $totalPaidBill = Bill::select(DB::raw('count(id) as total'))
+                    ->whereHas('client.user', function ($q) {
+                        $q->where('id', Auth::id());
+                    })->whereNotNull('payed_at')->whereNull('accepted_at')->first()->total ?? 0;
             }
 
             $view->with('totalOutstandingBill', $totalOutstandingBill ?? 0);
