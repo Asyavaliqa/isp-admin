@@ -4,21 +4,6 @@
     {{ $title ?? 'Dasboard' }}
 @endsection
 
-@section('stylesheet')
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/free.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/brand.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/flag.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/chartjs@3.0.0/dist/css/coreui-chartjs.min.css">
-@endsection
-
-@section('script')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.1.2/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/chartjs@3.0.0/dist/js/coreui-chartjs.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/utils@1.3.1/dist/coreui-utils.js"></script>
-    <script src="js/main.js"></script>
-@endsection
-
 @section('content')
     <div class="container-lg">
         <div class="row mb-4">
@@ -26,10 +11,10 @@
                 <div class="card overflow-hidden">
                     <div class="card-body p-0 d-flex align-items-center">
                         <div class="bg-primary text-white py-4 px-4 me-3">
-                            <i class="icon icon-xl cil-people"></i>
+                            <i class="icon icon-xl cil-basket"></i>
                         </div>
                         <div>
-                            <div class="fs-6 fw-semibold text-primary">Paket Small (10Mb)</div>
+                            <div class="fs-6 fw-semibold text-primary">{{ $client->plan->name }}</div>
                             <div class="text-medium-emphasis text-uppercase fw-semibold small">Paket</div>
                         </div>
                     </div>
@@ -38,12 +23,12 @@
             <div class="col-sm-6 col-lg-3">
                 <div class="card overflow-hidden">
                     <div class="card-body p-0 d-flex align-items-center">
-                        <div class="bg-primary text-white py-4 px-4 me-3">
-                            <i class="icon icon-xl cil-people"></i>
+                        <div class="{{ $bill ? 'bg-warning' : 'bg-success' }} text-white py-4 px-4 me-3">
+                            <i class="icon icon-xl cil-chart-line"></i>
                         </div>
                         <div>
-                            <div class="fs-6 fw-semibold text-primary">Rp 200.000</div>
-                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Tagihan</div>
+                            <div class="fs-6 fw-semibold {{ $bill ? 'text-warning' : 'text-success' }}">{{ $bill->grand_total_formated ?? 'Lunas' }}</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Tagihan Bulan {{ $bill?->payment_month?->isoFormat('MMMM') ?? now()->setDay(1)->subMonth()->isoFormat('MMMM') }}</div>
                         </div>
                     </div>
                 </div>
@@ -52,24 +37,24 @@
                 <div class="card overflow-hidden">
                     <div class="card-body p-0 d-flex align-items-center">
                         <div class="bg-primary text-white py-4 px-4 me-3">
-                            <i class="icon icon-xl cil-people"></i>
+                            <i class="icon icon-xl cil-graph"></i>
                         </div>
                         <div>
-                            <div class="fs-6 fw-semibold text-primary">Lunas</div>
-                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Pembayaran Bulan Ini</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card overflow-hidden">
-                    <div class="card-body p-0 d-flex align-items-center">
-                        <div class="bg-primary text-white py-4 px-4 me-3">
-                            <i class="icon icon-xl cil-people"></i>
-                        </div>
-                        <div>
-                            <div class="fs-6 fw-semibold text-primary">Buana Data Media</div>
+                            <div class="fs-6 fw-semibold text-primary">{{ $client->reseller->name }}</div>
                             <div class="text-medium-emphasis text-uppercase fw-semibold small">RESELLER</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card overflow-hidden">
+                    <div class="card-body p-0 d-flex align-items-center">
+                        <div class="bg-primary text-white py-4 px-4 me-3">
+                            <i class="icon icon-xl cil-calendar"></i>
+                        </div>
+                        <div>
+                            <div class="fs-6 fw-semibold text-primary">{{ $client->created_at->isoFormat('MMMM g') }}</div>
+                            <div class="text-medium-emphasis text-uppercase fw-semibold small">Terdaftar Sejak</div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +62,7 @@
             <!-- /.col-->
         </div>
         <!-- /.row-->
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
                     <div class="card-header text-center fw-semibold">Daftar Transaksi</div>
@@ -97,13 +82,13 @@
                                 <tbody>
                                     <tr class="align-middle">
                                         <td>
-                                            <div class="fw-semibold text-center">1</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">1</div>
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-center">INV/000</div>      {{-- edit lagi --}}
+                                            <div class="fw-bold text-center">INV/000</div>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Paket Small (10Mb)</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Paket Small (10Mb)</div>
                                         </td>
                                         <td>
                                             <div class="fw-bold text-center" >Rp 200.000</div>
@@ -117,13 +102,13 @@
                                     </tr>
                                     <tr class="align-middle">
                                         <td>
-                                            <div class="fw-semibold text-center">2</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">2</div>
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-center">INV/001</div>      {{-- edit lagi --}}
+                                            <div class="fw-bold text-center">INV/001</div>
                                         </td>
                                         <td>
-                                            <div class="fw-semibold text-center">Paket Small (10Mb)</div>      {{-- edit lagi --}}
+                                            <div class="fw-semibold text-center">Paket Small (10Mb)</div>
                                         </td>
                                         <td>
                                             <div class="fw-bold text-center" >Rp 200.000</div>
@@ -142,7 +127,7 @@
                 </div>
             </div>
             <!-- /.col-->
-        </div>
+        </div> --}}
         <!-- /.row-->
     </div>
 @endsection

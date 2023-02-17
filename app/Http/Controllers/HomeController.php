@@ -238,7 +238,26 @@ class HomeController extends Controller
      */
     public function clientPages(Request $request)
     {
-        return view('pages.client.home');
+        $bill = Bill::with([
+            'client',
+        ])->whereHas('client.user', function ($q) {
+            $q->where('id', Auth::id());
+        })->orderBy('id', 'asc')
+            ->whereNull('payed_at')
+            ->limit(1)
+            ->first();
+
+        $client = Client::with([
+            'plan',
+            'reseller',
+        ])->whereHas('user', function ($q) {
+            $q->where('id', Auth::id());
+        })->first();
+
+        return view('pages.client.home', [
+            'bill' => $bill,
+            'client' => $client,
+        ]);
     }
 
     /**
