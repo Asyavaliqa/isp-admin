@@ -22,6 +22,10 @@ Route::name('billMenu.')
     ->prefix('bill')
     ->group(function () {
         Route::get('/', [BillController::class, 'index'])->name('index');
+        Route::get('/outstanding', [BillController::class, 'outstanding'])->name('outstanding');
+        Route::get('/history', [BillController::class, 'history'])->name('history');
+        Route::get('/{id?}', [BillController::class, 'detail'])->name('detail')->whereNumber('id');
+        Route::post('/pay/{id}', [BillController::class, 'pay'])->name('pay')->whereNumber('id');
     });
 
 /**

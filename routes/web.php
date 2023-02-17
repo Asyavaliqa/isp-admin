@@ -63,7 +63,7 @@ Route::middleware([
      * Route for client
      */
     Route::middleware([
-        sprintf('role:', Role::CLIENT),
+        sprintf('role:%s', Role::CLIENT),
     ])
         ->prefix('client')
         ->name('client.')
